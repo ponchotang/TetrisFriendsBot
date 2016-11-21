@@ -31,6 +31,7 @@ public class BoardDetector {
 	private Robot robot;
 	private BufferedImage screenshot;
 	private Point startingPixel;
+	private Point playfieldStartingPixel;
 	private Rectangle screenResolution;
 	private Rectangle boardResolution;
 	
@@ -54,6 +55,9 @@ public class BoardDetector {
 		
 		// Takes a screenshot of the game board only
 		screenshot = robot.createScreenCapture(boardResolution);
+		
+		determinePlayFieldStartingPixel();
+		determinePlayFieldSpecifications();
 		
 	}
 	
@@ -145,6 +149,77 @@ public class BoardDetector {
 		
 		// Initalises boardResolution with the calculated values
 		boardResolution = new Rectangle(startingPixel.x, startingPixel.y, width, height);
+	}
+	
+	/**
+	 * This method determines the starting pixel of the actual play field.
+	 * This pixel will be used in order to determine the dimensions of the play field.
+	 */
+	private void determinePlayFieldStartingPixel() {
+		
+		boolean startFound = false;
+		
+		// Iterate through all pixels of screenshot
+		for (int i = 0; i < screenshot.getHeight(); i++) {
+			for (int j = 0; j < screenshot.getWidth(); j++) {
+				
+				// Get color of current pixel
+				Color pixel = new Color(screenshot.getRGB(j, i));
+				
+				// If it equals the first empty tile
+				if (pixel.equals(Colors.EMPTY_TILE_1)) {
+					
+					boolean tempFound = true;
+					
+					// Iterate through next horizontal 15 pixels
+					// and checks if they are the same color
+					for (int m = i; m < i + 15; m++) {
+						
+						// Prevents out of coordinates exception
+						if (m < screenshot.getWidth()) {
+							
+							Color tempPixel = new Color(screenshot.getRGB(j, m));
+							
+							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
+								tempFound = false;
+								break;
+							}
+						}
+						
+					}
+					
+					// Iterate through next vertical 15 pixels
+					// and checks if they are the same color
+					for (int n = j; n < j + 15; n++) {
+						
+						// Prevents out of coordinates exception
+						if (n < screenshot.getHeight()) {
+							Color tempPixel = new Color(screenshot.getRGB(n, i));
+							
+							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
+								tempFound = false;
+								break;
+							}
+						}
+						
+					}
+					
+					// Create starting pixel if it has been found
+					if (tempFound) {
+						startFound = true;
+						playfieldStartingPixel = new Point(j, i);
+						break;
+					}
+				}
+			}
+			
+			if (startFound) break;
+		}
+		
+	}
+	
+	private void determinePlayFieldSpecifications() {
+		// 
 	}
 	
 	public BufferedImage getScreenshot() {
