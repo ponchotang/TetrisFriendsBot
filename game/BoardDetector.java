@@ -18,8 +18,10 @@ import java.awt.image.BufferedImage;
  *
  */
 public class BoardDetector {
-	private static final int BOARD_IMAGE_HEIGHT = 0;
-	private static final int BOARD_IMAGE_WIDTH = 0;
+	private static final int START_PIXEL_OFFSET_X = 12;
+	private static final int START_PIXEL_OFFSET_Y = 9;
+	private static final int HORIZONTAL_OFFSET = 12;
+	private static final int VERTICAL_OFFSET = 10;
 	
 	private final int height;
 	private final int width;
@@ -50,11 +52,16 @@ public class BoardDetector {
 		determineStartingPixel();
 		determineBoardResolution();
 		
+		// Takes a screenshot of the game board only
+		screenshot = robot.createScreenCapture(boardResolution);
+		
 	}
 	
+	/**
+	 * This method uses the screenshot of the screen in order to determine
+	 * the starting pixel of the game board.
+	 */
 	private void determineStartingPixel() {
-		// 12 pixels from first gray
-		
 		boolean startFound = false;
 		
 		// Iterates over the screenshot
@@ -82,24 +89,62 @@ public class BoardDetector {
 						
 					}
 					
-					// Initalises startingPixel
+					// Initalises startingPixel if it has been found
 					if (foundTemp) {
-						startingPixel = new Point(j - 12, i);
+						startingPixel = new Point(j - START_PIXEL_OFFSET_X, i);
 						startFound = true;
 						break;
 					}
+					
 				}
 			}
 			
+			// Breaks out of loop if the starting pixel has been found
 			if (startFound) break;
 		}
 		
-		System.out.println(startingPixel);
-		
 	}
 	
+	/**
+	 * Uses the starting pixel of the game board in order to determine
+	 * the area on the screen containing the game board.
+	 * 
+	 * The offsets are due to the fact that the corners of the board are curved and so
+	 * the corner points are colored white.
+	 * 
+	 * The offsets are therefore used to make up for the unaccounted pixels since the outline
+	 * is determine by a continuous line of gray pixels.
+	 */
 	private void determineBoardResolution() {
 		
+		// Starting point in which to detect the game board outline
+		int x = startingPixel.x + START_PIXEL_OFFSET_X;
+		int y = startingPixel.y + START_PIXEL_OFFSET_Y;
+		
+		// Starting width and heights (accounts for offsets)
+		int width = START_PIXEL_OFFSET_X + HORIZONTAL_OFFSET;
+		int height = START_PIXEL_OFFSET_Y + VERTICAL_OFFSET;
+		
+		// Starting pixels
+		Color xPixel = new Color(screenshot.getRGB(x, startingPixel.y));
+		Color yPixel = new Color(screenshot.getRGB(startingPixel.x, y));
+	
+		// Iterates horizontally until the outline ends (determines width)
+		while (xPixel.equals(Colors.BOARD_OUTLINE)) {
+			width++;
+			x++;
+			xPixel = new Color(screenshot.getRGB(x, startingPixel.y));
+		}
+		
+		//Iterates vertically until the outline ends (determines height)
+		while (yPixel.equals(Colors.BOARD_OUTLINE)) {
+			height++;
+			y++;
+			yPixel = new Color(screenshot.getRGB(startingPixel.x, y));
+		}
+		
+		// Initalises boardResolution with the calculated values
+		boardResolution = new Rectangle(startingPixel.x, startingPixel.y, width, height);
 	}
 	
 	public BufferedImage getScreenshot() {
