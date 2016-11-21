@@ -3,7 +3,10 @@ package game;
 public class TetrisGame {
 	private TetrisGame game;
 	
+	private static int HEIGHT = 20;
+	private static int WIDTH = 10;
 	
+	private Tile tiles[][];
 	
 	public TetrisGame getInstance() {
 		if (game == null) {
@@ -14,9 +17,12 @@ public class TetrisGame {
 	}
 	
 	private TetrisGame() {
-		// 20 * 10 board
+		tiles = new Tile[HEIGHT][WIDTH];
+		
+		
 		
 	}
+	
 	
 	
 
