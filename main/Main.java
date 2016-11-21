@@ -16,7 +16,7 @@ public class Main {
 		
 		// Loop
 		
-		BoardDetector test = new BoardDetector(0, 0);
+		BoardDetector test = new BoardDetector(10, 20);
 		
 		File file = new File("image.png");
 		file.createNewFile();

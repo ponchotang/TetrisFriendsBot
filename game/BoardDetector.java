@@ -23,21 +23,19 @@ public class BoardDetector {
 	private static final int HORIZONTAL_OFFSET = 12;
 	private static final int VERTICAL_OFFSET = 10;
 	
-	private final int height;
 	private final int width;
-	
-	
-	
+	private final int height;
+
 	private Robot robot;
 	private BufferedImage screenshot;
-	private Point startingPixel;
-	private Point playfieldStartingPixel;
-	private Rectangle screenResolution;
-	private Rectangle boardResolution;
+	private Point startingPixel, playfieldStartingPixel;
+	private Rectangle screenResolution, boardResolution, playfieldResolution;
 	
-	public BoardDetector(int height, int width) {
-		this.height = height;
+	private int tileSize, tileGap;
+	
+	public BoardDetector(int width, int height) {
 		this.width = width;
+		this.height = height;
 		
 		try {
 			robot = new Robot();
@@ -58,6 +56,9 @@ public class BoardDetector {
 		
 		determinePlayFieldStartingPixel();
 		determinePlayFieldSpecifications();
+		
+		// Takes a screenshot of the play field only
+		screenshot = robot.createScreenCapture(playfieldResolution);
 		
 	}
 	
@@ -218,9 +219,51 @@ public class BoardDetector {
 		
 	}
 	
+	/**
+	 * This method uses the starting pixel of the play field in order
+	 * to determine the pixel sizes of the tiles and gaps between tiles.
+	 * 
+	 * It then uses these values in order to calculate the area of the 
+	 * play field.
+	 */
 	private void determinePlayFieldSpecifications() {
-		// 
+		
+		// Starting pixel positions
+		int x = playfieldStartingPixel.x;
+		int y = playfieldStartingPixel.y;
+		
+		// Initializing variables
+		tileSize = 0;
+		tileGap = 0;
+		
+		// Initial color
+		Color pixel = new Color(screenshot.getRGB(x, y));
+		
+		// Determine size by iterating until color changes
+		while (pixel.equals(Colors.EMPTY_TILE_1)) {
+			tileSize++;
+			x++;
+			pixel = new Color(screenshot.getRGB(x, y));
+		}
+		
+		// Determine gap by iterating until color changes
+		while (!pixel.equals(Colors.EMPTY_TILE_2)) {
+			tileGap++;
+			x++;
+			pixel = new Color(screenshot.getRGB(x, y));
+		}
+		
+		// Calculate width and height of play field
+		int playfieldWidth = (tileSize * width) + (tileGap * (width - 1));
+		int playfieldHeight = (tileSize * height) + (tileGap * (height - 1));
+		
+		// Create rectangle containing the play field
+		playfieldResolution = new Rectangle(startingPixel.x + playfieldStartingPixel.x,
+				startingPixel.y + playfieldStartingPixel.y, playfieldWidth, playfieldHeight);
+			
 	}
+	
+	//TODO: Find colors of all tetris pieces. Implement internal representation of play field.
 	
 	public BufferedImage getScreenshot() {
 		return screenshot;
