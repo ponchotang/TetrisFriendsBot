@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * This class represents the play field of the Tetris game.
+ * 
+ * @author Andy
+ *
+ */
 public class TetrisGame {
 	private static TetrisGame game;
 	
@@ -19,30 +25,37 @@ public class TetrisGame {
 	
 	private TetrisGame() {
 		bd = new BoardDetector(WIDTH, HEIGHT);
-		
 		tiles = new Tile[HEIGHT][WIDTH];
 		
+		// Creates tiles
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
 				tiles[i][j] = new Tile();
 			}
 		}
 		
+		// Updates tiles
 		update();
-		
-		
-		
+			
 	}
 	
+	/**
+	 * This method is used to update the state of each tile
+	 */
 	private void update() {
 		
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
-				
+				tiles[i][j].setState(bd.getState(i, j));
 			}
 		}
+		
+		// also update current tetrimino TODO
 	}
 	
+	/**
+	 * Returns a string representation of the play field
+	 */
 	public String toString() {
 		String stringRepresentation = "";
 		

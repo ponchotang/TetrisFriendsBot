@@ -275,7 +275,7 @@ public class BoardDetector {
 
 	public TileState getState(int row, int column) {
 		// TODO:
-		return null;
+		return TileState.EMPTY;
 	}
 	
 	public BufferedImage getScreenshot() {
