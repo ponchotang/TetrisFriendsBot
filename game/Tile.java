@@ -21,6 +21,15 @@ public class Tile {
 	public void setState(TileState state) {
 		this.state = state;
 	}
+	
+	public String toString() {
+		
+		if (state == TileState.EMPTY) {
+			return "[ ]";
+		}
+		
+		return "[*]";
+	}
 }
 
 enum TileState {

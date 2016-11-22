@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import game.BoardDetector;
+import game.TetrisGame;
 
 public class Main {
 	
@@ -16,11 +17,18 @@ public class Main {
 		
 		// Loop
 		
-		BoardDetector test = new BoardDetector(10, 20);
+//		BoardDetector test = new BoardDetector(10, 20);
+//		
+//		File file = new File("image.png");
+//		file.createNewFile();
+//		ImageIO.write(test.getScreenshot(), "png", file);
 		
-		File file = new File("image.png");
-		file.createNewFile();
-		ImageIO.write(test.getScreenshot(), "png", file);
+		
+		
+		
+		TetrisGame game = TetrisGame.getInstance();
+		
+		System.out.println(game);
 	}
 
 }
