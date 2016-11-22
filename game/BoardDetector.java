@@ -266,6 +266,18 @@ public class BoardDetector {
 	//TODO: Find colors of all tetris pieces. Implement internal representation of play field.
 	// Pixel used to detect tile type: 4 offset from corner
 	
+
+	public Tetrimino getCurrentTetrimino() {
+		// TODO:
+		return null;
+	}
+	
+
+	public TileState getState(int row, int column) {
+		// TODO:
+		return null;
+	}
+	
 	public BufferedImage getScreenshot() {
 		return screenshot;
 	}
