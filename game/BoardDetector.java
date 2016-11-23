@@ -264,13 +264,17 @@ public class BoardDetector {
 			
 	}
 	
-	//TODO: Find colors of all tetris pieces. Implement internal representation of play field.
-	// Pixel used to detect tile type: 4 offset from corner
 	
-
+	/**
+	 * Method used to determine what the current tetrimino is.
+	 * @return the current tetrimino 
+	 */
 	public Tetrimino getCurrentTetrimino() {
+		
+		// Determine color of current tetrimino
 		Color currentTetrimino = new Color(screenshot.getRGB((4 * tileSize) + (4 * tileGap) + TETRIMINO_OFFSET, TETRIMINO_OFFSET));
 		
+		// Iterate through all Tetriminos and determine which one it is
 		for (Tetrimino tetrimino : Tetrimino.values()) {
 			if (tetrimino.getColor().equals(currentTetrimino)) {
 				return tetrimino;
