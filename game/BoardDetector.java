@@ -22,6 +22,7 @@ public class BoardDetector {
 	private static final int START_PIXEL_OFFSET_Y = 9;
 	private static final int HORIZONTAL_OFFSET = 12;
 	private static final int VERTICAL_OFFSET = 10;
+	private static final int TETRIMINO_OFFSET = 4;
 	
 	private final int width;
 	private final int height;
@@ -268,12 +269,24 @@ public class BoardDetector {
 	
 
 	public Tetrimino getCurrentTetrimino() {
-		// TODO:
+		Color currentTetrimino = new Color(screenshot.getRGB((4 * tileSize) + (4 * tileGap) + TETRIMINO_OFFSET, TETRIMINO_OFFSET));
+		
+		for (Tetrimino tetrimino : Tetrimino.values()) {
+			if (tetrimino.getColor().equals(currentTetrimino)) {
+				return tetrimino;
+			}
+		}
+		
 		return null;
 	}
 	
 
 	public TileState getState(int row, int column) {
+		int x = (column * tileSize) + (column * tileGap);
+		int y = (row * tileSize) + (row * tileGap);
+		
+		Color tileColor = new Color(screenshot.getRGB(x, y));
+		
 		// TODO:
 		return TileState.EMPTY;
 	}

@@ -28,7 +28,10 @@ public class Main {
 		
 		TetrisGame game = TetrisGame.getInstance();
 		
+		game.getCurrentTetrimino();
+		
 		System.out.println(game);
+		
 	}
 
 }

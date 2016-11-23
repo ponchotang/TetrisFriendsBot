@@ -15,6 +15,8 @@ public class TetrisGame {
 	private Tile tiles[][];
 	private BoardDetector bd;
 	
+	private Tetrimino currentTetrimino;
+	
 	public static TetrisGame getInstance() {
 		if (game == null) {
 			game = new TetrisGame();
@@ -50,7 +52,11 @@ public class TetrisGame {
 			}
 		}
 		
-		// also update current tetrimino TODO
+		currentTetrimino = bd.getCurrentTetrimino();
+	}
+	
+	public Tetrimino getCurrentTetrimino() {
+		return currentTetrimino;
 	}
 	
 	/**
