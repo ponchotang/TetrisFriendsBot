@@ -266,6 +266,7 @@ public class BoardDetector {
 	
 	
 	/**
+	 * TODO: Possibly more testing
 	 * Method used to determine what the current tetrimino is.
 	 * @return the current tetrimino 
 	 */

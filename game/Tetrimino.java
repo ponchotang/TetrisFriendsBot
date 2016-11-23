@@ -3,7 +3,6 @@ package game;
 import java.awt.Color;
 
 public enum Tetrimino {
-	// TODO: Change colours since the placed tetriminos have a different shade
 	I(new Color(50, 190, 250)), 
 	O(new Color(255, 194, 37)),
 	T(new Color(210, 76, 173)), 

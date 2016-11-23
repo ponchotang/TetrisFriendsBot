@@ -36,7 +36,6 @@ public class TetrisGame {
 			}
 		}
 		
-		// Updates tiles
 		update();
 			
 	}
@@ -46,9 +45,10 @@ public class TetrisGame {
 	 */
 	private void update() {
 		
+		// Iterate through all tiles
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
-				tiles[i][j].setState(bd.getState(i, j));
+				tiles[i][j].setState(bd.getState(i, j)); // use BoardDetector to determine the state of the tile
 			}
 		}
 		
@@ -65,15 +65,16 @@ public class TetrisGame {
 	public String toString() {
 		String stringRepresentation = "";
 		
+		// Iterate through all tiles
 		for (int i = 0; i < tiles.length; i++) {
 			
 			String row = "";
 			
 			for (int j = 0; j < tiles[0].length; j++) {
-				row += tiles[i][j].toString();
+				row += tiles[i][j].toString(); // append string representation of tile to the row
 			}
 			
-			stringRepresentation += row + "\n";
+			stringRepresentation += row + "\n"; // append row to the overall string
 		}
 		
 		return stringRepresentation;
