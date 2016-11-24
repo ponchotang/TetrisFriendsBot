@@ -12,7 +12,9 @@ import java.awt.event.KeyEvent;
  *
  */
 public class Inputer {
-	private static final char ROTATE = 'r';
+	private static final char LEFT = 'l';
+	private static final char RIGHT = 'r';
+	private static final char ROTATE = 'c';
 	private static final char SET_PIECE = 's';
 	private Robot robot;
 	
@@ -29,7 +31,9 @@ public class Inputer {
 	 * the passed in string.
 	 * 
 	 * The string must not have any whitespace, and only consist of the following characters:
-	 * r: rotate
+	 * l: move left
+	 * r: move right
+	 * c: rotate
 	 * s: set piece
 	 * 
 	 * @param moves
@@ -39,7 +43,15 @@ public class Inputer {
 		// Iterate through all characters in the string
 		for (char move : moves.toCharArray()) {
 			
-			if (move == ROTATE) {
+			if (move == LEFT) {
+				left();
+			}
+			
+			else if (move == RIGHT) {
+				right();
+			}
+			
+			else if (move == ROTATE) {
 				rotate();
 			}
 			
@@ -60,6 +72,20 @@ public class Inputer {
 		
 		robot.keyRelease(keycode);
 		robot.delay(50);
+	}
+	
+	/**
+	 * Moves the piece to the left
+	 */
+	private void left() {
+		pressKey(KeyEvent.VK_LEFT);
+	}
+	
+	/**
+	 * Moves the piece to the right
+	 */
+	private void right() {
+		pressKey(KeyEvent.VK_RIGHT);
 	}
 	
 	/**

@@ -41,14 +41,14 @@ public class Main {
 		
 		int test = 0;
 		
-		while(test < 5) {
+		while(test < 1) {
 			// Get current tetrimino
 			// Create a dm based on current tetrimino
 			// dm returns a string containing list of moves to make
 			// pass that string to inputer
 			// update game
 			
-			inputer.executeMoves("rrrs");
+			inputer.executeMoves("ccllrrrs");
 
 			
 			test++;
