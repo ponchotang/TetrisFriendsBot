@@ -11,7 +11,7 @@ public class Colors {
 	public static final Color BOARD_OUTLINE = new Color(102, 102, 102);
 	public static final Color EMPTY_TILE_1 = new Color(43, 43, 43);
 	public static final Color EMPTY_TILE_2 = new Color(47, 47, 47);
-	//TODO: tetrimino highlight color, sent lines color
+	public static final Color TETRIMINO_HIGHLIGHT = new Color(102, 102, 102);
 	
 	public static final Color TETROMINO_I = new Color(15, 155, 215); // LIGHT BLUE
 	public static final Color TETROMINO_O = new Color(227, 159, 2); // YELLOW
