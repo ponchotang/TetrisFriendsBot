@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import bot.Algorithm;
+import bot.Inputer;
 import game.BoardDetector;
 import game.TetrisGame;
 
@@ -26,11 +28,28 @@ public class Main {
 		
 		
 		
+//		TetrisGame game = TetrisGame.getInstance();
+//		
+//		game.getCurrentTetrimino();
+//		
+//		System.out.println(game);
+		
 		TetrisGame game = TetrisGame.getInstance();
+		Algorithm dm = new Algorithm();
+		Inputer inputer = new Inputer();
 		
-		game.getCurrentTetrimino();
+		int test = 0;
 		
-		System.out.println(game);
+		while(test < 10) {
+			// Get current tetrimino
+			// Create a dm based on current tetrimino
+			// dm returns a string containing list of moves to make
+			// pass that string to inputer
+			// update game
+			
+			
+			test++;
+		}
 		
 	}
 

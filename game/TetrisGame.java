@@ -41,7 +41,8 @@ public class TetrisGame {
 	}
 	
 	/**
-	 * This method is used to update the state of each tile
+	 * This method is used to update the state of each tile as well as determine
+	 * the current tetrimino.
 	 */
 	private void update() {
 		
@@ -52,7 +53,7 @@ public class TetrisGame {
 			}
 		}
 		
-		currentTetrimino = bd.getCurrentTetrimino();
+		currentTetrimino = bd.getCurrentTetrimino(); // BoardDetector to determine the current tetrimino
 	}
 	
 	public Tetrimino getCurrentTetrimino() {
