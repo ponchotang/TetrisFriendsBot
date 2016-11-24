@@ -268,6 +268,7 @@ public class BoardDetector {
 	/**
 	 * TODO: Possibly more testing
 	 * Method used to determine what the current tetrimino is.
+	 * 
 	 * @return the current tetrimino 
 	 */
 	public Tetrimino getCurrentTetrimino() {
@@ -285,17 +286,46 @@ public class BoardDetector {
 		return null;
 	}
 	
-
+	/**
+	 * This method is used to determine the state (empty or filled) of the specified tile. 
+	 * 
+	 * @param row row of the tile
+	 * @param column column of the tile
+	 * @return a TileState enum describing the tile's state
+	 */
 	public TileState getState(int row, int column) {
+		// Calculate x and y coordinates
 		int x = (column * tileSize) + (column * tileGap);
 		int y = (row * tileSize) + (row * tileGap);
 		
+		// Get color of tile
 		Color tileColor = new Color(screenshot.getRGB(x, y));
 		
-		// TODO:
-		return TileState.EMPTY;
+		// Checks if it is empty by comparing with the 'empty tile' colors
+		if (tileColor.equals(Colors.EMPTY_TILE_1) || tileColor.equals(Colors.EMPTY_TILE_2) 
+				|| tileColor.equals(Colors.TETRIMINO_HIGHLIGHT_1) || tileColor.equals(Colors.TETRIMINO_HIGHLIGHT_2)) {
+			return TileState.EMPTY;
+		}
+		
+		// Get color of pixel used to determine the tetrimino type
+		Color tetriminoColor = new Color(screenshot.getRGB(x + TETRIMINO_OFFSET, y + TETRIMINO_OFFSET));
+		
+		// Determine if the tile is that of the current tetrimino.
+		for (Tetrimino tetrimino : Tetrimino.values()) {
+			if (tetrimino.getColor().equals(tetriminoColor)) {
+				return TileState.EMPTY; // Returns empty as we do not want the algorithm to consider it as a filled tile.
+			}
+		}
+		
+		
+		return TileState.FILLED;
 	}
 	
+	/**
+	 * Used for testing purposes.
+	 * 
+	 * @return the screenshot made by the Robot object
+	 */
 	public BufferedImage getScreenshot() {
 		return screenshot;
 	}
