@@ -36,7 +36,7 @@ public class Main {
 //		
 //		System.out.println(game);
 		TetrisGame game = TetrisGame.getInstance();
-		Algorithm dm = new Algorithm();
+		//Algorithm dm = new Algorithm();
 		Inputer inputer = new Inputer();
 		
 		int test = 0;
