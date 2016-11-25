@@ -34,5 +34,14 @@ public abstract class Algorithm {
 	public final void execute() {
 		
 	}
+	
+	/**
+	 * This method should contain a placement
+	 * for the current tetrimino in the situation
+	 * that the board is empty.
+	 * 
+	 * @return a String containing the moves to be executed
+	 */
+	protected abstract String boardIsEmpty();
 
 }
