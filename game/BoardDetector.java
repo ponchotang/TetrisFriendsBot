@@ -33,7 +33,7 @@ public class BoardDetector {
 	private Rectangle screenResolution, boardResolution, playfieldResolution;
 
 	private int tileSize, tileGap;
-	private boolean foundGame, gameInProgress;
+	private boolean foundGame, gameInView;
 
 	public BoardDetector(int width, int height) {
 		this.width = width;
@@ -56,16 +56,20 @@ public class BoardDetector {
 		screenshot = robot.createScreenCapture(screenResolution);
 
 		determineStartingPixel();
-		determineBoardResolution();
+		
+		if (foundGame) {
+			determineBoardResolution();
 
-		// Takes a screenshot of the game board only
-		screenshot = robot.createScreenCapture(boardResolution);
+			// Takes a screenshot of the game board only
+			screenshot = robot.createScreenCapture(boardResolution);
 
-		determinePlayFieldStartingPixel();
-		determinePlayFieldSpecifications();
+			determinePlayFieldStartingPixel();
+			determinePlayFieldSpecifications();
 
-		// Takes a screenshot of the play field only
-		screenshot = robot.createScreenCapture(playfieldResolution);
+			// Takes a screenshot of the play field only
+			screenshot = robot.createScreenCapture(playfieldResolution);
+		}
+		
 	}
 
 	/**
@@ -73,7 +77,7 @@ public class BoardDetector {
 	 * the starting pixel of the game board.
 	 */
 	private void determineStartingPixel() {
-		boolean startFound = false;
+		boolean foundGame = false;
 
 		// Iterates over the screenshot
 		for (int i = 0; i < screenshot.getHeight(); i++) {
@@ -103,7 +107,7 @@ public class BoardDetector {
 					// Initalises startingPixel if it has been found
 					if (foundTemp) {
 						startingPixel = new Point(j - START_PIXEL_OFFSET_X, i);
-						startFound = true;
+						foundGame = true;
 						break;
 					}
 
@@ -111,7 +115,7 @@ public class BoardDetector {
 			}
 
 			// Breaks out of loop if the starting pixel has been found
-			if (startFound) break;
+			if (foundGame) break;
 		}
 
 	}
