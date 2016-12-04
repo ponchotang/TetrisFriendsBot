@@ -63,6 +63,10 @@ public class BoardDetector {
 		
 	}
 	
+	private void calibrate() {
+		
+	}
+	
 	/**
 	 * This method uses the screenshot of the screen in order to determine
 	 * the starting pixel of the game board.
