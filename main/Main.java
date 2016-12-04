@@ -48,7 +48,7 @@ public class Main {
 			// pass that string to inputer
 			// update game
 			
-			inputer.executeMoves("ccllrrrs");
+			//inputer.executeMoves("ccllrrrs");
 
 			
 			test++;

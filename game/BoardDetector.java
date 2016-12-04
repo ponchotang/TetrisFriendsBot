@@ -64,12 +64,14 @@ public class BoardDetector {
 			screenshot = robot.createScreenCapture(boardResolution);
 
 			determinePlayFieldStartingPixel();
-			determinePlayFieldSpecifications();
+			
+			if (gameInView) {
+				determinePlayFieldSpecifications();
 
-			// Takes a screenshot of the play field only
-			screenshot = robot.createScreenCapture(playfieldResolution);
+				// Takes a screenshot of the play field only
+				screenshot = robot.createScreenCapture(playfieldResolution);
+			}	
 		}
-		
 	}
 
 	/**
@@ -168,7 +170,7 @@ public class BoardDetector {
 	 */
 	private void determinePlayFieldStartingPixel() {
 
-		boolean startFound = false;
+		gameInView = false;
 
 		// Iterate through all pixels of screenshot
 		for (int i = 0; i < screenshot.getHeight(); i++) {
@@ -217,14 +219,14 @@ public class BoardDetector {
 
 					// Create starting pixel if it has been found
 					if (tempFound) {
-						startFound = true;
+						gameInView = true;
 						playfieldStartingPixel = new Point(j, i);
 						break;
 					}
 				}
 			}
 
-			if (startFound) break;
+			if (gameInView) break;
 		}
 
 	}
@@ -337,6 +339,10 @@ public class BoardDetector {
 	 */
 	public BufferedImage getScreenshot() {
 		return screenshot;
+	}
+	
+	public boolean gameDetected() {
+		return gameInView;
 	}
 
 
