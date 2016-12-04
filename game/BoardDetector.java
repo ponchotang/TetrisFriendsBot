@@ -252,14 +252,14 @@ public class BoardDetector {
 		Color pixel = new Color(screenshot.getRGB(x, y));
 
 		// Determine size by iterating until color changes
-		while (pixel.equals(Colors.EMPTY_TILE_1)) {
+		while (pixel.equals(Colors.EMPTY_TILE_1) && x < screenshot.getWidth() - 1) {
 			tileSize++;
 			x++;
 			pixel = new Color(screenshot.getRGB(x, y));
 		}
 
 		// Determine gap by iterating until color changes
-		while (!pixel.equals(Colors.EMPTY_TILE_2)) {
+		while (!pixel.equals(Colors.EMPTY_TILE_2) && x < screenshot.getWidth() - 1) {
 			tileGap++;
 			x++;
 			pixel = new Color(screenshot.getRGB(x, y));
@@ -272,6 +272,13 @@ public class BoardDetector {
 		// Create rectangle containing the play field
 		playfieldResolution = new Rectangle(startingPixel.x + playfieldStartingPixel.x,
 				startingPixel.y + playfieldStartingPixel.y, playfieldWidth, playfieldHeight);
+		
+		// Ensures that getState is not using an invalid x value.
+		// This happens when the game has been found but the playfield is in an invalid state (e.g. not in progress).
+		if (x == screenshot.getWidth() - 1) {
+			tileSize = 0;
+			tileGap = 0;
+		}
 
 	}
 
