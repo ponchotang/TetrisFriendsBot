@@ -48,7 +48,10 @@ public class BoardDetector {
 		calibrate();
 
 	}
-
+	
+	/**
+	 * Method used to redetect the game.
+	 */
 	public void calibrate() {
 		// Takes a screenshot of the entire screen
 		// Code taken from: http://www.java2s.com/Code/JavaAPI/java.awt/RobotcreateScreenCaptureRectanglescreenRect.htm
