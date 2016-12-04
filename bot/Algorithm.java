@@ -31,7 +31,9 @@ public abstract class Algorithm {
 	 * 
 	 * The first method will be when the board is empty.
 	 */
-	public final void execute() {
+	public final String execute() {
+		
+		return boardIsEmpty();
 		
 	}
 	

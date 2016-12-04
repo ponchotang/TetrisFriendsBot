@@ -70,7 +70,6 @@ public class BoardDetector {
 
 				// Takes a screenshot of the play field only
 				screenshot = robot.createScreenCapture(playfieldResolution);
-				System.out.println("hey");
 			}	
 		}
 	}

@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import bot.Algorithm;
+import bot.AlgorithmI;
 import bot.Inputer;
 import game.BoardDetector;
 import game.TetrisGame;
@@ -45,11 +46,12 @@ public class Main {
 		while(true) {
 			//inputer.executeMoves("ccllrrrs");		
 			if (game.gameDetected()) {
-				Algorithm alg;
+				Algorithm alg = null;
 				
 				if (game.getCurrentTetrimino() != null) {
 					switch(game.getCurrentTetrimino()) {
 					case I:
+						alg = new AlgorithmI();
 						break;
 					case J:
 						break;
@@ -68,7 +70,10 @@ public class Main {
 					
 					}
 					
-					System.out.println(game);
+					if (alg != null) {
+						inputer.executeMoves(alg.execute());
+					}
+					
 				}
 				
 				// Get current tetrimino
@@ -76,14 +81,8 @@ public class Main {
 				// dm returns a string containing list of moves to make
 				// pass that string to inputer
 				
-				
-				new Robot().delay(5000);
-				
 			}
 			
-			else {
-				// do nothing. since no game found
-			}
 			game.update();
 		}
 		
