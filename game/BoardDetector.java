@@ -49,7 +49,7 @@ public class BoardDetector {
 
 	}
 
-	private void calibrate() {
+	public void calibrate() {
 		// Takes a screenshot of the entire screen
 		// Code taken from: http://www.java2s.com/Code/JavaAPI/java.awt/RobotcreateScreenCaptureRectanglescreenRect.htm
 		screenResolution = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -70,6 +70,7 @@ public class BoardDetector {
 
 				// Takes a screenshot of the play field only
 				screenshot = robot.createScreenCapture(playfieldResolution);
+				System.out.println("hey");
 			}	
 		}
 	}
@@ -79,7 +80,7 @@ public class BoardDetector {
 	 * the starting pixel of the game board.
 	 */
 	private void determineStartingPixel() {
-		boolean foundGame = false;
+		foundGame = false;
 
 		// Iterates over the screenshot
 		for (int i = 0; i < screenshot.getHeight(); i++) {

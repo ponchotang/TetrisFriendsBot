@@ -17,6 +17,8 @@ public class TetrisGame {
 	
 	private Tetrimino currentTetrimino;
 	
+	private boolean gameDetected;
+	
 	public static TetrisGame getInstance() {
 		if (game == null) {
 			game = new TetrisGame();
@@ -44,20 +46,30 @@ public class TetrisGame {
 	 * This method is used to update the state of each tile as well as determine
 	 * the current tetrimino.
 	 */
-	private void update() {
+	public void update() {
 		
-		// Iterate through all tiles
-		for (int i = 0; i < tiles.length; i++) {
-			for (int j = 0; j < tiles[0].length; j++) {
-				tiles[i][j].setState(bd.getState(i, j)); // use BoardDetector to determine the state of the tile
+		bd.calibrate();
+		
+		gameDetected = bd.gameDetected();
+		
+		if (gameDetected) {		
+			// Iterate through all tiles
+			for (int i = 0; i < tiles.length; i++) {
+				for (int j = 0; j < tiles[0].length; j++) {
+					tiles[i][j].setState(bd.getState(i, j)); // use BoardDetector to determine the state of the tile
+				}
 			}
+			
+			currentTetrimino = bd.getCurrentTetrimino(); // BoardDetector to determine the current tetrimino
 		}
-		
-		currentTetrimino = bd.getCurrentTetrimino(); // BoardDetector to determine the current tetrimino
 	}
 	
 	public Tetrimino getCurrentTetrimino() {
 		return currentTetrimino;
+	}
+	
+	public boolean gameDetected() {
+		return gameDetected;
 	}
 	
 	/**
@@ -80,6 +92,7 @@ public class TetrisGame {
 		
 		return stringRepresentation;
 	}
+	
 	
 	
 	

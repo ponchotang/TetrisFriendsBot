@@ -36,12 +36,13 @@ public class Main {
 //		
 //		System.out.println(game);
 		TetrisGame game = TetrisGame.getInstance();
+		System.out.println(game);
 		//Algorithm dm = new Algorithm();
 		Inputer inputer = new Inputer();
 		
 		int test = 0;
 		
-		while(test < 1) {
+		while(!game.gameDetected()) {
 			// Get current tetrimino
 			// Create a dm based on current tetrimino
 			// dm returns a string containing list of moves to make
@@ -50,8 +51,8 @@ public class Main {
 			
 			//inputer.executeMoves("ccllrrrs");
 
-			
-			test++;
+			//System.out.println("NOT FOUND");
+			game.update();
 		}
 		
 	}
