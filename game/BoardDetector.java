@@ -33,6 +33,7 @@ public class BoardDetector {
 	private Rectangle screenResolution, boardResolution, playfieldResolution;
 
 	private int tileSize, tileGap;
+	private boolean foundGame, gameInProgress;
 
 	public BoardDetector(int width, int height) {
 		this.width = width;
