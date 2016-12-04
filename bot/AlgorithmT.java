@@ -1,11 +1,11 @@
 package bot;
 
-public class AlgorithmI extends Algorithm{
+public class AlgorithmT extends Algorithm{
 
 	@Override
 	protected String boardIsEmpty() {
 		// TODO Auto-generated method stub
-		return "ls";
+		return "s";
 	}
 
 }

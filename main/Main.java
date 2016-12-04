@@ -9,6 +9,12 @@ import javax.imageio.ImageIO;
 
 import bot.Algorithm;
 import bot.AlgorithmI;
+import bot.AlgorithmJ;
+import bot.AlgorithmL;
+import bot.AlgorithmO;
+import bot.AlgorithmS;
+import bot.AlgorithmT;
+import bot.AlgorithmZ;
 import bot.Inputer;
 import game.BoardDetector;
 import game.TetrisGame;
@@ -54,16 +60,22 @@ public class Main {
 						alg = new AlgorithmI();
 						break;
 					case J:
+						alg = new AlgorithmJ();
 						break;
 					case L:
+						alg = new AlgorithmL();
 						break;
 					case O:
+						alg = new AlgorithmO();
 						break;
 					case S:
+						alg = new AlgorithmS();
 						break;
 					case T:
+						alg = new AlgorithmT();
 						break;
 					case Z:
+						alg = new AlgorithmZ();
 						break;
 					default:
 						break;
