@@ -14,7 +14,7 @@ import game.TetrisGame;
 
 public class Main {
 	
-	public static void main(String[] args) throws IOException, AWTException {
+	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 		
 		// Initialise objects
 		// Detect gameboard
@@ -42,16 +42,48 @@ public class Main {
 		
 		int test = 0;
 		
-		while(!game.gameDetected()) {
-			// Get current tetrimino
-			// Create a dm based on current tetrimino
-			// dm returns a string containing list of moves to make
-			// pass that string to inputer
-			// update game
+		while(true) {
+			//inputer.executeMoves("ccllrrrs");		
+			if (game.gameDetected()) {
+				Algorithm alg;
+				
+				if (game.getCurrentTetrimino() != null) {
+					switch(game.getCurrentTetrimino()) {
+					case I:
+						break;
+					case J:
+						break;
+					case L:
+						break;
+					case O:
+						break;
+					case S:
+						break;
+					case T:
+						break;
+					case Z:
+						break;
+					default:
+						break;
+					
+					}
+					
+					System.out.println(game);
+				}
+				
+				// Get current tetrimino
+				// Create a dm based on current tetrimino
+				// dm returns a string containing list of moves to make
+				// pass that string to inputer
+				
+				
+				new Robot().delay(5000);
+				
+			}
 			
-			//inputer.executeMoves("ccllrrrs");
-
-			//System.out.println("NOT FOUND");
+			else {
+				// do nothing. since no game found
+			}
 			game.update();
 		}
 		
