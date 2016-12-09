@@ -2,6 +2,7 @@ package bot;
 
 import game.TetrisGame;
 import game.Tile;
+import game.TileState;
 
 /**
  * This is an abstract class meant to be extended.
@@ -48,7 +49,39 @@ public abstract class Algorithm {
 	 */
 	protected Tile findGap(int gapWidth, int gapHeight) {
 		
-		return null;
+		Tile currentTile = null;
+		boolean gapFound = false;
+		
+		/*
+		 * Iterate through each row
+		 * 
+		 * For each row:
+		 * 	Until reach end of row, OR found appropriate gap:
+		 *		Find empty tile whose leftward tile is filled
+		 *		Determine amount of empty tiles after it.
+		 *		If it doesn't match gapWidth, continue loop
+		 *		If it does match
+		 *			for each tile of the gap, ensure that there are empty tiles
+		 *			below it which equals the gapHeight.
+		 *			If all tiles in the gap have heights equal to gapHeight, the gap has been found
+		 */
+		
+		for (int i = 0; i < game.height(); i++) {
+			for (int j = 0; j < game.width(); j++) {
+				
+				currentTile = game.get(i, j);
+				
+				// If currentTile is empty
+				if (currentTile.getState().equals(TileState.EMPTY)) {
+					
+					// Check if currentTile is left most tile OR the tile to its left is filled
+					if ((j - 1) == -1 || game.get(i, j - 1).equals(TileState.FILLED)) {
+						
+					}
+				}
+			}
+		}
+		return currentTile;
 	}
 	
 	

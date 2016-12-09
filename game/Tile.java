@@ -44,6 +44,3 @@ public class Tile {
 	}
 }
 
-enum TileState {
-	EMPTY, FILLED
-}
