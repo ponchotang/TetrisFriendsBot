@@ -1,6 +1,7 @@
 package bot;
 
 import game.TetrisGame;
+import game.Tile;
 
 /**
  * This is an abstract class meant to be extended.
@@ -35,6 +36,20 @@ public abstract class Algorithm {
 	 * 
 	 * will add more as I implement the Algorithms.
 	 */
+	
+	
+	/**
+	 * This method finds the first available gap of the specified width and height in
+	 * the Tetris Game.
+	 * 
+	 * @param gapWidth Width of the desired gap
+	 * @param gapHeight Height of the desired gap
+	 * @return the Tile object in the top-left corner of the found gap
+	 */
+	protected Tile findGap(int gapWidth, int gapHeight) {
+		
+		return null;
+	}
 	
 	
 
