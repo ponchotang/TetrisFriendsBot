@@ -25,6 +25,18 @@ public abstract class Algorithm {
 	 * current piece. 
 	 */
 	public abstract String execute();
+	
+	/**
+	 * TODO:
+	 * Methods needed:
+	 * 
+	 * Method for finding a gap of x width and y height. The returned result will be the
+	 * tile that is in the top left corner of the gap.
+	 * 
+	 * will add more as I implement the Algorithms.
+	 */
+	
+	
 
 
 }

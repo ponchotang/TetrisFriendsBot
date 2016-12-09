@@ -9,9 +9,21 @@ package game;
  */
 public class Tile {
 	private TileState state;
+	private int row, column;
 	
-	public Tile() {
+	public Tile(int row, int column) {
 		state = TileState.EMPTY;
+		
+		this.row = row;
+		this.column = column;
+	}
+	
+	public int row() {
+		return row;
+	}
+	
+	public int column() {
+		return column;
 	}
 	
 	public TileState getState() {

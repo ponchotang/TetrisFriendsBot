@@ -34,7 +34,7 @@ public class TetrisGame {
 		// Creates tiles
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
-				tiles[i][j] = new Tile();
+				tiles[i][j] = new Tile(i, j);
 			}
 		}
 		
