@@ -57,25 +57,25 @@ public class Main {
 				if (game.getCurrentTetrimino() != null) {
 					switch(game.getCurrentTetrimino()) {
 					case I:
-						alg = new AlgorithmI();
+						//alg = new AlgorithmI();
 						break;
 					case J:
-						alg = new AlgorithmJ();
+						//alg = new AlgorithmJ();
 						break;
 					case L:
-						alg = new AlgorithmL();
+						//alg = new AlgorithmL();
 						break;
 					case O:
 						alg = new AlgorithmO();
 						break;
 					case S:
-						alg = new AlgorithmS();
+						//alg = new AlgorithmS();
 						break;
 					case T:
-						alg = new AlgorithmT();
+						//alg = new AlgorithmT();
 						break;
 					case Z:
-						alg = new AlgorithmZ();
+						//alg = new AlgorithmZ();
 						break;
 					default:
 						break;
