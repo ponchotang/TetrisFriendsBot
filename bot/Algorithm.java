@@ -77,6 +77,30 @@ public abstract class Algorithm {
 					// Check if currentTile is left most tile OR the tile to its left is filled
 					if ((j - 1) == -1 || game.get(i, j - 1).equals(TileState.FILLED)) {
 						
+						int gap = 0;
+						int tempJ = j;
+						Tile tempTile = currentTile;
+						
+						// Loop until reach end of row
+						while (tempJ < game.width()) {
+							tempTile = game.get(i, tempJ);
+							
+							// Check if tempTile is empty. Increment gap if it is.
+							if (tempTile.getState().equals(TileState.EMPTY)) {
+								gap++;
+							}
+							
+							// Otherwise it is filled, so break loop as now we have the gap size.
+							else {
+								break;
+							}
+						}
+						
+						// Check if the correct gap width has been found
+						if (gap == gapWidth) {
+							// TODO: Complete rest of method
+						}
+						
 					}
 				}
 			}
