@@ -64,6 +64,30 @@ public class TetrisGame {
 		}
 	}
 	
+	/**
+	 * Used to retrieve the tile in the specified row and column
+	 * @param row row of the tile
+	 * @param column column of the tile
+	 * @return the Tile object in the specified row and column
+	 */
+	public Tile get(int row, int column) {
+		return tiles[row][column];
+	}
+	
+	/**
+	 * @return Height of the game board
+	 */
+	public int height() {
+		return HEIGHT;
+	}
+	
+	/**
+	 * @return Width of the game board
+	 */
+	public int width() {
+		return WIDTH;
+	}
+	
 	public Tetrimino getCurrentTetrimino() {
 		return currentTetrimino;
 	}
