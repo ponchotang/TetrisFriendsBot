@@ -8,14 +8,6 @@ import game.TetrisGame;
  * It contains methods which determines certain information about the current board state,
  * which will be used by child classes in order to determine the best move.
  * 
- * It also contains a template method which executes a set of methods in order which will be
- * overridden and implemented by child classes. These methods will contain the actual algorithm and 
- * each method will be used to consider a different set of placement possibilities (from best to worst).
- * 
- * For example, the first method may determining where to place it when the board is empty. The second one 
- * may be to determine placement given a certain available gap. In other words, the template method will cycle
- * through these methods so that the best possible move is determined.
- * 
  * @author Andy
  *
  */
@@ -27,23 +19,12 @@ public abstract class Algorithm {
 	}
 	
 	/**
-	 * Template method which executes a specific method depending on the game state.
+	 * Method which must be implemented by child classes.
 	 * 
-	 * The first method will be when the board is empty.
+	 * It is the method which determines the best move for the
+	 * current piece. 
 	 */
-	public final String execute() {
-		
-		return boardIsEmpty();
-		
-	}
-	
-	/**
-	 * This method should contain a placement
-	 * for the current tetrimino in the situation
-	 * that the board is empty.
-	 * 
-	 * @return a String containing the moves to be executed
-	 */
-	protected abstract String boardIsEmpty();
+	public abstract String execute();
+
 
 }

@@ -3,9 +3,11 @@ package bot;
 public class AlgorithmO extends Algorithm{
 
 	@Override
-	protected String boardIsEmpty() {
+	public String execute() {
 		// TODO Auto-generated method stub
 		return "lls";
 	}
+	
+
 
 }
