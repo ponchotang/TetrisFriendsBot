@@ -52,30 +52,17 @@ public abstract class Algorithm {
 		Tile currentTile = null;
 		boolean gapFound = false;
 		
-		/*
-		 * Iterate through each row
-		 * 
-		 * For each row:
-		 * 	Until reach end of row, OR found appropriate gap:
-		 *		Find empty tile whose leftward tile is filled
-		 *		Determine amount of empty tiles after it.
-		 *		If it doesn't match gapWidth, continue loop
-		 *		If it does match
-		 *			for each tile of the gap, ensure that there are empty tiles
-		 *			below it which equals the gapHeight.
-		 *			If all tiles in the gap have heights equal to gapHeight, the gap has been found
-		 */
-		
 		for (int i = 0; i < game.height(); i++) {
 			for (int j = 0; j < game.width(); j++) {
-				
 				currentTile = game.get(i, j);
 				
 				// If currentTile is empty
 				if (currentTile.getState().equals(TileState.EMPTY)) {
 					
 					// Check if currentTile is left most tile OR the tile to its left is filled
-					if ((j - 1) == -1 || game.get(i, j - 1).equals(TileState.FILLED)) {
+					if ((j - 1) == -1 || game.get(i, j - 1).getState().equals(TileState.FILLED)) {
+						
+						
 						
 						int gap = 0;
 						int tempJ = j;
@@ -88,6 +75,7 @@ public abstract class Algorithm {
 							// Check if tempTile is empty. Increment gap if it is.
 							if (tempTile.getState().equals(TileState.EMPTY)) {
 								gap++;
+								tempJ++;
 							}
 							
 							// Otherwise it is filled, so break loop as now we have the gap size.
@@ -97,15 +85,61 @@ public abstract class Algorithm {
 						}
 						
 						// Check if the correct gap width has been found
+						// If it has, the following block of code will check if each horizontal gap column
+						// has the correct gap height
 						if (gap == gapWidth) {
-							// TODO: Complete rest of method
-						}
-						
+							
+							
+							// Temporarily set to true. The loop sets it to false as soon as one of the columns 
+							// does not have the correct height gap.
+							gapFound = true;
+							
+							// Iterate through the horizontal gaps
+							for (tempJ = j; tempJ < (j + gap); tempJ++) {
+								
+								int verticalGap = 0;
+								int tempI = i;
+								
+								// Loop through the rows of the column to check height gap
+								while (tempI < game.height()) {
+									tempTile = game.get(tempI, tempJ);
+									
+									// Check if empty
+									if (tempTile.getState().equals(TileState.EMPTY)) {
+										verticalGap++;
+										tempI++;
+									}
+									
+									else {
+										break;
+									}
+								}
+								
+								// Sets gapFound to false if gap does not match the desired gap height.
+								if (verticalGap != gapHeight) {
+									gapFound = false;
+									break;
+								}
+							}
+							
+							if (gapFound) {
+								break;
+							}
+						}			
 					}
 				}
 			}
+			
+			if (gapFound) {
+				break;
+			}
 		}
-		return currentTile;
+		
+		if (gapFound) {
+			return currentTile;
+		}
+		
+		return null;
 	}
 	
 	
