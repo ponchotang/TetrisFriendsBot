@@ -29,50 +29,40 @@ public abstract class Algorithm {
 	public abstract String execute();
 	
 	/**
-	 * TODO:
-	 * Methods needed:
-	 * 
-	 * Method for finding a gap of x width and y height. The returned result will be the
-	 * tile that is in the top left corner of the gap.
-	 * 
-	 * will add more as I implement the Algorithms.
-	 */
-	
-	
-	/**
 	 * This method finds the first available gap of the specified width and height in
 	 * the Tetris Game.
 	 * 
 	 * @param gapWidth Width of the desired gap
 	 * @param gapHeight Height of the desired gap
-	 * @return the Tile object in the top-left corner of the found gap
+	 * @return the Tile object in the top-left corner of the found gap. Returns null if no gap has been found.
 	 */
 	protected Tile findGap(int gapWidth, int gapHeight) {
 		
 		Tile currentTile = null;
 		boolean gapFound = false;
 		
+		// Iterate through all game tiles
 		for (int i = 0; i < game.height(); i++) {
 			for (int j = 0; j < game.width(); j++) {
 				currentTile = game.get(i, j);
 				
-				// If currentTile is empty
+				// Check if currentTile is empty
 				if (currentTile.getState().equals(TileState.EMPTY)) {
 					
 					// Check if currentTile is left most tile OR the tile to its left is filled
+					// If it is, then it is next to the wall, and is the 'start' of a gap.
 					if ((j - 1) == -1 || game.get(i, j - 1).getState().equals(TileState.FILLED)) {
 						
-						
-						
+						// Initial values. 
 						int gap = 0;
 						int tempJ = j;
 						Tile tempTile = currentTile;
 						
-						// Loop until reach end of row
+						// Loop until it reaches the end of the row
 						while (tempJ < game.width()) {
 							tempTile = game.get(i, tempJ);
 							
-							// Check if tempTile is empty. Increment gap if it is.
+							// Check if tempTile is empty. Increment gap and tempJ values if it is.
 							if (tempTile.getState().equals(TileState.EMPTY)) {
 								gap++;
 								tempJ++;
@@ -88,7 +78,6 @@ public abstract class Algorithm {
 						// If it has, the following block of code will check if each horizontal gap column
 						// has the correct gap height
 						if (gap == gapWidth) {
-							
 							
 							// Temporarily set to true. The loop sets it to false as soon as one of the columns 
 							// does not have the correct height gap.
@@ -115,7 +104,7 @@ public abstract class Algorithm {
 									}
 								}
 								
-								// Sets gapFound to false if gap does not match the desired gap height.
+								// Sets gapFound to false if vertical gap size does not match the desired gap height.
 								if (verticalGap != gapHeight) {
 									gapFound = false;
 									break;
