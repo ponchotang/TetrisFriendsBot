@@ -128,6 +128,11 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	protected String determineHorizontalMovement(int startX, int endX) {
+		
+		return "";
+	}
+	
 	
 
 
