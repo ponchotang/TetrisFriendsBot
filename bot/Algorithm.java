@@ -1,5 +1,8 @@
 package bot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import game.TetrisGame;
 import game.Tile;
 import game.TileState;
@@ -36,10 +39,11 @@ public abstract class Algorithm {
 	 * @param gapHeight Height of the desired gap
 	 * @return the Tile object in the top-left corner of the found gap. Returns null if no gap has been found.
 	 */
-	protected Tile findGap(int gapWidth, int gapHeight) {
+	protected List<Tile> findGap(int gapWidth, int gapHeight) {
+		
+		List<Tile> gaps = new ArrayList<Tile>();
 		
 		Tile currentTile = null;
-		boolean gapFound = false;
 		
 		// Iterate through all game tiles
 		for (int i = 0; i < game.height(); i++) {
@@ -81,7 +85,7 @@ public abstract class Algorithm {
 							
 							// Temporarily set to true. The loop sets it to false as soon as one of the columns 
 							// does not have the correct height gap.
-							gapFound = true;
+							boolean gapFound = true;
 							
 							// Iterate through the horizontal gaps
 							for (tempJ = j; tempJ < (j + gap); tempJ++) {
@@ -112,23 +116,16 @@ public abstract class Algorithm {
 							}
 							
 							if (gapFound) {
+								gaps.add(currentTile);
 								break;
 							}
 						}			
 					}
 				}
 			}
-			
-			if (gapFound) {
-				break;
-			}
 		}
 		
-		if (gapFound) {
-			return currentTile;
-		}
-		
-		return null;
+		return gaps;
 	}
 	
 	
