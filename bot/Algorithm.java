@@ -128,9 +128,34 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	/**
+	 * This is a helper method that determines the amount of movement
+	 * required to get to a certain x position.
+	 * 
+	 * @param startX The x position of the left-most tile of the piece.
+	 * @param endX The x position for the piece to move into.
+	 * @return a String containing the horizontal movees that need to be executed
+	 */
 	protected String determineHorizontalMovement(int startX, int endX) {
+		String moves = "";
+		char direction;
 		
-		return "";
+		// Determine if piece needs to move left or right
+		if (startX > endX) {
+			direction = 'l';
+		}
+		
+		else {
+			direction = 'r';
+		}
+		
+		// Add the amount of single directional moves required to the string by
+		// using the difference between startX and endX.
+		for (int i = 0; i < Math.abs(startX - endX); i++) {
+			moves += direction;
+		}
+		
+		return moves;
 	}
 	
 	
