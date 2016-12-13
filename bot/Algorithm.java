@@ -134,7 +134,7 @@ public abstract class Algorithm {
 	 * 
 	 * @param startX The x position of the left-most tile of the piece.
 	 * @param endX The x position for the piece to move into.
-	 * @return a String containing the horizontal movees that need to be executed
+	 * @return a String containing the horizontal moves that need to be executed
 	 */
 	protected String determineHorizontalMovement(int startX, int endX) {
 		String moves = "";
