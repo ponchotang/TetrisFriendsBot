@@ -134,7 +134,7 @@ public abstract class Algorithm {
 	 * @param minWidth the minimum width the flat space must be.
 	 * @return a list of Tile objects represent the left most tile in the flat space.
 	 */
-	protected List<Tile> findFlatGround(int minWidth) {
+	protected List<Tile> findFlatSpace(int minWidth) {
 		
 		/*
 		 * Iterate through all tiles
