@@ -135,6 +135,25 @@ public abstract class Algorithm {
 	 * @return a list of Tile objects represent the left most tile in the flat space.
 	 */
 	protected List<Tile> findFlatGround(int minWidth) {
+		
+		/*
+		 * Iterate through all tiles
+		 * If tile is empty
+		 * 		if tile under that is filled
+		 * 			iterate through minWidth times, checking that
+		 * 			the tile is empty and the one below is filled
+		 * 			add to list if it completes.
+		 * 
+		 */
+		
+		for (int i = 0; i < game.height(); i++) {
+			for (int j = 0; j < game.width(); j++) {
+				
+				Tile currentTile = game.get(i,  j);
+				
+				
+			}
+		}
 		return null;
 	}
 	/**
