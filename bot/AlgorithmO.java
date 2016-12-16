@@ -21,14 +21,18 @@ public class AlgorithmO extends Algorithm{
 		}
 		
 		if (moves.length() == 0) {
-			for (int i = 2; i < game.width(); i++) {
-
-				gaps = findGap(i, 1);
-
-				if (gaps.size() > 0) {
-					moves += determineHorizontalMovement(DEFAULT_POSITION, gaps.get(0).column()) + "s";
-					break;
-				}
+			gaps = findGap(2, 1);
+			
+			if (gaps.size() > 0) {
+				moves += determineHorizontalMovement(DEFAULT_POSITION, gaps.get(0).column()) + "s";
+			}		
+		}
+		
+		if (moves.length() == 0) {
+			List<Tile> flatSpaces = findFlatSpace(2);
+			
+			if (flatSpaces.size() > 0) {
+				moves += determineHorizontalMovement(DEFAULT_POSITION, flatSpaces.get(0).column()) + "s";
 			}
 		}
 		

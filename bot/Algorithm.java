@@ -5,7 +5,6 @@ import java.util.List;
 
 import game.TetrisGame;
 import game.Tile;
-import game.TileState;
 
 /**
  * This is an abstract class meant to be extended.
@@ -140,7 +139,7 @@ public abstract class Algorithm {
 		
 		// Iterate through all tiles of the game
 		for (int i = 0; i < game.height(); i++) {
-			for (int j = 0; j < game.width(); j++) {
+			for (int j = 0; j < game.width() - minWidth; j++) {
 				
 				Tile currentTile = game.get(i,  j);
 				
@@ -168,7 +167,7 @@ public abstract class Algorithm {
 					}
 					
 					// Add to list if found
-					if (foundFlatSpace) {
+					if (foundFlatSpace && isClear(currentTile, minWidth)) {
 						flatSpaces.add(currentTile);
 					}
 				}	

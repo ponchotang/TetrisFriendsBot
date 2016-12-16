@@ -189,12 +189,12 @@ public class BoardDetector {
 
 					// Iterate through next horizontal 15 pixels
 					// and checks if they are the same color
-					for (int m = i; m < i + 15; m++) {
+					for (int m = j; m < j + 15; m++) {
 
 						// Prevents out of coordinates exception
 						if (m < screenshot.getWidth()) {
 
-							Color tempPixel = new Color(screenshot.getRGB(j, m));
+							Color tempPixel = new Color(screenshot.getRGB(m, i));
 
 							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
 								tempFound = false;
@@ -206,11 +206,11 @@ public class BoardDetector {
 
 					// Iterate through next vertical 15 pixels
 					// and checks if they are the same color
-					for (int n = j; n < j + 15; n++) {
+					for (int n = i; n < i + 15; n++) {
 
 						// Prevents out of coordinates exception
 						if (n < screenshot.getHeight()) {
-							Color tempPixel = new Color(screenshot.getRGB(n, i));
+							Color tempPixel = new Color(screenshot.getRGB(j, n));
 
 							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
 								tempFound = false;
