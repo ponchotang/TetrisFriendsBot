@@ -46,6 +46,7 @@ public class Main {
 		System.out.println(game);
 		//Algorithm dm = new Algorithm();
 		Inputer inputer = new Inputer();
+		Robot robot = new Robot();
 		
 		int test = 0;
 		
@@ -95,6 +96,7 @@ public class Main {
 				
 			}
 			
+			robot.delay(1000);
 			game.update();
 		}
 		

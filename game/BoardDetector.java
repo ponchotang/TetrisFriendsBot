@@ -7,6 +7,10 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Class that provides a way to determine the tile states
@@ -349,6 +353,16 @@ public class BoardDetector {
 	 */
 	public BufferedImage getScreenshot() {
 		return screenshot;
+	}
+	
+	public void saveScreenshot() {
+		BufferedImage bi = screenshot;
+	    File outputfile = new File("saved.png");
+	    
+	    try {
+			ImageIO.write(bi, "png", outputfile);
+		} catch (IOException e) {
+		}
 	}
 	
 	public boolean gameDetected() {

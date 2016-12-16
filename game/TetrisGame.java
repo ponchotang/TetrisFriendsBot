@@ -117,6 +117,9 @@ public class TetrisGame {
 		return stringRepresentation;
 	}
 	
+	public void saveScreenshot() {
+		bd.saveScreenshot();
+	}
 	
 	
 	
