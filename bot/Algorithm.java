@@ -136,26 +136,48 @@ public abstract class Algorithm {
 	 */
 	protected List<Tile> findFlatSpace(int minWidth) {
 		
-		/*
-		 * Iterate through all tiles
-		 * If tile is empty
-		 * 		if tile under that is filled
-		 * 			iterate through minWidth times, checking that
-		 * 			the tile is empty and the one below is filled
-		 * 			add to list if it completes.
-		 * 
-		 */
+		List<Tile> flatSpaces = new ArrayList<Tile>();
 		
+		// Iterate through all tiles of the game
 		for (int i = 0; i < game.height(); i++) {
 			for (int j = 0; j < game.width(); j++) {
 				
 				Tile currentTile = game.get(i,  j);
 				
-				
+				// Check if empty
+				if (currentTile.empty()) {
+					
+					boolean foundFlatSpace = true;
+					
+					// Iterate through successive horizontal tiles minWidth times 
+					// to check if it is a flat space of at least that width
+					for (int n = j; n < j + minWidth; n++) {
+						
+						Tile tempTile = game.get(i, n); 
+						
+						// Check if tile is empty AND the tile below is filled
+						// The first clause of the OR expression is to prevent an index out of bounds exception
+						// in the case that i is currently the last row.
+						if (tempTile.empty() && (i == (game.height() - 1) || game.get(i + 1, n).filled())); // Do nothing
+						
+						// Otherwise, this is not a flat space.
+						else {
+							foundFlatSpace = false;
+							break;
+						}
+					}
+					
+					// Add to list if found
+					if (foundFlatSpace) {
+						flatSpaces.add(currentTile);
+					}
+				}	
 			}
 		}
-		return null;
+		
+		return flatSpaces;
 	}
+	
 	/**
 	 * This is a method which determines if the path towards a given tile is clear.
 	 * 
