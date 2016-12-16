@@ -115,7 +115,7 @@ public abstract class Algorithm {
 								}
 							}
 							
-							if (gapFound) {
+							if (gapFound && isClear(currentTile, gapWidth)) {
 								gaps.add(currentTile);
 								break;
 							}
@@ -128,8 +128,27 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	/**
+	 * This is a method which determines if the path towards a given tile is clear.
+	 * 
+	 * @param tile The starting tile
+	 * @param width The width of space to check clearness
+	 * @return true if path is clear, false otherwise.
+	 */
 	private boolean isClear(Tile tile, int width) {
-		return false;
+		
+		for (int j = tile.column(); j < tile.column() + width; j++) {
+			for (int i = 0; i < tile.row(); i++) {
+				
+				Tile currentTile = game.get(i, j);
+				
+				if (currentTile.getState().equals(TileState.FILLED)) {
+					return false;
+				}	
+			}
+		}
+		
+		return true;
 	}
 	
 	/**
