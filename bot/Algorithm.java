@@ -32,12 +32,12 @@ public abstract class Algorithm {
 	public abstract String execute();
 	
 	/**
-	 * This method finds the first available gap of the specified width and height in
+	 * This method finds all available gaps of the specified width and height in
 	 * the Tetris Game.
 	 * 
 	 * @param gapWidth Width of the desired gap
 	 * @param gapHeight Height of the desired gap
-	 * @return the Tile object in the top-left corner of the found gap. Returns null if no gap has been found.
+	 * @return a list of Tile objects representing the top-left corner of each found gap.
 	 */
 	protected List<Tile> findGap(int gapWidth, int gapHeight) {
 		
@@ -128,6 +128,12 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	/**
+	 * This method finds all flat spaces of the specified width.
+	 * 
+	 * @param minWidth the minimum width the flat space must be.
+	 * @return a list of Tile objects represent the left most tile in the flat space.
+	 */
 	protected List<Tile> findFlatGround(int minWidth) {
 		return null;
 	}
