@@ -36,9 +36,6 @@ public class AlgorithmO extends Algorithm{
 			}
 		}
 		
-		game.saveScreenshot();
-		System.out.println(game);
-		System.out.println(moves);
 		return moves;
 	}
 	
