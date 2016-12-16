@@ -26,8 +26,12 @@ public class Tile {
 		return column;
 	}
 	
-	public TileState getState() {
-		return state;
+	public boolean empty() {
+		return state.equals(TileState.EMPTY);
+	}
+	
+	public boolean filled() {
+		return state.equals(TileState.FILLED);
 	}
 	
 	public void setState(TileState state) {

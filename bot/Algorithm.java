@@ -51,11 +51,11 @@ public abstract class Algorithm {
 				currentTile = game.get(i, j);
 				
 				// Check if currentTile is empty
-				if (currentTile.getState().equals(TileState.EMPTY)) {
+				if (currentTile.empty()) {
 					
 					// Check if currentTile is left most tile OR the tile to its left is filled
 					// If it is, then it is next to the wall, and is the 'start' of a gap.
-					if ((j - 1) == -1 || game.get(i, j - 1).getState().equals(TileState.FILLED)) {
+					if ((j - 1) == -1 || game.get(i, j - 1).filled()) {
 						
 						// Initial values. 
 						int gap = 0;
@@ -67,7 +67,7 @@ public abstract class Algorithm {
 							tempTile = game.get(i, tempJ);
 							
 							// Check if tempTile is empty. Increment gap and tempJ values if it is.
-							if (tempTile.getState().equals(TileState.EMPTY)) {
+							if (tempTile.empty()) {
 								gap++;
 								tempJ++;
 							}
@@ -98,7 +98,7 @@ public abstract class Algorithm {
 									tempTile = game.get(tempI, tempJ);
 									
 									// Check if empty
-									if (tempTile.getState().equals(TileState.EMPTY)) {
+									if (tempTile.empty()) {
 										verticalGap++;
 										tempI++;
 									}
@@ -170,7 +170,7 @@ public abstract class Algorithm {
 				
 				Tile currentTile = game.get(i, j);
 				
-				if (currentTile.getState().equals(TileState.FILLED)) {
+				if (currentTile.filled()) {
 					return false;
 				}	
 			}
