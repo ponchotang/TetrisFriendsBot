@@ -11,7 +11,6 @@ public class AlgorithmO extends Algorithm{
 	@Override
 	public String execute() {
 		// TODO Make use of findGap to decide on basic piece placements
-		// TODO Need a 'isClear' method to determine if it can be placed without any intrusions.
 		
 		String moves = "";
 		
@@ -22,10 +21,14 @@ public class AlgorithmO extends Algorithm{
 		}
 		
 		if (moves.length() == 0) {
-			gaps = findGap(2,1);
-			
-			if (gaps.size() > 0) {
-				moves += determineHorizontalMovement(DEFAULT_POSITION, gaps.get(0).column()) + "s";
+			for (int i = 2; i < game.width(); i++) {
+
+				gaps = findGap(i, 1);
+
+				if (gaps.size() > 0) {
+					moves += determineHorizontalMovement(DEFAULT_POSITION, gaps.get(0).column()) + "s";
+					break;
+				}
 			}
 		}
 		

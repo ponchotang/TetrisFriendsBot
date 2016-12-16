@@ -128,6 +128,9 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	protected List<Tile> findFlatGround(int minWidth) {
+		return null;
+	}
 	/**
 	 * This is a method which determines if the path towards a given tile is clear.
 	 * 
