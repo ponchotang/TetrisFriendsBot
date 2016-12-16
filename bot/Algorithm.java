@@ -128,6 +128,10 @@ public abstract class Algorithm {
 		return gaps;
 	}
 	
+	private boolean isClear(Tile tile, int width) {
+		return false;
+	}
+	
 	/**
 	 * This is a helper method that determines the amount of movement
 	 * required to get to a certain x position.
