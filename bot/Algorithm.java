@@ -44,8 +44,8 @@ public abstract class Algorithm {
 		
 		Tile currentTile = null;
 		
-		// Iterate through all game tiles
-		for (int i = 0; i < game.height(); i++) {
+		// Iterate through all game tiles (starting from the bottom)
+		for (int i = game.height() - 1; i >= 0; i--) {
 			for (int j = 0; j < game.width(); j++) {
 				currentTile = game.get(i, j);
 				
@@ -137,8 +137,8 @@ public abstract class Algorithm {
 		
 		List<Tile> flatSpaces = new ArrayList<Tile>();
 		
-		// Iterate through all tiles of the game
-		for (int i = 0; i < game.height(); i++) {
+		// Iterate through all tiles of the game (starting from the bottom)
+		for (int i = game.height() - 1; i >= 0; i--) {
 			for (int j = 0; j < game.width() - minWidth; j++) {
 				
 				Tile currentTile = game.get(i,  j);
