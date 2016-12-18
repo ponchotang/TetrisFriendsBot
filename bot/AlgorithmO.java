@@ -14,12 +14,15 @@ public class AlgorithmO extends Algorithm{
 		
 		String moves = "";
 		
+		
+		// Perfect gap
 		List<Tile> gaps = findGap(2,2);
 		
 		if (gaps.size() > 0) {
 			moves += determineHorizontalMovement(DEFAULT_POSITION, gaps.get(0).column()) + "s";
 		}
 		
+		// Fitting gap
 		if (moves.length() == 0) {
 			gaps = findGap(2, 1);
 			
@@ -28,6 +31,8 @@ public class AlgorithmO extends Algorithm{
 			}		
 		}
 		
+		// Flat space
+		// Change so that it considers the best flat space TODO
 		if (moves.length() == 0) {
 			List<Tile> flatSpaces = findFlatSpace(2);
 			
