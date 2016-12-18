@@ -11,7 +11,7 @@ public class AlgorithmI extends Algorithm {
 
 	@Override
 	public String execute() {
-		// TODO Auto-generated method stub
+		// TODO Improve logic
 		
 		String moves = "";
 		

@@ -10,11 +10,10 @@ public class AlgorithmO extends Algorithm{
 
 	@Override
 	public String execute() {
-		// TODO Make use of findGap to decide on basic piece placements
+		// TODO Improve logic
 		
 		String moves = "";
-		
-		
+			
 		// Perfect gap
 		List<Tile> gaps = findGap(2,2);
 		
