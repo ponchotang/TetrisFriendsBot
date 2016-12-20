@@ -297,6 +297,21 @@ public class BoardDetector {
 	 * @return the current tetrimino 
 	 */
 	public Tetrimino getCurrentTetrimino() {
+		
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				// Determine color of current tile
+				Color currentTileColor = new Color(screenshot.getRGB((j * tileSize) + (j * tileGap) + TETRIMINO_OFFSET,
+						(i * tileSize) + (i * tileGap) +TETRIMINO_OFFSET));
+				
+				// Iterate through all Tetriminos and determine which one it is
+				for (Tetrimino tetrimino : Tetrimino.values()) {
+					if (tetrimino.getColor().equals(currentTileColor)) {
+						return tetrimino;
+					}
+				}
+			}
+		}
 
 		// Determine color of current tetrimino
 		Color currentTetrimino = new Color(screenshot.getRGB((4 * tileSize) + (4 * tileGap) + TETRIMINO_OFFSET, TETRIMINO_OFFSET));
