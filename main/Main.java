@@ -61,7 +61,7 @@ public class Main {
 						alg = new AlgorithmI();
 						break;
 					case J:
-						//alg = new AlgorithmJ();
+						alg = new AlgorithmJ();
 						break;
 					case L:
 						//alg = new AlgorithmL();

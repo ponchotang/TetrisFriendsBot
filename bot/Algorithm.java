@@ -184,7 +184,7 @@ public abstract class Algorithm {
 	 * @param width The width of space to check clearness
 	 * @return true if path is clear, false otherwise.
 	 */
-	private boolean isClear(Tile tile, int width) {
+	protected boolean isClear(Tile tile, int width) {
 		
 		for (int j = tile.column(); j < tile.column() + width; j++) {
 			for (int i = 0; i < tile.row(); i++) {
