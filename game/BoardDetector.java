@@ -313,15 +313,15 @@ public class BoardDetector {
 			}
 		}
 
-		// Determine color of current tetrimino
-		Color currentTetrimino = new Color(screenshot.getRGB((4 * tileSize) + (4 * tileGap) + TETRIMINO_OFFSET, TETRIMINO_OFFSET));
-
-		// Iterate through all Tetriminos and determine which one it is
-		for (Tetrimino tetrimino : Tetrimino.values()) {
-			if (tetrimino.getColor().equals(currentTetrimino)) {
-				return tetrimino;
-			}
-		}
+//		// Determine color of current tetrimino
+//		Color currentTetrimino = new Color(screenshot.getRGB((4 * tileSize) + (4 * tileGap) + TETRIMINO_OFFSET, TETRIMINO_OFFSET));
+//
+//		// Iterate through all Tetriminos and determine which one it is
+//		for (Tetrimino tetrimino : Tetrimino.values()) {
+//			if (tetrimino.getColor().equals(currentTetrimino)) {
+//				return tetrimino;
+//			}
+//		}
 
 		return null;
 	}
