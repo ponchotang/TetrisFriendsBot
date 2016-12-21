@@ -98,10 +98,45 @@ public abstract class Algorithm {
 									
 									// Check if empty
 									if (tempTile.empty()) {
-										verticalGap++;
-										tempI++;
+										
+										// Check if first column of the gap
+										if (tempJ == j) {
+											
+											// Check if the tile to the left of it is filled
+											if (tempJ == 0 || game.get(tempI, tempJ -1).filled()) {
+												verticalGap++;
+												tempI++;
+											}
+											
+											// Otherwise, there is a gap in the 'wall', so break as it is no longer a valid gap
+											else {
+												break;
+											}
+										}
+										
+										// Check if last column of the gap
+										else if (tempJ == (j + gap - 1)) {
+											
+											// Check if the tile next to it is filled
+											if (tempJ == game.width() - 1 || game.get(tempI, tempJ + 1).filled()) {
+												verticalGap++;
+												tempI++;
+											}
+											
+											// Otherwise, there is a gap in the 'wall', so break as it is no longer a valid gap
+											else {
+												break;
+											}
+										}
+										
+										// If it is not the last column, increment values and carry on
+										else {
+											verticalGap++;
+											tempI++;
+										}
 									}
 									
+									// Break if it is not empty
 									else {
 										break;
 									}
@@ -126,6 +161,8 @@ public abstract class Algorithm {
 		
 		return gaps;
 	}
+	
+
 	
 	/**
 	 * This method finds all flat spaces of the specified width.
