@@ -17,12 +17,8 @@ public class AlgorithmJ extends AlgorithmLJ {
 	}
 
 	/**
-	 * This method aims to find a perfect fitting gap for the J tetrimino rotated
-	 * 90 degrees
-	 * 
-	 * It uses the findGap and findSpaces method in order to find the fitting gap.
-	 * 
-	 * @return List of Tile objects that represent the top-left corner of the found gaps
+	 * Overrides the method in parent class to give its own
+	 * implementation.
 	 */
 	protected List<Tile> findFittingVerticalGap() {
 		List<Tile> foundGaps = new ArrayList<Tile>();
@@ -60,14 +56,9 @@ public class AlgorithmJ extends AlgorithmLJ {
 		return foundGaps;
 	}
 
-
 	/**
-	 * This method aims to find a perfect fitting gap for the J tetrimino rotated
-	 * 180 degrees
-	 * 
-	 * It uses the findGap and findSpaces method in order to find the fitting gap.
-	 * 
-	 * @return List of Tile objects that represent the top-left corner of the found gaps
+	 * Overrides the method in parent class to give its own
+	 * implementation.
 	 */
 	protected List<Tile> findFittingHorizontalGap() {
 		List<Tile> foundGaps = new ArrayList<Tile>();

@@ -56,7 +56,24 @@ public abstract class AlgorithmLJ extends Algorithm{
 		return moves;
 	}
 	
+	/**
+	 * This method aims to find a perfect fitting gap for the L/J Tetrimino
+	 * rotated so that it is vertically hanging.
+	 * 
+	 * It uses the findGap and findSpaces method in order to find the fitting gap.
+	 * 
+	 * @return List of Tile objects that represent the top-left corner of the found gaps
+	 */
 	protected abstract List<Tile> findFittingVerticalGap();
+	
+	/**
+	 * This method aims to find a perfect fitting gap for the L/J Tetrimino
+	 * rotated so that it is horizontally hanging.
+	 * 
+	 * It uses the findGap and findSpaces method in order to find the fitting gap.
+	 * 
+	 * @return List of Tile objects that represent the top-left corner of the found gaps
+	 */
 	protected abstract List<Tile> findFittingHorizontalGap();
 
 }

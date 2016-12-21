@@ -11,7 +11,6 @@ public class AlgorithmI extends Algorithm {
 
 	@Override
 	public String execute() {
-		// TODO Improve logic
 		
 		String moves = "";
 		
