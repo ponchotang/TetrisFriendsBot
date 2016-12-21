@@ -7,7 +7,8 @@ import game.Tile;
 
 public class AlgorithmJ extends Algorithm {
 
-	private static final int DEFAULT_VERTICAL_POSITION = 4;
+	private static final int DEFAULT_VERTICAL_POSITION_1 = 4;
+	private static final int DEFAULT_VERTICAL_POSITION_2 = 3;
 	private static final int DEFAULT_HORIZONTAL_POSITION = 3;
 
 	@Override
@@ -16,14 +17,14 @@ public class AlgorithmJ extends Algorithm {
 
 		String moves = "";
 
-		// Fitting gap
+		// Vertical fitting gap
 		List<Tile> gaps = findFittingVerticalGap();
 
 		if (gaps.size() > 0) {
-			moves += "c" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION, gaps.get(0).column()) + "s";
+			moves += "c" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_1, gaps.get(0).column()) + "s";
 		}
 
-		// Find perfect horizontal gap if no vertical gap
+		// Horizontal fitting gap
 		if (moves.length() == 0) {
 			gaps = findFittingHorizontalGap();
 
@@ -32,6 +33,26 @@ public class AlgorithmJ extends Algorithm {
 			}		
 		}
 
+		// Horizontal flat space 
+		if (moves.length() == 0) {
+			gaps = findFlatSpace(3);
+
+			if (gaps.size() > 0) {
+				moves += determineHorizontalMovement(DEFAULT_HORIZONTAL_POSITION, gaps.get(0).column()) + "s";
+			}		
+		}
+
+		// Vertical flat space 
+		if (moves.length() == 0) {
+			gaps = findFlatSpace(2);
+
+			if (gaps.size() > 0) {
+				moves += "ccc" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_2, gaps.get(0).column()) + "s";
+			}		
+		}
+		
+		System.out.println(moves);
+		System.out.println(game);
 		return moves;
 	}
 

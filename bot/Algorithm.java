@@ -176,7 +176,7 @@ public abstract class Algorithm {
 		
 		// Iterate through all tiles of the game (starting from the bottom)
 		for (int i = game.height() - 1; i >= 0; i--) {
-			for (int j = 0; j < game.width() - minWidth; j++) {
+			for (int j = 0; j <= game.width() - minWidth; j++) {
 				
 				Tile currentTile = game.get(i,  j);
 				
