@@ -16,7 +16,7 @@ public class AlgorithmJ extends Algorithm {
 		String moves = "";
 
 		// Fitting gap
-		List<Tile> gaps = findFittingGap();
+		List<Tile> gaps = findFittingVerticalGap();
 
 		if (gaps.size() > 0) {
 			moves += "c" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION, gaps.get(0).column()) + "s";
@@ -33,7 +33,7 @@ public class AlgorithmJ extends Algorithm {
 	 * 
 	 * @return List of Tile objects that represent the top-left corner of the found gaps
 	 */
-	private List<Tile> findFittingGap() {
+	private List<Tile> findFittingVerticalGap() {
 		List<Tile> foundGaps = new ArrayList<Tile>();
 		
 		// Get list of gaps and spaces which can combine to make up the J shape
