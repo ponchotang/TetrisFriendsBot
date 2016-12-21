@@ -5,55 +5,15 @@ import java.util.List;
 
 import game.Tile;
 
-public class AlgorithmJ extends Algorithm {
-
-	private static final int DEFAULT_VERTICAL_POSITION_1 = 4;
-	private static final int DEFAULT_VERTICAL_POSITION_2 = 3;
-	private static final int DEFAULT_HORIZONTAL_POSITION = 3;
-
-	@Override
-	public String execute() {
-		// TODO Auto-generated method stub
-
-		String moves = "";
-
-		// Vertical fitting gap
-		List<Tile> gaps = findFittingVerticalGap();
-
-		if (gaps.size() > 0) {
-			moves += "c" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_1, gaps.get(0).column()) + "s";
-		}
-
-		// Horizontal fitting gap
-		if (moves.length() == 0) {
-			gaps = findFittingHorizontalGap();
-
-			if (gaps.size() > 0) {
-				moves += "cc" + determineHorizontalMovement(DEFAULT_HORIZONTAL_POSITION, gaps.get(0).column()) + "s";
-			}		
-		}
-
-		// Horizontal flat space 
-		if (moves.length() == 0) {
-			gaps = findFlatSpace(3);
-
-			if (gaps.size() > 0) {
-				moves += determineHorizontalMovement(DEFAULT_HORIZONTAL_POSITION, gaps.get(0).column()) + "s";
-			}		
-		}
-
-		// Vertical flat space 
-		if (moves.length() == 0) {
-			gaps = findFlatSpace(2);
-
-			if (gaps.size() > 0) {
-				moves += "ccc" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_2, gaps.get(0).column()) + "s";
-			}		
-		}
+public class AlgorithmJ extends AlgorithmLJ {
+	
+	public AlgorithmJ() {
+		super();
 		
-		System.out.println(moves);
-		System.out.println(game);
-		return moves;
+		VERTICAL_HANGING = "c";
+		HORIZONTAL_HANGING = "cc";
+		VERTICAL_FLAT = "ccc";
+		HORIZONTAL_FLAT = "";
 	}
 
 	/**
@@ -64,7 +24,7 @@ public class AlgorithmJ extends Algorithm {
 	 * 
 	 * @return List of Tile objects that represent the top-left corner of the found gaps
 	 */
-	private List<Tile> findFittingVerticalGap() {
+	protected List<Tile> findFittingVerticalGap() {
 		List<Tile> foundGaps = new ArrayList<Tile>();
 
 		// Get list of gaps and spaces which can combine to make up the J shape
@@ -109,7 +69,7 @@ public class AlgorithmJ extends Algorithm {
 	 * 
 	 * @return List of Tile objects that represent the top-left corner of the found gaps
 	 */
-	private List<Tile> findFittingHorizontalGap() {
+	protected List<Tile> findFittingHorizontalGap() {
 		List<Tile> foundGaps = new ArrayList<Tile>();
 
 		// Get list of gaps and spaces which can combine to make up the J shape
