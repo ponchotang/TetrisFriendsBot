@@ -6,9 +6,9 @@ import game.Tile;
 
 public abstract class AlgorithmLJ extends Algorithm{
 	
-	protected static final int DEFAULT_VERTICAL_POSITION_1 = 4;
-	protected static final int DEFAULT_VERTICAL_POSITION_2 = 3;
-	protected static final int DEFAULT_HORIZONTAL_POSITION = 3;
+	protected static int DEFAULT_VERTICAL_POSITION_HANGING;
+	protected static int DEFAULT_VERTICAL_POSITION_FLAT;
+	protected static int DEFAULT_HORIZONTAL_POSITION = 3;
 	
 	protected static String VERTICAL_HANGING;
 	protected static String HORIZONTAL_HANGING;
@@ -23,7 +23,7 @@ public abstract class AlgorithmLJ extends Algorithm{
 		List<Tile> gaps = findFittingVerticalGap();
 
 		if (gaps.size() > 0) {
-			moves += VERTICAL_HANGING + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_1, gaps.get(0).column()) + "s";
+			moves += VERTICAL_HANGING + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_HANGING, gaps.get(0).column()) + "s";
 		}
 
 		// Horizontal fitting gap
@@ -49,7 +49,7 @@ public abstract class AlgorithmLJ extends Algorithm{
 			gaps = findFlatSpace(2);
 
 			if (gaps.size() > 0) {
-				moves += VERTICAL_FLAT + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_2, gaps.get(0).column()) + "s";
+				moves += VERTICAL_FLAT + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION_FLAT, gaps.get(0).column()) + "s";
 			}		
 		}
 		

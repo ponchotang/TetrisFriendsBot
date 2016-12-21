@@ -23,35 +23,11 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 		
-		// Initialise objects
-		// Detect gameboard
-		
-		// Loop
-		
-//		BoardDetector test = new BoardDetector(10, 20);
-//		
-//		File file = new File("image.png");
-//		file.createNewFile();
-//		ImageIO.write(test.getScreenshot(), "png", file);
-		
-		
-		
-		
-//		TetrisGame game = TetrisGame.getInstance();
-//		
-//		game.getCurrentTetrimino();
-//		
-//		System.out.println(game);
 		TetrisGame game = TetrisGame.getInstance();
-		System.out.println(game);
-		//Algorithm dm = new Algorithm();
 		Inputer inputer = new Inputer();
 		Robot robot = new Robot();
 		
-		int test = 0;
-		
 		while(true) {
-			//inputer.executeMoves("ccllrrrs");		
 			if (game.gameDetected()) {
 				Algorithm alg = null;
 				
@@ -61,10 +37,10 @@ public class Main {
 						//alg = new AlgorithmI();
 						break;
 					case J:
-						alg = new AlgorithmJ();
+						//alg = new AlgorithmJ();
 						break;
 					case L:
-						//alg = new AlgorithmL();
+						alg = new AlgorithmL();
 						break;
 					case O:
 						//alg = new AlgorithmO();
@@ -85,18 +61,11 @@ public class Main {
 					
 					if (alg != null) {
 						inputer.executeMoves(alg.execute());
+						robot.delay(1000);
 					}
 					
-				}
-				
-				// Get current tetrimino
-				// Create a dm based on current tetrimino
-				// dm returns a string containing list of moves to make
-				// pass that string to inputer
-				
-			}
-			
-			robot.delay(1000);
+				}	
+			}			
 			game.update();
 		}
 		

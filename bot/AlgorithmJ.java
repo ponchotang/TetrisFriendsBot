@@ -10,6 +10,9 @@ public class AlgorithmJ extends AlgorithmLJ {
 	public AlgorithmJ() {
 		super();
 		
+		DEFAULT_VERTICAL_POSITION_HANGING = 4;
+		DEFAULT_VERTICAL_POSITION_FLAT = 3;
+		
 		VERTICAL_HANGING = "c";
 		HORIZONTAL_HANGING = "cc";
 		VERTICAL_FLAT = "ccc";
