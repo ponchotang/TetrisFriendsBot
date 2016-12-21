@@ -23,6 +23,15 @@ public class AlgorithmJ extends Algorithm {
 			moves += "c" + determineHorizontalMovement(DEFAULT_VERTICAL_POSITION, gaps.get(0).column()) + "s";
 		}
 
+		// Find perfect horizontal gap if no vertical gap
+		if (moves.length() == 0) {
+			gaps = findFittingHorizontalGap();
+
+			if (gaps.size() > 0) {
+				moves += "cc" + determineHorizontalMovement(DEFAULT_HORIZONTAL_POSITION, gaps.get(0).column()) + "s";
+			}		
+		}
+
 		return moves;
 	}
 
