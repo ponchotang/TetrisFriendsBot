@@ -31,7 +31,14 @@ public class Main {
 		while(true) {
 			if (game.gameDetected()) {
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				
 				if (currentTetrimino != null) {
+					// Create a list of moves for the tetrimino
+					// Iterate through each move >> Main
+					// For each, create a simulated game and simulate the move >> SimulatedGame
+					// Get the calculated score for that move >> SimulatedGame
+					// If it is highest, set move and score as highest >> Main
+					// Afterwards, execute the best move >> Inputer
 					
 					
 				}	
