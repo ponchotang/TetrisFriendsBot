@@ -29,6 +29,8 @@ public class MoveGenerator {
 			orientations = 4;
 		}
 		
+		
+		
 		String rotationString = "";
 		
 		for(int i = 0; i < orientations; i++) {
