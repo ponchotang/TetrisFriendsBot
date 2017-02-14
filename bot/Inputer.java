@@ -40,6 +40,7 @@ public class Inputer {
 	 */
 	public void executeMoves(String moves) {
 		
+		System.out.println(moves);
 		// Iterate through all characters in the string
 		for (char move : moves.toCharArray()) {
 			

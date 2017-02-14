@@ -10,7 +10,7 @@ public class AlgorithmS extends Algorithm{
 	@Override
 	public String execute() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 }

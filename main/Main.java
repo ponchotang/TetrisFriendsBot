@@ -46,13 +46,13 @@ public class Main {
 						alg = new AlgorithmO();
 						break;
 					case S:
-						alg = new AlgorithmS();
+						//alg = new AlgorithmS();
 						break;
 					case T:
-						alg = new AlgorithmT();
+						//alg = new AlgorithmT();
 						break;
 					case Z:
-						alg = new AlgorithmZ();
+						//alg = new AlgorithmZ();
 						break;
 					default:
 						break;
@@ -60,6 +60,7 @@ public class Main {
 					}
 					
 					if (alg != null) {
+						System.out.println(alg.execute());
 						inputer.executeMoves(alg.execute());
 						robot.delay(1000);
 					}
