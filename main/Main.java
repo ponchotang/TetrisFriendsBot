@@ -17,6 +17,7 @@ import bot_old.AlgorithmT;
 import bot_old.AlgorithmZ;
 import bot_old.Inputer;
 import game.BoardDetector;
+import game.Tetrimino;
 import game.TetrisGame;
 
 public class Main {
@@ -29,41 +30,9 @@ public class Main {
 		
 		while(true) {
 			if (game.gameDetected()) {
-				Algorithm alg = null;
-				
-				if (game.getCurrentTetrimino() != null) {
-					switch(game.getCurrentTetrimino()) {
-					case I:
-						alg = new AlgorithmI();
-						break;
-					case J:
-						alg = new AlgorithmJ();
-						break;
-					case L:
-						alg = new AlgorithmL();
-						break;
-					case O:
-						alg = new AlgorithmO();
-						break;
-					case S:
-						//alg = new AlgorithmS();
-						break;
-					case T:
-						//alg = new AlgorithmT();
-						break;
-					case Z:
-						//alg = new AlgorithmZ();
-						break;
-					default:
-						break;
+				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				if (currentTetrimino != null) {
 					
-					}
-					
-					if (alg != null) {
-						System.out.println(alg.execute());
-						inputer.executeMoves(alg.execute());
-						robot.delay(1000);
-					}
 					
 				}	
 			}			
