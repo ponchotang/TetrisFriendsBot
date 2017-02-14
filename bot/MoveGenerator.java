@@ -15,6 +15,27 @@ public class MoveGenerator {
 	public List<String> generateMoves(Tetrimino tetrimino) {
 		List<String> moves = new ArrayList<String>();
 		
+		int orientations;
+		
+		if (tetrimino.equals(Tetrimino.O)) {
+			orientations = 1;
+		}
+		
+		else if (tetrimino.equals(Tetrimino.I) || tetrimino.equals(Tetrimino.S) || tetrimino.equals(Tetrimino.Z)) {
+			orientations = 2;
+		}
+		
+		else {
+			orientations = 4;
+		}
+		
+		String rotationString = "";
+		
+		for(int i = 0; i < orientations; i++) {
+			moves.add(rotationString);
+			rotationString += 'c';
+		}
+		
 		return moves;
 	}
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import bot.MoveGenerator;
 import bot_old.Algorithm;
 import bot_old.AlgorithmI;
 import bot_old.AlgorithmJ;
@@ -24,26 +25,33 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 		
-		TetrisGame game = TetrisGame.getInstance();
-		Inputer inputer = new Inputer();
-		Robot robot = new Robot();
+//		TetrisGame game = TetrisGame.getInstance();
+//		Inputer inputer = new Inputer();
+//		Robot robot = new Robot();
+//		
+//		while(true) {
+//			if (game.gameDetected()) {
+//				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+//				
+//				if (currentTetrimino != null) {
+//					// Create a list of moves for the tetrimino
+//					// Iterate through each move >> Main
+//					// For each, create a simulated game and simulate the move >> SimulatedGame
+//					// Get the calculated score for that move >> SimulatedGame
+//					// If it is highest, set move and score as highest >> Main
+//					// Afterwards, execute the best move >> Inputer
+//					
+//					
+//				}	
+//			}			
+//			game.update();
+//		}
 		
-		while(true) {
-			if (game.gameDetected()) {
-				Tetrimino currentTetrimino = game.getCurrentTetrimino();
-				
-				if (currentTetrimino != null) {
-					// Create a list of moves for the tetrimino
-					// Iterate through each move >> Main
-					// For each, create a simulated game and simulate the move >> SimulatedGame
-					// Get the calculated score for that move >> SimulatedGame
-					// If it is highest, set move and score as highest >> Main
-					// Afterwards, execute the best move >> Inputer
-					
-					
-				}	
-			}			
-			game.update();
+		MoveGenerator test = new MoveGenerator();
+		
+		
+		for (String s : test.generateMoves(Tetrimino.Z)) {
+			System.out.println(s);
 		}
 		
 	}
