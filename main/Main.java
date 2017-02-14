@@ -7,15 +7,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import bot.Algorithm;
-import bot.AlgorithmI;
-import bot.AlgorithmJ;
-import bot.AlgorithmL;
-import bot.AlgorithmO;
-import bot.AlgorithmS;
-import bot.AlgorithmT;
-import bot.AlgorithmZ;
-import bot.Inputer;
+import bot_old.Algorithm;
+import bot_old.AlgorithmI;
+import bot_old.AlgorithmJ;
+import bot_old.AlgorithmL;
+import bot_old.AlgorithmO;
+import bot_old.AlgorithmS;
+import bot_old.AlgorithmT;
+import bot_old.AlgorithmZ;
+import bot_old.Inputer;
 import game.BoardDetector;
 import game.TetrisGame;
 

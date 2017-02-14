@@ -3,10 +3,10 @@ package test;
 import java.awt.AWTException;
 import java.io.IOException;
 
-import bot.Algorithm;
-import bot.AlgorithmO;
-import bot.AlgorithmTest;
-import bot.Inputer;
+import bot_old.Algorithm;
+import bot_old.AlgorithmO;
+import bot_old.AlgorithmTest;
+import bot_old.Inputer;
 import game.TetrisGame;
 
 public class Test {

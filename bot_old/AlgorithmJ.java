@@ -1,21 +1,21 @@
-package bot;
+package bot_old;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import game.Tile;
 
-public class AlgorithmL extends AlgorithmLJ {
-
-	public AlgorithmL() {
+public class AlgorithmJ extends AlgorithmLJ {
+	
+	public AlgorithmJ() {
 		super();
 		
-		DEFAULT_VERTICAL_POSITION_HANGING = 3;
-		DEFAULT_VERTICAL_POSITION_FLAT = 4;
-
-		VERTICAL_HANGING = "ccc";
+		DEFAULT_VERTICAL_POSITION_HANGING = 4;
+		DEFAULT_VERTICAL_POSITION_FLAT = 3;
+		
+		VERTICAL_HANGING = "c";
 		HORIZONTAL_HANGING = "cc";
-		VERTICAL_FLAT = "c";
+		VERTICAL_FLAT = "ccc";
 		HORIZONTAL_FLAT = "";
 	}
 
@@ -40,13 +40,15 @@ public class AlgorithmL extends AlgorithmLJ {
 
 				// Check if the pieces are in the correct position
 				// If they are, then they form the fitting gap
-				if (bottomPiece.column() == topPiece.column() + 1 &&
+				if (bottomPiece.column() == topPiece.column() - 1 &&
 						bottomPiece.row() - 1 == topPiece.row()) {
 
+					// Get the top-left corner of this fitting gap
+					Tile intersectedTile = game.get(topPiece.row(), bottomPiece.column());
+
 					// Add to foundGaps if it is clear
-					// Adds topPiece as this is the top-left corner
-					if (isClear(topPiece, 2)) {
-						foundGaps.add(topPiece);
+					if (isClear(intersectedTile, 2)) {
+						foundGaps.add(intersectedTile);
 					}
 
 				}
@@ -78,16 +80,13 @@ public class AlgorithmL extends AlgorithmLJ {
 
 				// Check if the pieces are in the correct position
 				// If they are, then they form the fitting gap
-				if (bottomPiece.column() == topPiece.column() - 1 &&
+				if (bottomPiece.column() == topPiece.column() + 2 &&
 						bottomPiece.row() - 1 == topPiece.row()) {
-					
-					// Get the top-left corner of this fitting gap
-					Tile intersectedTile = game.get(topPiece.row(), bottomPiece.column());
 
 					// Add to foundGaps if it is clear
 					// Adds topPiece as this is the top-left corner
-					if (isClear(intersectedTile, 3)) {
-						foundGaps.add(intersectedTile);
+					if (isClear(topPiece, 3)) {
+						foundGaps.add(topPiece);
 					}
 
 				}

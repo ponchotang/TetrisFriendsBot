@@ -1,4 +1,4 @@
-package game;
+package bot;
 
 public class SimulatedGame {
 

@@ -1,4 +1,4 @@
-package bot;
+package bot_old;
 
 public class AlgorithmT extends Algorithm{
 
