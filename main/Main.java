@@ -50,7 +50,7 @@ public class Main {
 		MoveGenerator test = new MoveGenerator();
 		
 		
-		for (String s : test.generateMoves(Tetrimino.Z)) {
+		for (String s : test.generateMoves(Tetrimino.J)) {
 			System.out.println(s);
 		}
 		
