@@ -46,8 +46,8 @@ public enum Tetrimino {
 	// Axis is an int referring to whether the tetrimino is horizontal or vertical
 	// 0 = Horizontal
 	// 1 = Vertical
-	public int width(int axis) {
-		if (axis == 0) {
+	public int width(int orientation) {
+		if (orientation == 0 || orientation == 2) {
 			return horizontalWidth;
 		}
 		
