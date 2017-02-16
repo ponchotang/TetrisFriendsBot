@@ -41,7 +41,12 @@ public class SimulatedGame extends TetrisGame{
 	}
 	
 	public void simulateMove(String move) {
-		
+		/*
+		 * Figure out position to drop in
+		 * Figure out how far down it will go
+		 * Simulate move
+		 * Check if lines made
+		 */
 	}
 	
 	public int calculateScore() {
