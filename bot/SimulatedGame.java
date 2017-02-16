@@ -43,9 +43,21 @@ public class SimulatedGame extends TetrisGame{
 	public void simulateMove(String move) {
 		/*
 		 * Figure out position to drop in
+		 *  -> can deduce from tetrimino's orientation and start position
 		 * Figure out how far down it will go
+		 *  -> need to get height of each block
 		 * Simulate move
+		 *  -> build the tetrimino from the deepest point
 		 * Check if lines made
+		 * 
+		 * 
+		 * alternative:
+		 * Find start position
+		 * Build tetrimino from there
+		 * Move the tiles containing the tetrimino one line at a time
+		 * Check for collision
+		 * If there is collision, the final position is the last point where 
+		 * there was no collision
 		 */
 	}
 	
