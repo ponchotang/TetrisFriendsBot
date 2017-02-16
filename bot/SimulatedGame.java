@@ -38,7 +38,14 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
+	}
+	
+	public void simulateMove(String move) {
 		
+	}
+	
+	public int calculateScore() {
+		return 0;
 	}
 	
 }
