@@ -79,6 +79,10 @@ public class BoardDetector {
 				screenshot = robot.createScreenCapture(playfieldResolution);
 			}	
 		}
+		
+		else {
+			gameInView = false;
+		}
 	}
 
 	/**
@@ -190,6 +194,7 @@ public class BoardDetector {
 				if (pixel.equals(Colors.EMPTY_TILE_1)) {
 
 					boolean tempFound = true;
+					
 
 					// Iterate through next horizontal 15 pixels
 					// and checks if they are the same color
@@ -207,6 +212,7 @@ public class BoardDetector {
 						}
 
 					}
+					
 
 					// Iterate through next vertical 15 pixels
 					// and checks if they are the same color
@@ -223,6 +229,7 @@ public class BoardDetector {
 						}
 
 					}
+					
 
 					// Create starting pixel if it has been found
 					if (tempFound) {
