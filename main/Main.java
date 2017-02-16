@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import bot.MoveGenerator;
+import bot.SimulatedGame;
 import bot_old.Algorithm;
 import bot_old.AlgorithmI;
 import bot_old.AlgorithmJ;
@@ -31,8 +32,9 @@ public class Main {
 		
 		while(true) {
 			if (game.gameDetected()) {
-				System.out.println(game.toString());
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				//System.out.println(new SimulatedGame(currentTetrimino).toString());
+				System.out.println(game);
 				
 				if (currentTetrimino != null) {
 					// Create a list of moves for the tetrimino DONE
@@ -44,8 +46,12 @@ public class Main {
 					
 					
 				}	
+				
+				robot.delay(1000);
 			}			
 			game.update();
+			System.out.println(game.gameDetected());
+			
 		}
 		
 		
