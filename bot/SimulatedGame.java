@@ -1,5 +1,8 @@
 package bot;
 
+import game.TetrisGame;
+import game.Tile;
+
 public class SimulatedGame {
 	/*
 	 * Allows creation of a simulation by using the current state of the real game
@@ -13,4 +16,22 @@ public class SimulatedGame {
 	 * 
 	 * There will also be a score method which calculates the score of the current state
 	 */
+	
+	private Tile[][] tiles;
+	
+	public SimulatedGame() {
+		TetrisGame game = TetrisGame.getInstance();
+		
+		tiles = new Tile[game.height()][game.width()];
+		
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[0].length; j++) {
+				Tile tile = new Tile(i,j);
+				tile.setState(game.get(i, j).state());
+			}
+		}
+		
+		
+	}
+	
 }
