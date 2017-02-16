@@ -34,6 +34,10 @@ public class Tile {
 		return state.equals(TileState.FILLED);
 	}
 	
+	public TileState state() {
+		return state;
+	}
+	
 	public void setState(TileState state) {
 		this.state = state;
 	}
