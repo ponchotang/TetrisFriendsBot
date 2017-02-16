@@ -6,8 +6,8 @@ package game;
  * @author Andy
  *
  */
-public class TetrisGame {
-	private static TetrisGame game;
+public class RealGame {
+	private static RealGame game;
 	
 	private static int HEIGHT = 20;
 	private static int WIDTH = 10;
@@ -19,15 +19,15 @@ public class TetrisGame {
 	
 	private boolean gameDetected;
 	
-	public static TetrisGame getInstance() {
+	public static RealGame getInstance() {
 		if (game == null) {
-			game = new TetrisGame();
+			game = new RealGame();
 		}
 		
 		return game;
 	}
 	
-	private TetrisGame() {
+	private RealGame() {
 		bd = new BoardDetector(WIDTH, HEIGHT);
 		tiles = new Tile[HEIGHT][WIDTH];
 		

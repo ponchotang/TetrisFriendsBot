@@ -3,7 +3,7 @@ package bot_old;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.TetrisGame;
+import game.RealGame;
 import game.Tile;
 
 /**
@@ -16,10 +16,10 @@ import game.Tile;
  *
  */
 public abstract class Algorithm {
-	protected TetrisGame game;
+	protected RealGame game;
 	
 	public Algorithm() {
-		game = TetrisGame.getInstance();
+		game = RealGame.getInstance();
 	}
 	
 	/**

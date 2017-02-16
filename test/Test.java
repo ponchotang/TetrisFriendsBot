@@ -7,7 +7,7 @@ import bot_old.Algorithm;
 import bot_old.AlgorithmO;
 import bot_old.AlgorithmTest;
 import bot_old.Inputer;
-import game.TetrisGame;
+import game.RealGame;
 
 public class Test {
 

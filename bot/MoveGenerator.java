@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.Tetrimino;
-import game.TetrisGame;
+import game.RealGame;
 
 public class MoveGenerator {
 	/*
@@ -25,7 +25,7 @@ public class MoveGenerator {
 			// iterate through them and add to list
 			
 			int leftMovements = tetrimino.startingPosition(i);
-			int rightMovements = TetrisGame.getInstance().width() - tetrimino.startingPosition(i) - tetrimino.width(i);
+			int rightMovements = RealGame.getInstance().width() - tetrimino.startingPosition(i) - tetrimino.width(i);
 			
 			String leftString = "";
 			String rightString = "";

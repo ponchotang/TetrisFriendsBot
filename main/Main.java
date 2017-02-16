@@ -19,7 +19,7 @@ import bot_old.AlgorithmZ;
 import bot_old.Inputer;
 import game.BoardDetector;
 import game.Tetrimino;
-import game.TetrisGame;
+import game.RealGame;
 
 public class Main {
 	

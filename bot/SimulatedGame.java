@@ -1,6 +1,6 @@
 package bot;
 
-import game.TetrisGame;
+import game.RealGame;
 import game.Tile;
 
 public class SimulatedGame {
@@ -20,7 +20,7 @@ public class SimulatedGame {
 	private Tile[][] tiles;
 	
 	public SimulatedGame() {
-		TetrisGame game = TetrisGame.getInstance();
+		RealGame game = RealGame.getInstance();
 		
 		tiles = new Tile[game.height()][game.width()];
 		
