@@ -25,34 +25,30 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 		
-//		TetrisGame game = TetrisGame.getInstance();
-//		Inputer inputer = new Inputer();
-//		Robot robot = new Robot();
-//		
-//		while(true) {
-//			if (game.gameDetected()) {
-//				Tetrimino currentTetrimino = game.getCurrentTetrimino();
-//				
-//				if (currentTetrimino != null) {
-//					// Create a list of moves for the tetrimino DONE
-//					// Iterate through each move >> Main 
-//					// For each, create a simulated game and simulate the move >> SimulatedGame
-//					// Get the calculated score for that move >> SimulatedGame
-//					// If it is highest, set move and score as highest >> Main
-//					// Afterwards, execute the best move >> Inputer
-//					
-//					
-//				}	
-//			}			
-//			game.update();
-//		}
+		RealGame game = RealGame.getInstance();
+		Inputer inputer = new Inputer();
+		Robot robot = new Robot();
 		
-		MoveGenerator test = new MoveGenerator();
-		
-		
-		for (String s : test.generateMoves(Tetrimino.J)) {
-			System.out.println(s);
+		while(true) {
+			if (game.gameDetected()) {
+				System.out.println(game.toString());
+				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				
+				if (currentTetrimino != null) {
+					// Create a list of moves for the tetrimino DONE
+					// Iterate through each move >> Main 
+					// For each, create a simulated game and simulate the move >> SimulatedGame
+					// Get the calculated score for that move >> SimulatedGame
+					// If it is highest, set move and score as highest >> Main
+					// Afterwards, execute the best move >> Inputer
+					
+					
+				}	
+			}			
+			game.update();
 		}
+		
+		
 		
 	}
 

@@ -6,16 +6,13 @@ package game;
  * @author Andy
  *
  */
-public class RealGame {
+public class RealGame extends TetrisGame{
 	private static RealGame game;
 	
 	private static int HEIGHT = 20;
 	private static int WIDTH = 10;
 	
-	private Tile tiles[][];
 	private BoardDetector bd;
-	
-	private Tetrimino currentTetrimino;
 	
 	private boolean gameDetected;
 	
@@ -64,57 +61,8 @@ public class RealGame {
 		}
 	}
 	
-	/**
-	 * Used to retrieve the tile in the specified row and column
-	 * @param row row of the tile
-	 * @param column column of the tile
-	 * @return the Tile object in the specified row and column
-	 */
-	public Tile get(int row, int column) {
-		return tiles[row][column];
-	}
-	
-	/**
-	 * @return Height of the game board
-	 */
-	public int height() {
-		return HEIGHT;
-	}
-	
-	/**
-	 * @return Width of the game board
-	 */
-	public int width() {
-		return WIDTH;
-	}
-	
-	public Tetrimino getCurrentTetrimino() {
-		return currentTetrimino;
-	}
-	
 	public boolean gameDetected() {
 		return gameDetected;
-	}
-	
-	/**
-	 * Returns a string representation of the play field
-	 */
-	public String toString() {
-		String stringRepresentation = "";
-		
-		// Iterate through all tiles
-		for (int i = 0; i < tiles.length; i++) {
-			
-			String row = "";
-			
-			for (int j = 0; j < tiles[0].length; j++) {
-				row += tiles[i][j].toString(); // append string representation of tile to the row
-			}
-			
-			stringRepresentation += row + "\n"; // append row to the overall string
-		}
-		
-		return stringRepresentation;
 	}
 	
 	public void saveScreenshot() {
