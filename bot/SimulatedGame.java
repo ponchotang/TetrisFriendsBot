@@ -1,9 +1,11 @@
 package bot;
 
 import game.RealGame;
+import game.Tetrimino;
+import game.TetrisGame;
 import game.Tile;
 
-public class SimulatedGame {
+public class SimulatedGame extends TetrisGame{
 	/*
 	 * Allows creation of a simulation by using the current state of the real game
 	 * This allows us to test all possible moves and retrieve game states from them in order
@@ -17,9 +19,11 @@ public class SimulatedGame {
 	 * There will also be a score method which calculates the score of the current state
 	 */
 	
-	private Tile[][] tiles;
+	private Tetrimino currentTetrimino;
 	
-	public SimulatedGame() {
+	public SimulatedGame(Tetrimino currentTetrimino) {
+		this.currentTetrimino = currentTetrimino;
+		
 		RealGame game = RealGame.getInstance();
 		
 		tiles = new Tile[game.height()][game.width()];
