@@ -12,10 +12,10 @@ public enum Tetrimino {
 	L(new Color(255, 126, 37), 4, 3, 4, 3, 3, 3, 2);
 	
 	private Color color;
-	private int orientations, horizontalWidth, verticalWidth;
+	private int orientations, width, height;
 	private int[] startingPositions;
 	
-	private Tetrimino(Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int horizontalWidth, int verticalWidth) {
+	private Tetrimino(Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
 		this.color = color;
 		
 		this.orientations = orientations;
@@ -27,8 +27,8 @@ public enum Tetrimino {
 		startingPositions[2] = startPos2;
 		startingPositions[3] = startPos3;
 		
-		this.horizontalWidth = horizontalWidth;
-		this.verticalWidth = verticalWidth;
+		this.width = width;
+		this.height = height;
 	}
 	
 	public Color getColor() {
@@ -48,11 +48,21 @@ public enum Tetrimino {
 	// 1 = Vertical
 	public int width(int orientation) {
 		if (orientation == 0 || orientation == 2) {
-			return horizontalWidth;
+			return width;
 		}
 		
 		else {
-			return verticalWidth;
+			return height;
+		}
+	}
+	
+	public int height(int orientation) {
+		if (orientation == 0 || orientation == 2) {
+			return height;
+		}
+		
+		else {
+			return width;
 		}
 	}
 
