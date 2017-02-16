@@ -9,9 +9,6 @@ package game;
 public class RealGame extends TetrisGame{
 	private static RealGame game;
 	
-	private static int HEIGHT = 20;
-	private static int WIDTH = 10;
-	
 	private BoardDetector bd;
 	
 	private boolean gameDetected;

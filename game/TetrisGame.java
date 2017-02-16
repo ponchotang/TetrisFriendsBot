@@ -1,8 +1,8 @@
 package game;
 
 public class TetrisGame {
-	private static int HEIGHT = 20;
-	private static int WIDTH = 10;
+	protected static int HEIGHT = 20;
+	protected static int WIDTH = 10;
 	
 	protected Tetrimino currentTetrimino;
 	protected Tile tiles[][];
