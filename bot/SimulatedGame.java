@@ -30,8 +30,11 @@ public class SimulatedGame extends TetrisGame{
 		
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
+				
 				Tile tile = new Tile(i,j);
 				tile.setState(game.get(i, j).state());
+				tiles[i][j] = tile;
+				
 			}
 		}
 		
