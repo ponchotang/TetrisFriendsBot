@@ -40,28 +40,23 @@ public class SimulatedGame extends TetrisGame{
 		
 	}
 	
+	/**
+	 * This method simulates what the board state will look like after inputting a move
+	 * Essentially, what this method is doing is determining where to position the tetrmino (from the move String).
+	 * It then checks IF the tetrimino was placed here, would it collide with the exisitng board? If none of the tiles collide, it moves down
+	 * one row and repeats.
+	 * What it is doing then is determining the lowest the tetrimino and be placed and thus what the board state would be if we placed
+	 * it in this position in an actual game.
+	 * 
+	 */
 	public void simulateMove(String move) {
-		/*
-		 * Figure out position to drop in
-		 *  -> can deduce from tetrimino's orientation and start position
-		 * Figure out how far down it will go
-		 *  -> need to get height of each block
-		 * Simulate move
-		 *  -> build the tetrimino from the deepest point
-		 * Check if lines made
-		 * 
-		 * 
-		 * alternative:
-		 * Find start position
-		 * Check the lowest tetrimino can go before colliding
-		 * Build tetrimino from there
-		 */
 		
 		int orientation = 0;
 		int leftMovement = 0;
 		int rightMovement = 0;
 		
-		
+		// Iterate through the moves String to determine orientation
+		// and starting position
 		for (char c : move.toCharArray()) {
 			
 			if (c == 'c') {
@@ -78,23 +73,31 @@ public class SimulatedGame extends TetrisGame{
 			
 		}
 		
+		// Get tile representation of the tetrimino
 		Tile[][] tileRepresentation = currentTetrimino.tileRepresentation(orientation);
 		
+		// Caclulate startingPosition
 		int startingPosition = currentTetrimino.startingPosition(orientation) - leftMovement + rightMovement;
 		
+		// Initialising variables
 		boolean hasCollided = false;
-		
 		int startingHeight = 0;
 		
+		// Iterate through entire height of board (minus the height of the tetrimino to prevent array out of bounds)
 		for (startingHeight = 0; startingHeight < height() - currentTetrimino.height(orientation); startingHeight++) {
+			
+			// Resetting variables (these are used to retrieve tiles from the tetrimino)
 			int tetriminoI = 0;
 			int tetriminoJ = 0;
 			
+			// This nested loop iterates through the size of the tetrimino (its width and height)
 			for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
 				tetriminoJ = 0;
 				
+				// Checks whether or not each tile of the tetrimino collides with the tile on the board
 				for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
 					
+					// Breaks if collision found (since now we have our starting height)
 					if (tiles[i][j].filled() && tileRepresentation[tetriminoI][tetriminoJ].filled()) {
 						hasCollided = true;
 						break;
@@ -119,13 +122,17 @@ public class SimulatedGame extends TetrisGame{
 		int tetriminoI = 0;
 		int tetriminoJ = 0;
 		
+		// Decrease startingHeight by 1 to get the startingHeight right before the collision
 		startingHeight--;
 
+		// Iterate through the size of the tetrimino, starting at the startingHeight that was found
 		for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
 			tetriminoJ = 0;
 
 			for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
-
+				
+				// Replaces the tile in the board with the tile in the tetrimino ONLY if it is filled
+				// This is essentially 'drawing' in the tetrimino
 				if (tileRepresentation[tetriminoI][tetriminoJ].filled()) {
 					tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state());
 
@@ -136,8 +143,12 @@ public class SimulatedGame extends TetrisGame{
 			
 			tetriminoI++;
 		}		
+	
+		removeFilledLines();
 		
-		// Check collision for each line
+	}
+	
+	private void removeFilledLines() {
 		
 	}
 	
