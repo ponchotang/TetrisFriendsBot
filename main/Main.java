@@ -27,60 +27,61 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 		
-//		RealGame game = RealGame.getInstance();
-//		Inputer inputer = new Inputer();
-//		Robot robot = new Robot();
-//		
-//		while(true) {
-//			if (game.gameDetected()) {
-//				Tetrimino currentTetrimino = game.getCurrentTetrimino();
-//				//System.out.println(new SimulatedGame(currentTetrimino).toString());
-//				System.out.println(game);
-//				
-//				if (currentTetrimino != null) {
-//					// Create a list of moves for the tetrimino DONE
-//					// Iterate through each move >> Main 
-//					// For each, create a simulated game and simulate the move >> SimulatedGame
-//					// Get the calculated score for that move >> SimulatedGame
-//					// If it is highest, set move and score as highest >> Main
-//					// Afterwards, execute the best move >> Inputer
-//					
-//					
-//				}	
-//				
-//				robot.delay(1000);
-//			}			
-//			game.update();
-//			System.out.println(game.gameDetected());
-//			
-//		}
+		RealGame game = RealGame.getInstance();
+		Inputer inputer = new Inputer();
+		Robot robot = new Robot();
 		
-		System.out.println(Tetrimino.O.toString());
-		System.out.println(Tetrimino.I.toString());
-		System.out.println(Tetrimino.S.toString());
-		System.out.println(Tetrimino.Z.toString());
-		System.out.println(Tetrimino.L.toString());
-		System.out.println(Tetrimino.J.toString());
-		System.out.println(Tetrimino.T.toString());
-		
-		Tile[][] tiles = Tetrimino.T.tileRepresentation(3);
-		
-		String stringRepresentation = "";
-
-		// Iterate through all tiles
-		for (int i = 0; i < tiles.length; i++) {
-
-			String row = "";
-
-			for (int j = 0; j < tiles[0].length; j++) {
-				row += tiles[i][j].toString(); // append string representation of tile to the row
-			}
-
-			stringRepresentation += row + "\n"; // append row to the overall string
+		while(true) {
+			if (game.gameDetected()) {
+				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				
+				
+				
+				if (currentTetrimino != null) {
+					// Create a list of moves for the tetrimino DONE
+					// Iterate through each move >> Main 
+					// For each, create a simulated game and simulate the move >> SimulatedGame
+					// Get the calculated score for that move >> SimulatedGame
+					// If it is highest, set move and score as highest >> Main
+					// Afterwards, execute the best move >> Inputer
+					SimulatedGame sg = new SimulatedGame(currentTetrimino);
+					sg.simulateMove("crr");
+					System.out.println(sg);
+					
+				}	
+				
+				robot.delay(1000);
+			}			
+			game.update();
+			
 		}
-
-		System.out.println(stringRepresentation);
 		
+//		System.out.println(Tetrimino.O.toString());
+//		System.out.println(Tetrimino.I.toString());
+//		System.out.println(Tetrimino.S.toString());
+//		System.out.println(Tetrimino.Z.toString());
+//		System.out.println(Tetrimino.L.toString());
+//		System.out.println(Tetrimino.J.toString());
+//		System.out.println(Tetrimino.T.toString());
+//		
+//		Tile[][] tiles = Tetrimino.T.tileRepresentation(3);
+//		
+//		String stringRepresentation = "";
+//
+//		// Iterate through all tiles
+//		for (int i = 0; i < tiles.length; i++) {
+//
+//			String row = "";
+//
+//			for (int j = 0; j < tiles[0].length; j++) {
+//				row += tiles[i][j].toString(); // append string representation of tile to the row
+//			}
+//
+//			stringRepresentation += row + "\n"; // append row to the overall string
+//		}
+//
+//		System.out.println(stringRepresentation);
+//		
 	}
 
 }
