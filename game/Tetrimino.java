@@ -3,19 +3,19 @@ package game;
 import java.awt.Color;
 
 public enum Tetrimino {
-	I(new Color(50, 190, 250), 2, 3, 5, 3, 5, 4, 1), 
-	O(new Color(255, 194, 37), 1, 4, 4, 4, 4, 2, 2),
-	T(new Color(210, 76, 173), 4, 3, 4, 3, 3, 3, 2), 
-	S(new Color(124, 212, 36), 2, 3, 4, 3, 4, 3, 2), 
-	Z(new Color(250, 50, 90), 2, 3, 4, 3, 4, 3, 2), 
-	J(new Color(68, 100, 233), 4, 3, 4, 3, 3, 3, 2),
-	L(new Color(255, 126, 37), 4, 3, 4, 3, 3, 3, 2);
+	I('I', new Color(50, 190, 250), 2, 3, 5, 3, 5, 4, 1), 
+	O('O', new Color(255, 194, 37), 1, 4, 4, 4, 4, 2, 2),
+	T('T', new Color(210, 76, 173), 4, 3, 4, 3, 3, 3, 2), 
+	S('S', new Color(124, 212, 36), 2, 3, 4, 3, 4, 3, 2), 
+	Z('Z', new Color(250, 50, 90), 2, 3, 4, 3, 4, 3, 2), 
+	J('J', new Color(68, 100, 233), 4, 3, 4, 3, 3, 3, 2),
+	L('L', new Color(255, 126, 37), 4, 3, 4, 3, 3, 3, 2);
 	
 	private Color color;
 	private int orientations, width, height;
 	private int[] startingPositions;
 	
-	private Tetrimino(Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
+	private Tetrimino(char type, Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
 		this.color = color;
 		
 		this.orientations = orientations;
