@@ -61,16 +61,29 @@ public class SimulatedGame extends TetrisGame{
 		 */
 		
 		int orientation = 0;
+		int leftMovement = 0;
+		int rightMovement = 0;
+		
 		
 		for (char c : move.toCharArray()) {
+			
 			if (c == 'c') {
 				orientation++;
 			}
+			
+			else if (c == 'l') {
+				leftMovement++;
+			}
+			
+			else {
+				rightMovement++;
+			}
+			
 		}
 		
 		Tile[][] tileRepresentation = currentTetrimino.tileRepresentation(orientation);
 		
-		int startingPosition = currentTetrimino.startingPosition(orientation);
+		int startingPosition = currentTetrimino.startingPosition(orientation) - leftMovement + rightMovement;
 		
 		int tetriminoI = 0;
 		int tetriminoJ = 0;
