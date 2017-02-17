@@ -10,39 +10,71 @@ public enum Tetrimino {
 	Z('Z', new Color(250, 50, 90), 2, 3, 4, 3, 4, 3, 2), 
 	J('J', new Color(68, 100, 233), 4, 3, 4, 3, 3, 3, 2),
 	L('L', new Color(255, 126, 37), 4, 3, 4, 3, 3, 3, 2);
-	
+
 	private Color color;
 	private int orientations, width, height;
 	private int[] startingPositions;
-	
+	private Tile[][] tiles;
+
 	private Tetrimino(char type, Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
 		this.color = color;
-		
+
 		this.orientations = orientations;
-		
+
 		startingPositions = new int[4];
-		
+
 		startingPositions[0] = startPos0;
 		startingPositions[1] = startPos1;
 		startingPositions[2] = startPos2;
 		startingPositions[3] = startPos3;
-		
+
 		this.width = width;
 		this.height = height;
+
+		constructTileRepresentation(type);
 	}
-	
+
+	private void constructTileRepresentation(char type) {
+		tiles = new Tile[height][width];
+
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[0].length; j++) {
+				Tile tile = new Tile(i, j);
+				tiles[i][j] = tile;	
+			}
+		}
+		
+		switch (type) {
+		case 'O':	
+			break;
+		case 'I':
+			break;
+		case 'S':
+			break;
+		case 'Z':
+			break;
+		case 'L':
+			break;
+		case 'J':
+			break;
+		case 'T':
+			break;
+
+		}
+	}
+
 	public Color getColor() {
 		return color;
 	}
-	
+
 	public int orientations() {
 		return orientations;
 	}
-	
+
 	public int startingPosition(int orientation) {
 		return startingPositions[orientation];
 	}
-	
+
 	// Axis is an int referring to whether the tetrimino is horizontal or vertical
 	// 0 = Horizontal
 	// 1 = Vertical
@@ -50,20 +82,24 @@ public enum Tetrimino {
 		if (orientation == 0 || orientation == 2) {
 			return width;
 		}
-		
+
 		else {
 			return height;
 		}
 	}
-	
+
 	public int height(int orientation) {
 		if (orientation == 0 || orientation == 2) {
 			return height;
 		}
-		
+
 		else {
 			return width;
 		}
+	}
+	
+	public String toString() {
+		return null;
 	}
 
 }
