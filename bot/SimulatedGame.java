@@ -53,11 +53,8 @@ public class SimulatedGame extends TetrisGame{
 		 * 
 		 * alternative:
 		 * Find start position
+		 * Check the lowest tetrimino can go before colliding
 		 * Build tetrimino from there
-		 * Move the tiles containing the tetrimino one line at a time
-		 * Check for collision
-		 * If there is collision, the final position is the last point where 
-		 * there was no collision
 		 */
 		
 		int orientation = 0;
@@ -85,19 +82,63 @@ public class SimulatedGame extends TetrisGame{
 		
 		int startingPosition = currentTetrimino.startingPosition(orientation) - leftMovement + rightMovement;
 		
+		boolean hasCollided = false;
+		
+		int startingHeight = 0;
+		
+		for (startingHeight = 0; startingHeight < height() - currentTetrimino.height(orientation); startingHeight++) {
+			int tetriminoI = 0;
+			int tetriminoJ = 0;
+			
+			for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
+				tetriminoJ = 0;
+				
+				for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
+					
+					if (tiles[i][j].filled() && tileRepresentation[tetriminoI][tetriminoJ].filled()) {
+						hasCollided = true;
+						break;
+					}
+					
+					tetriminoJ++;
+				}
+				
+				if (hasCollided) {
+					break;
+					
+				}
+				tetriminoI++;
+			}
+			
+			if (hasCollided) {
+				break;
+			}
+		}
+		
+		
 		int tetriminoI = 0;
 		int tetriminoJ = 0;
 		
-		for (int i = 0; i < currentTetrimino.height(orientation); i++) {
+		startingHeight--;
+
+		for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
 			tetriminoJ = 0;
-			
+
 			for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
-				tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state()); 
-				
+
+				if (tileRepresentation[tetriminoI][tetriminoJ].filled()) {
+					tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state());
+
+				}
+						
 				tetriminoJ++;
 			}
+			
 			tetriminoI++;
-		}
+		}		
+		
+		// Check collision for each line
+		
 	}
 	
 	public int calculateScore() {
