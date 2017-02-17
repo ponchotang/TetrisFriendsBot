@@ -45,19 +45,53 @@ public enum Tetrimino {
 		}
 		
 		switch (type) {
-		case 'O':	
+		case 'O':
+			tiles[0][0].setState(TileState.FILLED);
+			tiles[0][1].setState(TileState.FILLED);
+			tiles[1][0].setState(TileState.FILLED);
+			tiles[1][1].setState(TileState.FILLED);
 			break;
+			
 		case 'I':
+			tiles[0][0].setState(TileState.FILLED);
+			tiles[1][0].setState(TileState.FILLED);
+			tiles[2][0].setState(TileState.FILLED);
+			tiles[3][0].setState(TileState.FILLED);
 			break;
+			
 		case 'S':
+			tiles[0][1].setState(TileState.FILLED);
+			tiles[0][2].setState(TileState.FILLED);
+			tiles[1][0].setState(TileState.FILLED);
+			tiles[1][1].setState(TileState.FILLED);
 			break;
+			
 		case 'Z':
+			tiles[0][0].setState(TileState.FILLED);
+			tiles[0][1].setState(TileState.FILLED);
+			tiles[1][1].setState(TileState.FILLED);
+			tiles[1][2].setState(TileState.FILLED);
 			break;
+			
 		case 'L':
+			tiles[0][0].setState(TileState.FILLED);
+			tiles[1][0].setState(TileState.FILLED);
+			tiles[2][0].setState(TileState.FILLED);
+			tiles[2][1].setState(TileState.FILLED);
 			break;
+			
 		case 'J':
+			tiles[0][1].setState(TileState.FILLED);
+			tiles[1][1].setState(TileState.FILLED);
+			tiles[2][1].setState(TileState.FILLED);
+			tiles[2][0].setState(TileState.FILLED);
 			break;
+			
 		case 'T':
+			tiles[0][1].setState(TileState.FILLED);
+			tiles[1][0].setState(TileState.FILLED);
+			tiles[1][1].setState(TileState.FILLED);
+			tiles[1][2].setState(TileState.FILLED);
 			break;
 
 		}
