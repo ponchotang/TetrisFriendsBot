@@ -110,7 +110,42 @@ public enum Tetrimino {
 		
 		for (int i = 0; i < tileRep.length; i++) {
 			for (int j = 0; j < tileRep[0].length; j++) {
+				Tile tile = new Tile(i, j);
 				
+				int oldI = 0;
+				int oldJ = 0;
+				
+				if (orientation == 0) {
+					oldI = i;
+					oldJ = j;
+				}
+				
+				else if (orientation == 1) {
+					
+					if (tileRep[0].length == 2) {
+						oldI = Math.abs(j - 1);
+					}
+					
+					else {
+						oldI = j;
+					}
+					
+					oldJ = i;
+				}
+				
+				else if (orientation == 2) {
+					oldI = Math.abs(i - 1);
+					oldJ = Math.abs(j - 2);
+				}
+				
+				else {
+					oldI = j;
+					oldJ = Math.abs(i - 2);
+				}
+				
+				tile.setState(tiles[oldI][oldJ].state());
+				
+				tileRep[i][j] = tile;
 			}
 		}
 		
