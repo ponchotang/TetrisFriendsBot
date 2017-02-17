@@ -123,7 +123,12 @@ public class SimulatedGame extends TetrisGame{
 		int tetriminoJ = 0;
 		
 		// Decrease startingHeight by 1 to get the startingHeight right before the collision
-		startingHeight--;
+		// Only decrease if it has collided because if it hasn't, there is no need to account
+		// for a collision
+		if (hasCollided) {
+			startingHeight--;
+		}
+		
 
 		// Iterate through the size of the tetrimino, starting at the startingHeight that was found
 		for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
