@@ -96,6 +96,26 @@ public enum Tetrimino {
 
 		}
 	}
+	
+	public Tile[][] tileRepresentation(int orientation) {
+		Tile[][] tileRep;
+		
+		if (orientation == 0 || orientation == 2) {
+			tileRep = new Tile[height][width];
+		}
+		
+		else {
+			tileRep = new Tile[width][height];
+		}
+		
+		for (int i = 0; i < tileRep.length; i++) {
+			for (int j = 0; j < tileRep[0].length; j++) {
+				
+			}
+		}
+		
+		return tileRep;
+	}
 
 	public Color getColor() {
 		return color;
