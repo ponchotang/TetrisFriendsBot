@@ -59,6 +59,32 @@ public class SimulatedGame extends TetrisGame{
 		 * If there is collision, the final position is the last point where 
 		 * there was no collision
 		 */
+		
+		int orientation = 0;
+		
+		for (char c : move.toCharArray()) {
+			if (c == 'c') {
+				orientation++;
+			}
+		}
+		
+		Tile[][] tileRepresentation = currentTetrimino.tileRepresentation(orientation);
+		
+		int startingPosition = currentTetrimino.startingPosition(orientation);
+		
+		int tetriminoI = 0;
+		int tetriminoJ = 0;
+		
+		for (int i = 0; i < currentTetrimino.height(orientation); i++) {
+			tetriminoJ = 0;
+			
+			for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
+				tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state()); 
+				
+				tetriminoJ++;
+			}
+			tetriminoI++;
+		}
 	}
 	
 	public int calculateScore() {
