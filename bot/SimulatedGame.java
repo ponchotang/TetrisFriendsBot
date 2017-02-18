@@ -154,7 +154,13 @@ public class SimulatedGame extends TetrisGame{
 	}
 	
 	private void removeFilledLines() {
-		
+		/*
+		 * Iterate from top to bottom
+		 * Check if line is filled
+		 * if it is, replace all tiles in filled line with the one on top
+		 * repeat until the top
+		 * fill top line with empty tiles
+		 */
 	}
 	
 	public int calculateScore() {
