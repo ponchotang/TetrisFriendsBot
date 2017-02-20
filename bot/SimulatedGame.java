@@ -203,10 +203,28 @@ public class SimulatedGame extends TetrisGame{
 	
 	public int calculateScore() {
 		
+		// Score is 0 if the simulated move results in a loss
 		if (hasLost) {
 			return 0;
 		}
 		
+		/*
+		 * Scoring system
+		 * 
+		 * Takes into account maximum height, and gaps
+		 * Future iterations of the scoring system would take into account
+		 * the feasible of the board in fitting as many types of the tetriminos as possible
+		 * 
+		 * For now:
+		 * Lower height = higher score
+		 * Less gaps = higher score
+		 * 
+		 * Gap calculation
+		 * 
+		 * Iterate column by column:
+		 * Set a flag once a filled tile is seen
+		 * As you iterate down, if any tiles after the flagged tile are empty, deduce points (as gap is found)
+		 */
 		int height = height();
 		
 		for (int i = 0; i < height(); i++) {
@@ -229,7 +247,7 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
-		return 20 - height;
+		return height() - height;
 	}
 	
 }
