@@ -168,17 +168,12 @@ public class SimulatedGame extends TetrisGame{
 	}
 	
 	private void removeFilledLines() {
-		/*
-		 * Iterate from top to bottom
-		 * Check if line is filled
-		 * if it is, replace all tiles in filled line with the one on top
-		 * repeat until the top
-		 * fill top line with empty tiles
-		 */
 		
+		// Iterate through all rows of the game
 		for (int i = 0; i < height(); i++) {
-			boolean isFilled = true;
+			boolean isFilled = true; // reset boolean
 			
+			// Checks if the entire row is filled
 			for (int j = 0; j < width(); j++) {
 				if (tiles[i][j].empty()) {
 					isFilled = false;
@@ -186,14 +181,19 @@ public class SimulatedGame extends TetrisGame{
 				}
 			}
 			
+			// If entire row is filled
 			if (isFilled) {
 				
+				// Iterate from that row and continue upwards
 				for (int m = i; m > 0; m--) {
+					
+					// Replace tiles in that row with the tiles in the row above
 					for (int n = 0; n < width(); n++) {
 						tiles[m][n].setState(tiles[m-1][n].state());
 					}
 				}
 				
+				// Set row 0 to all empty tiles
 				for (int n = 0; n < width(); n++) {
 					tiles[0][n].setState(TileState.EMPTY);
 				}
