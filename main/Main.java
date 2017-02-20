@@ -66,7 +66,7 @@ public class Main {
 					
 				}	
 				
-				//robot.delay(10);
+				robot.delay(1000);
 			}			
 			game.update();
 			
