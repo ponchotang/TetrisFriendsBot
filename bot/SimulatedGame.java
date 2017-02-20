@@ -189,7 +189,50 @@ public class SimulatedGame extends TetrisGame{
 	}
 	
 	public int calculateScore() {
-		return 0;
+		
+		int height = height();
+		
+		for (int i = 0; i < height(); i++) {
+			
+			boolean rowEmpty = true;
+			
+			for (int j = 0; j < width(); j++) {
+				if (tiles[i][j].filled()) {
+					rowEmpty = false;
+					break;
+				}
+			}
+			
+			if (rowEmpty) {
+				height--;
+			}
+			
+			else {
+				break;
+			}
+		}
+		
+		return 20 - height;
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
