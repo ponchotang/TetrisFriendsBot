@@ -4,6 +4,7 @@ import game.RealGame;
 import game.Tetrimino;
 import game.TetrisGame;
 import game.Tile;
+import game.TileState;
 
 public class SimulatedGame extends TetrisGame{
 	/*
@@ -161,6 +162,30 @@ public class SimulatedGame extends TetrisGame{
 		 * repeat until the top
 		 * fill top line with empty tiles
 		 */
+		
+		for (int i = 0; i < height(); i++) {
+			boolean isFilled = true;
+			
+			for (int j = 0; j < width(); j++) {
+				if (tiles[i][j].empty()) {
+					isFilled = false;
+					break;
+				}
+			}
+			
+			if (isFilled) {
+				
+				for (int m = i; m > 0; m--) {
+					for (int n = 0; n < width(); n++) {
+						tiles[m][n].setState(tiles[m-1][n].state());
+					}
+				}
+				
+				for (int n = 0; n < width(); n++) {
+					tiles[0][n].setState(TileState.EMPTY);
+				}
+			}
+		}
 	}
 	
 	public int calculateScore() {
