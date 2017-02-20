@@ -21,9 +21,12 @@ public class SimulatedGame extends TetrisGame{
 	 */
 	
 	private Tetrimino currentTetrimino;
+	private boolean hasLost;
 	
 	public SimulatedGame(Tetrimino currentTetrimino) {
 		this.currentTetrimino = currentTetrimino;
+		
+		hasLost = false;
 		
 		RealGame game = RealGame.getInstance();
 		
@@ -130,25 +133,35 @@ public class SimulatedGame extends TetrisGame{
 			startingHeight--;
 		}
 		
-
-		// Iterate through the size of the tetrimino, starting at the startingHeight that was found
-		for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
-			tetriminoJ = 0;
-
-			for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
-				
-				// Replaces the tile in the board with the tile in the tetrimino ONLY if it is filled
-				// This is essentially 'drawing' in the tetrimino
-				if (tileRepresentation[tetriminoI][tetriminoJ].filled()) {
-					tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state());
-
-				}
-						
-				tetriminoJ++;
-			}
+		if (startingHeight >= 0) {
 			
-			tetriminoI++;
-		}		
+			// Iterate through the size of the tetrimino, starting at the startingHeight that was found
+			for (int i = startingHeight; i < startingHeight + currentTetrimino.height(orientation); i++) {
+				tetriminoJ = 0;
+
+				for (int j = startingPosition; j < startingPosition + currentTetrimino.width(orientation); j++) {
+					
+					// Replaces the tile in the board with the tile in the tetrimino ONLY if it is filled
+					// This is essentially 'drawing' in the tetrimino
+					if (tileRepresentation[tetriminoI][tetriminoJ].filled()) {
+						tiles[i][j].setState(tileRepresentation[tetriminoI][tetriminoJ].state());
+
+					}
+							
+					tetriminoJ++;
+				}
+				
+				tetriminoI++;
+			}		
+		}
+		
+		else {
+			// If startingHeight is < 0, then the move will result in a fail.
+			hasLost = true;
+		}
+		
+
+		
 	
 		removeFilledLines();
 		
@@ -189,6 +202,10 @@ public class SimulatedGame extends TetrisGame{
 	}
 	
 	public int calculateScore() {
+		
+		if (hasLost) {
+			return 0;
+		}
 		
 		int height = height();
 		
