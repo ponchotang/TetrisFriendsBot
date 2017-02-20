@@ -45,16 +45,28 @@ public class Main {
 					// If it is highest, set move and score as highest >> Main
 					// Afterwards, execute the best move >> Inputer
 					
+					int highestScore = 0;
+					String bestMove = "";
+					
 					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
 						SimulatedGame sg = new SimulatedGame(currentTetrimino);
 						sg.simulateMove(move);
-						System.out.println(sg);
+						//System.out.println(sg);
+						
+						int score = sg.calculateScore();
+						
+						if (score > highestScore) {
+							bestMove = move;
+							highestScore = score;
+						}
 					}
+					
+					inputer.executeMoves(bestMove + "s");
 					
 					
 				}	
 				
-				robot.delay(1000);
+				//robot.delay(10);
 			}			
 			game.update();
 			
