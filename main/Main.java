@@ -31,6 +31,7 @@ public class Main {
 		Inputer inputer = new Inputer();
 		Robot robot = new Robot();
 		
+		
 		while(true) {
 			if (game.gameDetected()) {
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
@@ -45,6 +46,9 @@ public class Main {
 					// If it is highest, set move and score as highest >> Main
 					// Afterwards, execute the best move >> Inputer
 					
+					
+					int heightBeforeMove = game.currentHeight();
+			
 					SimulatedGame bestGame = null;
 					int highestScore = 0;
 					String bestMove = "";
@@ -66,7 +70,11 @@ public class Main {
 						}
 					}
 					
-					//inputer.executeMoves(bestMove + "s");
+					inputer.executeMoves(bestMove + "s");
+					
+					if (bestGame != null && bestGame.currentHeight() < heightBeforeMove) {
+						robot.delay(1000);
+					}
 					
 //					System.out.println(highestScore);
 //					System.out.println(bestGame);
@@ -75,8 +83,7 @@ public class Main {
 					
 					
 				}	
-				
-				robot.delay(1000);
+							
 			}			
 			game.update();
 			
