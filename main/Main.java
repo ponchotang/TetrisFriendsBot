@@ -45,6 +45,7 @@ public class Main {
 					// If it is highest, set move and score as highest >> Main
 					// Afterwards, execute the best move >> Inputer
 					
+					SimulatedGame bestGame = null;
 					int highestScore = 0;
 					String bestMove = "";
 					
@@ -55,13 +56,22 @@ public class Main {
 						
 						int score = sg.calculateScore();
 						
+						//System.out.println(score);
+						System.out.println(sg);
+						
 						if (score > highestScore) {
 							bestMove = move;
 							highestScore = score;
+							bestGame = sg;
 						}
 					}
 					
-					inputer.executeMoves(bestMove + "s");
+					//inputer.executeMoves(bestMove + "s");
+					
+//					System.out.println(highestScore);
+//					System.out.println(bestGame);
+//					
+//					System.out.println();
 					
 					
 				}	
