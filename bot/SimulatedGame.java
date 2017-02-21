@@ -213,6 +213,7 @@ public class SimulatedGame extends TetrisGame{
 		 * Takes into account maximum height, and gaps
 		 * Future iterations of the scoring system would take into account
 		 * the feasible of the board in fitting as many types of the tetriminos as possible
+		 * Take into account the difference between heights of the columns (want to keep as even as possible)
 		 * 
 		 * For now:
 		 * Lower height = higher score
