@@ -88,7 +88,7 @@ public class SimulatedGame extends TetrisGame{
 		int startingHeight = 0;
 		
 		// Iterate through entire height of board (minus the height of the tetrimino to prevent array out of bounds)
-		for (startingHeight = 0; startingHeight < height() - currentTetrimino.height(orientation); startingHeight++) {
+		for (startingHeight = 0; startingHeight <= height() - currentTetrimino.height(orientation); startingHeight++) {
 			
 			// Resetting variables (these are used to retrieve tiles from the tetrimino)
 			int tetriminoI = 0;
@@ -247,7 +247,23 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
-		return height() - height;
+		int gaps = 0;
+		
+		for (int j = 0; j < width(); j++) {
+			boolean filledFound = false;
+			
+			for (int i = 0; i < height(); i++) {
+				if (tiles[i][j].filled()) {
+					filledFound = true;
+				}
+				
+				else if (filledFound) {
+					gaps++;
+				}
+			}
+		}
+		
+		return 1000 - (10 * height) - (10 * gaps);
 	}
 	
 }
