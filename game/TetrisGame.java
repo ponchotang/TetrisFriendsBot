@@ -17,6 +17,7 @@ public class TetrisGame {
 		return tiles[row][column];
 	}
 
+	// Calculates and returns the height of the tower (e.g. height of the highest filled tile)
 	public int currentHeight() {
 		int height = height();
 
