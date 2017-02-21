@@ -129,9 +129,8 @@ public class SimulatedGame extends TetrisGame{
 		// Decrease startingHeight by 1 to get the startingHeight right before the collision
 		// Only decrease if it has collided because if it hasn't, there is no need to account
 		// for a collision
-		if (hasCollided) {
-			startingHeight--;
-		}
+		startingHeight--;
+		
 		
 		if (startingHeight >= 0) {
 			
@@ -225,27 +224,7 @@ public class SimulatedGame extends TetrisGame{
 		 * Set a flag once a filled tile is seen
 		 * As you iterate down, if any tiles after the flagged tile are empty, deduce points (as gap is found)
 		 */
-		int height = height();
-		
-		for (int i = 0; i < height(); i++) {
-			
-			boolean rowEmpty = true;
-			
-			for (int j = 0; j < width(); j++) {
-				if (tiles[i][j].filled()) {
-					rowEmpty = false;
-					break;
-				}
-			}
-			
-			if (rowEmpty) {
-				height--;
-			}
-			
-			else {
-				break;
-			}
-		}
+		int height = currentHeight();
 		
 		int gaps = 0;
 		
@@ -263,7 +242,7 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
-		return 1000 - (10 * height) - (10 * gaps);
+		return 1000 - (10 * height) - (30 * gaps);
 	}
 	
 }
