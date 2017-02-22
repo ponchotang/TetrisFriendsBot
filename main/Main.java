@@ -31,6 +31,7 @@ public class Main {
 					SimulatedGame bestGame = null;
 					int highestScore = 0;
 					String bestMove = "";
+					boolean firstMove = true;
 					
 					// Iterate through all possible moves for the tetrimino
 					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
@@ -42,10 +43,11 @@ public class Main {
 						int score = sg.calculateScore(); // Calculate the board state after simulating that move
 						
 						// Set as best move if it beats the current high score
-						if (score > highestScore) {
+						if (firstMove || score > highestScore) {
 							bestMove = move;
 							highestScore = score;
 							bestGame = sg;
+							firstMove = false;
 						}
 					}
 					
@@ -54,7 +56,7 @@ public class Main {
 					
 					// Delays if a line was cleared (due to annoying clear animations)
 					if (bestGame != null && bestGame.currentHeight() < heightBeforeMove) {
-						robot.delay(1000);
+						robot.delay(0);
 					}
 									
 				}							
