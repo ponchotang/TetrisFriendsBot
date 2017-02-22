@@ -200,50 +200,70 @@ public class SimulatedGame extends TetrisGame{
 		}
 	}
 	
+	/**
+	 * This method calculates a score based on the current board state.
+	 * 
+	 * It currently uses 3 factors to determine the score:
+	 * 	1. Max Height: The number representing the highest column
+	 * 	2. Total Height Variance: The sum of the differences between adjacent columns
+	 * 	3. Gaps: The total number of gaps
+	 * 
+	 * The weights for each respective factor determines the importance of that factor in calculating the score
+	 */
 	public int calculateScore() {
 		
 		// Score is 0 if the simulated move results in a loss
 		if (hasLost) {
 			return 0;
 		}
+				
+		// Weights for scoring
+		int heightWeight = -10;
+		int varianceWeight= -10;
+		int gapWeight = -50;
 		
-		/*
-		 * Scoring system
-		 * 
-		 * Takes into account maximum height, and gaps
-		 * Future iterations of the scoring system would take into account
-		 * the feasible of the board in fitting as many types of the tetriminos as possible
-		 * Take into account the difference between heights of the columns (want to keep as even as possible)
-		 * 
-		 * For now:
-		 * Lower height = higher score
-		 * Less gaps = higher score
-		 * 
-		 * Gap calculation
-		 * 
-		 * Iterate column by column:
-		 * Set a flag once a filled tile is seen
-		 * As you iterate down, if any tiles after the flagged tile are empty, deduce points (as gap is found)
-		 */
-		int height = currentHeight();
+		int maxHeight = columnHeight(0);
+		int previousHeight = columnHeight(0);
+		int totalHeightVariance = 0;
+		
+		// Iterate through all columns
+		for (int j = 1; j < width(); j++) {
+			int currentHeight = columnHeight(j); // Get height of column
+			
+			// Check if it is higher than the current max height
+			if (currentHeight > maxHeight) {
+				maxHeight = currentHeight;
+			}
+			
+			// Calculate the height variance with the column to the right of it (difference between heights) and add it to the total
+			totalHeightVariance += Math.abs(previousHeight - currentHeight);
+			
+			previousHeight = currentHeight; // Set the previous height for the next iteration
+		}
 		
 		int gaps = 0;
 		
+		// Iterate through each column
 		for (int j = 0; j < width(); j++) {
-			boolean filledFound = false;
+			boolean filledFound = false; // resetting boolean
 			
+			// Iterate down the column
 			for (int i = 0; i < height(); i++) {
+				
+				// Set flag if filled tile found
 				if (tiles[i][j].filled()) {
 					filledFound = true;
 				}
 				
+				// Increase gap count whenever an empty tile is found after the flag has been set
 				else if (filledFound) {
 					gaps++;
 				}
 			}
 		}
 		
-		return 1000 - (10 * height) - (30 * gaps);
+		// Calculate and return the score
+		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps);
 	}
 	
 }
