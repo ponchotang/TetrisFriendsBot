@@ -43,6 +43,21 @@ public class TetrisGame {
 		
 		return height;
 	}
+	
+	public int columnHeight(int column) {
+		int height = height();
+		
+		for (int i = 0; i < height(); i++) {
+			
+			if (tiles[i][column].filled()) {
+				break;
+			}
+			
+			height--;
+		}
+		
+		return height;
+	}
 
 	/**
 	 * @return Height of the game board
