@@ -56,7 +56,7 @@ public class Main {
 					
 					// Delays if a line was cleared (due to annoying clear animations)
 					if (bestGame != null && bestGame.currentHeight() < heightBeforeMove) {
-						robot.delay(0);
+						robot.delay(100);
 					}
 									
 				}							
