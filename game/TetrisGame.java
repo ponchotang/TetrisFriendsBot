@@ -76,6 +76,10 @@ public class TetrisGame {
 	public Tetrimino getCurrentTetrimino() {
 		return currentTetrimino;
 	}
+	
+	public Tetrimino getNextTetrimino() {
+		return nextTetrimino;
+	}
 
 	/**
 	 * Returns a string representation of the play field
