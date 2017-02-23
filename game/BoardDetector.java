@@ -52,7 +52,7 @@ public class BoardDetector {
 		calibrate();
 
 	}
-	
+
 	/**
 	 * Method used to redetect the game.
 	 */
@@ -63,7 +63,7 @@ public class BoardDetector {
 		screenshot = robot.createScreenCapture(screenResolution);
 
 		determineStartingPixel();
-		
+
 		if (foundGame) {
 			determineBoardResolution();
 
@@ -71,23 +71,21 @@ public class BoardDetector {
 			gameBoard = robot.createScreenCapture(boardResolution);
 
 			determinePlayFieldStartingPixel();
-			
+
 			if (gameInView) {
 				determinePlayFieldSpecifications();
 
 				// Takes a screenshot of the play field only
 				playField = robot.createScreenCapture(playfieldResolution);
-				
-				// Here it will determine the screenshot for the next tetrimino
-				// 0,0,0
+
 				determineTetriminoListResolution();
-				
+
 				tetriminoList = robot.createScreenCapture(tetriminoListResolution);
-				
-				saveScreenshot();
+
+				//saveScreenshot();
 			}	
 		}
-		
+
 		else {
 			gameInView = false;
 		}
@@ -202,7 +200,7 @@ public class BoardDetector {
 				if (pixel.equals(Colors.EMPTY_TILE_1)) {
 
 					boolean tempFound = true;
-					
+
 
 					// Iterate through next horizontal 15 pixels
 					// and checks if they are the same color
@@ -220,7 +218,7 @@ public class BoardDetector {
 						}
 
 					}
-					
+
 
 					// Iterate through next vertical 15 pixels
 					// and checks if they are the same color
@@ -237,7 +235,7 @@ public class BoardDetector {
 						}
 
 					}
-					
+
 
 					// Create starting pixel if it has been found
 					if (tempFound) {
@@ -294,7 +292,7 @@ public class BoardDetector {
 		// Create rectangle containing the play field
 		playfieldResolution = new Rectangle(startingPixel.x + playfieldStartingPixel.x,
 				startingPixel.y + playfieldStartingPixel.y, playfieldWidth, playfieldHeight);
-		
+
 		// Ensures that getState is not using an invalid x value.
 		// This happens when the game has been found but the playfield is in an invalid state (e.g. not in progress).
 		if (x == gameBoard.getWidth() - 1) {
@@ -303,12 +301,14 @@ public class BoardDetector {
 		}
 
 	}
-	
+
 	private void determineTetriminoListResolution() {
-		
+
 		tetriminoListResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
-			
+
+
 	}
+
 
 
 	/**
@@ -317,14 +317,14 @@ public class BoardDetector {
 	 * @return the current tetrimino 
 	 */
 	public Tetrimino getCurrentTetrimino() {
-		
+
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				
+
 				// Determine color of current tile
 				Color currentTileColor = new Color(playField.getRGB((j * tileSize) + (j * tileGap) + TETRIMINO_OFFSET,
 						(i * tileSize) + (i * tileGap) +TETRIMINO_OFFSET));
-				
+
 				// Iterate through all Tetriminos and determine which one it is
 				for (Tetrimino tetrimino : Tetrimino.values()) {
 					if (tetrimino.getColor().equals(currentTileColor)) {
@@ -336,9 +336,30 @@ public class BoardDetector {
 
 		return null;
 	}
-	
+
 	public Tetrimino getNextTetrimino() {
-		return null; //TODO
+
+		// Iterate through tetriminoList image
+		for (int i = 0; i < tetriminoList.getHeight(); i++) {
+			for (int j = 0; j < tetriminoList.getWidth(); j++) {
+				
+				Color color = new Color(tetriminoList.getRGB(j, i));
+
+				// Only check if pixel color isn't black
+				if (!color.equals(Color.black)) {
+					
+					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
+					for (Tetrimino tetrimino : Tetrimino.values()) {
+						if (tetrimino.getColor().equals(color)) {
+							return tetrimino;
+						}
+					}
+				}
+			}
+		}
+
+		
+		return null;
 	}
 
 	/**
@@ -384,19 +405,19 @@ public class BoardDetector {
 	public BufferedImage getScreenshot() {
 		return screenshot;
 	}
-	
+
 	public void saveScreenshot() {
 		BufferedImage screenshotBI = screenshot;
 		BufferedImage gameBoardBI = gameBoard;
 		BufferedImage playFieldBI = playField;
 		BufferedImage tetriminoListBI = tetriminoList;
-		
-	    File screenshotOut = new File("screenshot.png");
-	    File gameBoardOut = new File("gameboard.png");
-	    File playFieldOut = new File("playfield.png");
-	    File tetriminoListOut = new File("tetriminolist.png");
-	    
-	    try {
+
+		File screenshotOut = new File("screenshot.png");
+		File gameBoardOut = new File("gameboard.png");
+		File playFieldOut = new File("playfield.png");
+		File tetriminoListOut = new File("tetriminolist.png");
+
+		try {
 			ImageIO.write(screenshotBI, "png", screenshotOut);
 			ImageIO.write(gameBoardBI, "png", gameBoardOut);
 			ImageIO.write(playFieldBI, "png", playFieldOut);
@@ -404,7 +425,7 @@ public class BoardDetector {
 		} catch (IOException e) {
 		}
 	}
-	
+
 	public boolean gameDetected() {
 		return gameInView;
 	}
