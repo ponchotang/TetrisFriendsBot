@@ -32,9 +32,9 @@ public class BoardDetector {
 	private final int height;
 
 	private Robot robot;
-	private BufferedImage screenshot;
+	private BufferedImage screenshot, gameBoard, playField, tetriminoList;
 	private Point startingPixel, playfieldStartingPixel;
-	private Rectangle screenResolution, boardResolution, playfieldResolution;
+	private Rectangle screenResolution, boardResolution, playfieldResolution, tetriminoListResolution;
 
 	private int tileSize, tileGap;
 	private boolean foundGame, gameInView;
@@ -68,7 +68,7 @@ public class BoardDetector {
 			determineBoardResolution();
 
 			// Takes a screenshot of the game board only
-			screenshot = robot.createScreenCapture(boardResolution);
+			gameBoard = robot.createScreenCapture(boardResolution);
 
 			determinePlayFieldStartingPixel();
 			
@@ -76,7 +76,15 @@ public class BoardDetector {
 				determinePlayFieldSpecifications();
 
 				// Takes a screenshot of the play field only
-				screenshot = robot.createScreenCapture(playfieldResolution);
+				playField = robot.createScreenCapture(playfieldResolution);
+				
+				// Here it will determine the screenshot for the next tetrimino
+				// 0,0,0
+				determineTetriminoListResolution();
+				
+				tetriminoList = robot.createScreenCapture(tetriminoListResolution);
+				
+				saveScreenshot();
 			}	
 		}
 		
@@ -184,11 +192,11 @@ public class BoardDetector {
 		gameInView = false;
 
 		// Iterate through all pixels of screenshot
-		for (int i = 0; i < screenshot.getHeight(); i++) {
-			for (int j = 0; j < screenshot.getWidth(); j++) {
+		for (int i = 0; i < gameBoard.getHeight(); i++) {
+			for (int j = 0; j < gameBoard.getWidth(); j++) {
 
 				// Get color of current pixel
-				Color pixel = new Color(screenshot.getRGB(j, i));
+				Color pixel = new Color(gameBoard.getRGB(j, i));
 
 				// If it equals the first empty tile
 				if (pixel.equals(Colors.EMPTY_TILE_1)) {
@@ -201,9 +209,9 @@ public class BoardDetector {
 					for (int m = j; m < j + 15; m++) {
 
 						// Prevents out of coordinates exception
-						if (m < screenshot.getWidth()) {
+						if (m < gameBoard.getWidth()) {
 
-							Color tempPixel = new Color(screenshot.getRGB(m, i));
+							Color tempPixel = new Color(gameBoard.getRGB(m, i));
 
 							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
 								tempFound = false;
@@ -219,8 +227,8 @@ public class BoardDetector {
 					for (int n = i; n < i + 15; n++) {
 
 						// Prevents out of coordinates exception
-						if (n < screenshot.getHeight()) {
-							Color tempPixel = new Color(screenshot.getRGB(j, n));
+						if (n < gameBoard.getHeight()) {
+							Color tempPixel = new Color(gameBoard.getRGB(j, n));
 
 							if (!tempPixel.equals(Colors.EMPTY_TILE_1)) {
 								tempFound = false;
@@ -263,20 +271,20 @@ public class BoardDetector {
 		tileGap = 0;
 
 		// Initial color
-		Color pixel = new Color(screenshot.getRGB(x, y));
+		Color pixel = new Color(gameBoard.getRGB(x, y));
 
 		// Determine size by iterating until color changes
-		while (pixel.equals(Colors.EMPTY_TILE_1) && x < screenshot.getWidth() - 1) {
+		while (pixel.equals(Colors.EMPTY_TILE_1) && x < gameBoard.getWidth() - 1) {
 			tileSize++;
 			x++;
-			pixel = new Color(screenshot.getRGB(x, y));
+			pixel = new Color(gameBoard.getRGB(x, y));
 		}
 
 		// Determine gap by iterating until color changes
-		while (!pixel.equals(Colors.EMPTY_TILE_2) && x < screenshot.getWidth() - 1) {
+		while (!pixel.equals(Colors.EMPTY_TILE_2) && x < gameBoard.getWidth() - 1) {
 			tileGap++;
 			x++;
-			pixel = new Color(screenshot.getRGB(x, y));
+			pixel = new Color(gameBoard.getRGB(x, y));
 		}
 
 		// Calculate width and height of play field
@@ -289,16 +297,21 @@ public class BoardDetector {
 		
 		// Ensures that getState is not using an invalid x value.
 		// This happens when the game has been found but the playfield is in an invalid state (e.g. not in progress).
-		if (x == screenshot.getWidth() - 1) {
+		if (x == gameBoard.getWidth() - 1) {
 			tileSize = 0;
 			tileGap = 0;
 		}
 
 	}
+	
+	private void determineTetriminoListResolution() {
+		
+		tetriminoListResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
+			
+	}
 
 
 	/**
-	 * TODO: Possibly more testing
 	 * Method used to determine what the current tetrimino is.
 	 * 
 	 * @return the current tetrimino 
@@ -309,7 +322,7 @@ public class BoardDetector {
 			for (int j = 0; j < width; j++) {
 				
 				// Determine color of current tile
-				Color currentTileColor = new Color(screenshot.getRGB((j * tileSize) + (j * tileGap) + TETRIMINO_OFFSET,
+				Color currentTileColor = new Color(playField.getRGB((j * tileSize) + (j * tileGap) + TETRIMINO_OFFSET,
 						(i * tileSize) + (i * tileGap) +TETRIMINO_OFFSET));
 				
 				// Iterate through all Tetriminos and determine which one it is
@@ -322,6 +335,10 @@ public class BoardDetector {
 		}
 
 		return null;
+	}
+	
+	public Tetrimino getNextTetrimino() {
+		return null; //TODO
 	}
 
 	/**
@@ -337,7 +354,7 @@ public class BoardDetector {
 		int y = (row * tileSize) + (row * tileGap);
 
 		// Get color of tile
-		Color tileColor = new Color(screenshot.getRGB(x, y));
+		Color tileColor = new Color(playField.getRGB(x, y));
 
 		// Checks if it is empty by comparing with the 'empty tile' colors
 		if (tileColor.equals(Colors.EMPTY_TILE_1) || tileColor.equals(Colors.EMPTY_TILE_2) 
@@ -346,7 +363,7 @@ public class BoardDetector {
 		}
 
 		// Get color of pixel used to determine the tetrimino type
-		Color tetriminoColor = new Color(screenshot.getRGB(x + TETRIMINO_OFFSET, y + TETRIMINO_OFFSET));
+		Color tetriminoColor = new Color(playField.getRGB(x + TETRIMINO_OFFSET, y + TETRIMINO_OFFSET));
 
 		// Determine if the tile is that of the current tetrimino.
 		for (Tetrimino tetrimino : Tetrimino.values()) {
@@ -369,11 +386,21 @@ public class BoardDetector {
 	}
 	
 	public void saveScreenshot() {
-		BufferedImage bi = screenshot;
-	    File outputfile = new File("saved.png");
+		BufferedImage screenshotBI = screenshot;
+		BufferedImage gameBoardBI = gameBoard;
+		BufferedImage playFieldBI = playField;
+		BufferedImage tetriminoListBI = tetriminoList;
+		
+	    File screenshotOut = new File("screenshot.png");
+	    File gameBoardOut = new File("gameboard.png");
+	    File playFieldOut = new File("playfield.png");
+	    File tetriminoListOut = new File("tetriminolist.png");
 	    
 	    try {
-			ImageIO.write(bi, "png", outputfile);
+			ImageIO.write(screenshotBI, "png", screenshotOut);
+			ImageIO.write(gameBoardBI, "png", gameBoardOut);
+			ImageIO.write(playFieldBI, "png", playFieldOut);
+			ImageIO.write(tetriminoListBI, "png", tetriminoListOut);
 		} catch (IOException e) {
 		}
 	}
