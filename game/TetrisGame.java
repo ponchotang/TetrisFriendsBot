@@ -4,7 +4,7 @@ public class TetrisGame {
 	protected static int HEIGHT = 20;
 	protected static int WIDTH = 10;
 
-	protected Tetrimino currentTetrimino;
+	protected Tetrimino currentTetrimino, nextTetrimino;
 	protected Tile tiles[][];
 
 	/**
