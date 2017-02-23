@@ -21,6 +21,7 @@ public class Main {
 		while(true) {
 			if (game.gameDetected()) {
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
+				Tetrimino nextTetrimino = game.getNextTetrimino();
 							
 				if (currentTetrimino != null) {
 					
@@ -56,7 +57,7 @@ public class Main {
 					
 					// Delays if a line was cleared (due to annoying clear animations)
 					if (bestGame != null && bestGame.currentHeight() < heightBeforeMove) {
-						robot.delay(100);
+						robot.delay(500);
 					}
 									
 				}							
