@@ -1,5 +1,7 @@
 package bot;
 
+import java.util.LinkedList;
+
 import game.RealGame;
 import game.Tetrimino;
 import game.TetrisGame;
@@ -20,11 +22,12 @@ public class SimulatedGame extends TetrisGame{
 	 * There will also be a score method which calculates the score of the current state
 	 */
 	
-	private Tetrimino currentTetrimino;
+	private LinkedList<Tetrimino> tetriminoList;
 	private boolean hasLost;
 	
-	public SimulatedGame(Tetrimino currentTetrimino) {
-		this.currentTetrimino = currentTetrimino;
+	public SimulatedGame() {
+		
+		tetriminoList = new LinkedList<Tetrimino>();
 		
 		hasLost = false;
 		
@@ -44,6 +47,10 @@ public class SimulatedGame extends TetrisGame{
 		
 	}
 	
+	public void add(Tetrimino tetrimino) {
+		tetriminoList.add(tetrimino);
+	}
+	
 	/**
 	 * This method simulates what the board state will look like after inputting a move
 	 * Essentially, what this method is doing is determining where to position the tetrmino (from the move String).
@@ -54,6 +61,12 @@ public class SimulatedGame extends TetrisGame{
 	 * 
 	 */
 	public void simulateMove(String move) {
+		
+		if (tetriminoList.isEmpty()) {
+			return;
+		}
+		
+		Tetrimino currentTetrimino = tetriminoList.pollFirst();
 		
 		int orientation = 0;
 		int leftMovement = 0;
