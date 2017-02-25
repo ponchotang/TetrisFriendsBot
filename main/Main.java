@@ -4,9 +4,9 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.IOException;
 
+import bot.Inputer;
 import bot.MoveGenerator;
 import bot.SimulatedGame;
-import bot_old.Inputer;
 import game.Tetrimino;
 import game.RealGame;
 
@@ -26,14 +26,9 @@ public class Main {
 				if (currentTetrimino != null && nextTetrimino != null) {
 					
 					System.out.println(game);
-					
-					// Get height of the tower before executing a move
-					int heightBeforeMove = game.currentHeight();
 			
 					// Resetting variables
-					SimulatedGame bestGame = null;
 					int highestScore = 0;
-					int bestGameHeightAfterFirstMove = 0;
 					String bestMove = "";
 					boolean isFirstMove = true;
 					
@@ -62,10 +57,7 @@ public class Main {
 							SimulatedGame sg = new SimulatedGame();
 							sg.add(currentTetrimino);
 							sg.add(nextTetrimino);
-							sg.simulateMove(firstMove);
-							
-							int heightAfterFirstMove = sg.currentHeight();
-							
+							sg.simulateMove(firstMove);						
 							sg.simulateMove(secondMove);
 							
 							int score = sg.calculateScore();
@@ -74,8 +66,6 @@ public class Main {
 							if (isFirstMove || score > highestScore) {
 								bestMove = firstMove;
 								highestScore = score;
-								bestGameHeightAfterFirstMove = heightAfterFirstMove;
-								bestGame = sg;
 								isFirstMove = false;
 							}
 						}
