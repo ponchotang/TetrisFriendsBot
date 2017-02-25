@@ -3,22 +3,23 @@ package game;
 import java.awt.Color;
 
 public enum Tetrimino {
-	I('I', new Color(50, 190, 250), 2, 3, 5, 3, 5, 4, 1), 
-	O('O', new Color(255, 194, 37), 1, 4, 4, 4, 4, 2, 2),
-	T('T', new Color(210, 76, 173), 4, 3, 4, 3, 3, 3, 2), 
-	S('S', new Color(124, 212, 36), 2, 3, 4, 3, 4, 3, 2), 
-	Z('Z', new Color(250, 50, 90), 2, 3, 4, 3, 4, 3, 2), 
-	J('J', new Color(68, 100, 233), 4, 3, 4, 3, 3, 3, 2),
-	L('L', new Color(255, 126, 37), 4, 3, 4, 3, 3, 3, 2);
+	I('I', new Color(50, 190, 250), new Color(15, 155, 215), 2, 3, 5, 3, 5, 4, 1), 
+	O('O', new Color(255, 194, 37), new Color(227, 159, 2), 1, 4, 4, 4, 4, 2, 2),
+	T('T', new Color(210, 76, 173), new Color(175, 41, 138), 4, 3, 4, 3, 3, 3, 2), 
+	S('S', new Color(124, 212, 36), new Color(89, 177, 1), 2, 3, 4, 3, 4, 3, 2), 
+	Z('Z', new Color(250, 50, 90), new Color(215, 15, 55), 2, 3, 4, 3, 4, 3, 2), 
+	J('J', new Color(68, 100, 233), new Color(33, 65, 198), 4, 3, 4, 3, 3, 3, 2),
+	L('L', new Color(255, 126, 37), new Color(227, 91, 2), 4, 3, 4, 3, 3, 3, 2);
 
-	private Color color;
+	private Color color, filledColor;
 	private int orientations, width, height;
 	private int[] startingPositions;
 	private Tile[][] tiles;
 
-	private Tetrimino(char type, Color color, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
+	private Tetrimino(char type, Color color, Color filledColor, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
 		this.color = color;
-
+		this.filledColor = filledColor;
+		
 		this.orientations = orientations;
 
 		startingPositions = new int[4];
@@ -154,6 +155,10 @@ public enum Tetrimino {
 
 	public Color getColor() {
 		return color;
+	}
+	
+	public Color getFilledColor() {
+		return filledColor;
 	}
 
 	public int orientations() {
