@@ -23,7 +23,9 @@ public class Main {
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
 				Tetrimino nextTetrimino = game.getNextTetrimino();
 							
-				if (currentTetrimino != null) {
+				if (currentTetrimino != null && nextTetrimino != null) {
+					
+					System.out.println(game);
 					
 					// Get height of the tower before executing a move
 					int heightBeforeMove = game.currentHeight();
@@ -84,7 +86,7 @@ public class Main {
 					
 					// Delays if a line was cleared (due to annoying clear animations)
 					if (bestGame != null && bestGameHeightAfterFirstMove < heightBeforeMove) {
-						robot.delay(500);
+						robot.delay(0);
 					}
 									
 				}							
