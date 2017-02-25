@@ -73,8 +73,6 @@ public class Main {
 					
 					// Execute best move
 					inputer.executeMoves(bestMove + "s");
-					
-					robot.delay(50);
 									
 				}							
 			}			
