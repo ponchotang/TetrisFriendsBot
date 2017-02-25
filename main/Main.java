@@ -31,25 +31,51 @@ public class Main {
 					// Resetting variables
 					SimulatedGame bestGame = null;
 					int highestScore = 0;
+					int bestGameHeightAfterFirstMove = 0;
 					String bestMove = "";
-					boolean firstMove = true;
+					boolean isFirstMove = true;
 					
-					// Iterate through all possible moves for the tetrimino
-					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
-						
-						// Create a simulated game and execute that move
-						SimulatedGame sg = new SimulatedGame();
-						sg.add(currentTetrimino);
-						sg.simulateMove(move);
-						
-						int score = sg.calculateScore(); // Calculate the board state after simulating that move
-						
-						// Set as best move if it beats the current high score
-						if (firstMove || score > highestScore) {
-							bestMove = move;
-							highestScore = score;
-							bestGame = sg;
-							firstMove = false;
+//					// Iterate through all possible moves for the tetrimino
+//					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
+//						
+//						// Create a simulated game and execute that move
+//						SimulatedGame sg = new SimulatedGame();
+//						sg.add(currentTetrimino);
+//						sg.simulateMove(move);
+//						
+//						int score = sg.calculateScore(); // Calculate the board state after simulating that move
+//						
+//						// Set as best move if it beats the current high score
+//						if (isFirstMove || score > highestScore) {
+//							bestMove = move;
+//							highestScore = score;
+//							bestGame = sg;
+//							isFirstMove = false;
+//						}
+//					}
+					
+					for (String firstMove: new MoveGenerator().generateMoves(currentTetrimino)) {
+						for (String secondMove : new MoveGenerator().generateMoves(nextTetrimino)) {
+							
+							SimulatedGame sg = new SimulatedGame();
+							sg.add(currentTetrimino);
+							sg.add(nextTetrimino);
+							sg.simulateMove(firstMove);
+							
+							int heightAfterFirstMove = sg.currentHeight();
+							
+							sg.simulateMove(secondMove);
+							
+							int score = sg.calculateScore();
+							
+							// Set as best move if it beats the current high score
+							if (isFirstMove || score > highestScore) {
+								bestMove = firstMove;
+								highestScore = score;
+								bestGameHeightAfterFirstMove = heightAfterFirstMove;
+								bestGame = sg;
+								isFirstMove = false;
+							}
 						}
 					}
 					
@@ -57,7 +83,7 @@ public class Main {
 					inputer.executeMoves(bestMove + "s");
 					
 					// Delays if a line was cleared (due to annoying clear animations)
-					if (bestGame != null && bestGame.currentHeight() < heightBeforeMove) {
+					if (bestGame != null && bestGameHeightAfterFirstMove < heightBeforeMove) {
 						robot.delay(500);
 					}
 									
