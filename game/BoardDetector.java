@@ -391,10 +391,15 @@ public class BoardDetector {
 			if (tetrimino.getColor().equals(tetriminoColor)) {
 				return TileState.EMPTY; // Returns empty as we do not want the algorithm to consider it as a filled tile.
 			}
+			
+			else if (tetrimino.getFilledColor().equals(tetriminoColor)) {
+				return TileState.FILLED;
+			}
+			
 		}
 
 
-		return TileState.FILLED;
+		return TileState.EMPTY;
 	}
 
 	/**
