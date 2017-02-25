@@ -84,10 +84,7 @@ public class Main {
 					// Execute best move
 					inputer.executeMoves(bestMove + "s");
 					
-					// Delays if a line was cleared (due to annoying clear animations)
-					if (bestGame != null && bestGameHeightAfterFirstMove < heightBeforeMove) {
-						robot.delay(0);
-					}
+					robot.delay(50);
 									
 				}							
 			}			
