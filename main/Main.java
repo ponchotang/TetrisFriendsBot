@@ -38,7 +38,8 @@ public class Main {
 					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
 						
 						// Create a simulated game and execute that move
-						SimulatedGame sg = new SimulatedGame(currentTetrimino);
+						SimulatedGame sg = new SimulatedGame();
+						sg.add(currentTetrimino);
 						sg.simulateMove(move);
 						
 						int score = sg.calculateScore(); // Calculate the board state after simulating that move
