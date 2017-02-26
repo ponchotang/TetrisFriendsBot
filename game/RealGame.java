@@ -1,9 +1,9 @@
 package game;
 
 /**
- * This class represents the play field of the Tetris game.
+ * This class represents the game board of the actual TetrisFriends game
  * 
- * @author Andy
+ * @author Andy Tang
  *
  */
 public class RealGame extends TetrisGame{
@@ -25,7 +25,7 @@ public class RealGame extends TetrisGame{
 		bd = new BoardDetector(WIDTH, HEIGHT);
 		tiles = new Tile[HEIGHT][WIDTH];
 		
-		// Creates tiles
+		// Initialise tiles
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
 				tiles[i][j] = new Tile(i, j);
@@ -37,8 +37,7 @@ public class RealGame extends TetrisGame{
 	}
 	
 	/**
-	 * This method is used to update the state of each tile as well as determine
-	 * the current tetrimino.
+	 * This method is used to update the game board state
 	 */
 	public void update() {
 		
@@ -47,6 +46,7 @@ public class RealGame extends TetrisGame{
 		gameDetected = bd.gameDetected();
 		
 		if (gameDetected) {		
+			
 			// Iterate through all tiles
 			for (int i = 0; i < tiles.length; i++) {
 				for (int j = 0; j < tiles[0].length; j++) {
@@ -54,6 +54,7 @@ public class RealGame extends TetrisGame{
 				}
 			}
 			
+			// Get the current and upcoming tetriminos
 			tetriminos[0] = bd.getTetrimino(0);
 			tetriminos[1] = bd.getTetrimino(1);
 			tetriminos[2] = bd.getTetrimino(2);
@@ -62,13 +63,6 @@ public class RealGame extends TetrisGame{
 	
 	public boolean gameDetected() {
 		return gameDetected;
-	}
-	
-	public void saveScreenshot() {
-		bd.saveScreenshot();
-	}
-	
-	
-	
+	}	
 
 }
