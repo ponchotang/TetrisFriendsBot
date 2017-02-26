@@ -8,19 +8,15 @@ import game.TetrisGame;
 import game.Tile;
 import game.TileState;
 
+/**
+ * This class allows the creation of a simulated game by using the current state of the actual game.
+ * 
+ * This allows us to test all possible moves for the tetriminos and retrieve their states in order to 
+ * determine what the best move is by making use of the simulateMove and calculateScore methods.
+ * @author Andy Tang
+ *
+ */
 public class SimulatedGame extends TetrisGame{
-	/*
-	 * Allows creation of a simulation by using the current state of the real game
-	 * This allows us to test all possible moves and retrieve game states from them in order
-	 * to determine which is the best move
-	 * 
-	 * This class will be created by using TetrisGame as a parameter.
-	 * It will recreate the board state
-	 * 
-	 * It will have a simulate move method which takes in a tetrimino and an input of moves.
-	 * 
-	 * There will also be a score method which calculates the score of the current state
-	 */
 	
 	private LinkedList<Tetrimino> tetriminoList;
 	private boolean hasLost;
@@ -35,6 +31,7 @@ public class SimulatedGame extends TetrisGame{
 		
 		tiles = new Tile[game.height()][game.width()];
 		
+		// Copy the state of the actual game
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
 				
@@ -47,25 +44,25 @@ public class SimulatedGame extends TetrisGame{
 		
 	}
 	
+	/**
+	 * Adds the tetrimino to end of the LinkedList
+	 */
 	public void add(Tetrimino tetrimino) {
 		tetriminoList.add(tetrimino);
 	}
 	
 	/**
-	 * This method simulates what the board state will look like after inputting a move
-	 * Essentially, what this method is doing is determining where to position the tetrmino (from the move String).
-	 * It then checks IF the tetrimino was placed here, would it collide with the exisitng board? If none of the tiles collide, it moves down
-	 * one row and repeats.
-	 * What it is doing then is determining the lowest the tetrimino and be placed and thus what the board state would be if we placed
-	 * it in this position in an actual game.
+	 * This method simulates the inputed move for the tetrimino in the head of the Linked List.
 	 * 
 	 */
 	public void simulateMove(String move) {
 		
+		// Ensures it does not try to poll an empty list
 		if (tetriminoList.isEmpty()) {
 			return;
 		}
 		
+		// Get head of list
 		Tetrimino currentTetrimino = tetriminoList.pollFirst();
 		
 		int orientation = 0;
@@ -99,6 +96,8 @@ public class SimulatedGame extends TetrisGame{
 		// Initialising variables
 		boolean hasCollided = false;
 		int startingHeight = 0;
+		
+		// This nested for loop determines the collision point of the tetrimino at its position and orientation
 		
 		// Iterate through entire height of board (minus the height of the tetrimino to prevent array out of bounds)
 		for (startingHeight = 0; startingHeight <= height() - currentTetrimino.height(orientation); startingHeight++) {
@@ -139,12 +138,10 @@ public class SimulatedGame extends TetrisGame{
 		int tetriminoI = 0;
 		int tetriminoJ = 0;
 		
-		// Decrease startingHeight by 1 to get the startingHeight right before the collision
-		// Only decrease if it has collided because if it hasn't, there is no need to account
-		// for a collision
+		// Decrement startingHeight to get the height before collision
 		startingHeight--;
 		
-		
+		// This for loop 'draws' the tetrimino onto the board
 		if (startingHeight >= 0) {
 			
 			// Iterate through the size of the tetrimino, starting at the startingHeight that was found
@@ -168,17 +165,17 @@ public class SimulatedGame extends TetrisGame{
 		}
 		
 		else {
-			// If startingHeight is < 0, then the move will result in a fail.
+			// If startingHeight is < 0, then the move will result in a loss.
 			hasLost = true;
 		}
 		
-
-		
-	
 		removeFilledLines();
 		
 	}
 	
+	/**
+	 * This method is used to check the board for any filled lines and removes them
+	 */
 	private void removeFilledLines() {
 		
 		// Iterate through all rows of the game
