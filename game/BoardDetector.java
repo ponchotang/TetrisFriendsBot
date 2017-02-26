@@ -13,12 +13,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Class that provides a way to determine the tile states
- * This requires the user to input the board size.
- * It also requires the user to input the tile number in order to
- * get the tile state
+ * This class is used to detect the TetrisFriends game within the screen.
  * 
- * @author Andy
+ * It also provides a way to retrieve the states of each tile in the board as well
+ * as the tetrimino pieces.
+ * 
+ * @author Andy Tang
  *
  */
 public class BoardDetector {
@@ -79,11 +79,11 @@ public class BoardDetector {
 				playField = robot.createScreenCapture(playfieldResolution);
 
 				determineTetriminoListResolution();
-
+				
+				// Takes a screenshot of the box containing the second and third tetriminos respectively
 				secondTetrimino = robot.createScreenCapture(secondTetriminoResolution);
 				thirdTetrimino = robot.createScreenCapture(thirdTetriminoResolution);
 
-				//saveScreenshot();
 			}	
 		}
 
@@ -303,14 +303,20 @@ public class BoardDetector {
 
 	}
 
+	/**
+	 * This method sets up the resolution for the second and third tetriminos. It is hard coded because I am lazy
+	 */
 	private void determineTetriminoListResolution() {
 
-		secondTetriminoResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
+		secondTetriminoResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); 
 		thirdTetriminoResolution = new Rectangle(startingPixel.x + 308, startingPixel.y + 210, 33, 45);
 
 	}
 
-
+	/**
+	 * This method returns the tetrimino at the specified position
+	 * Position 0 is the tetrimino that is currently in play.
+	 */
 	public Tetrimino getTetrimino(int position) {
 		BufferedImage tetriminoImage = null;
 
@@ -330,6 +336,8 @@ public class BoardDetector {
 			return null;
 		}
 
+		// This for loop determines the tetrimino at the second or third position
+		
 		// Iterate through tetriminoList image
 		for (int i = 0; i < tetriminoImage.getHeight(); i++) {
 			for (int j = 0; j < tetriminoImage.getWidth(); j++) {
@@ -430,6 +438,10 @@ public class BoardDetector {
 		return screenshot;
 	}
 
+	/**
+	 * Used for testing purposes.
+	 * Saves a screenshot of each respective region found
+	 */
 	public void saveScreenshot() {
 		BufferedImage screenshotBI = screenshot;
 		BufferedImage gameBoardBI = gameBoard;
