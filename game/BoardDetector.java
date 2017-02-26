@@ -32,9 +32,9 @@ public class BoardDetector {
 	private final int height;
 
 	private Robot robot;
-	private BufferedImage screenshot, gameBoard, playField, tetriminoList;
+	private BufferedImage screenshot, gameBoard, playField, secondTetrimino, thirdTetrimino;
 	private Point startingPixel, playfieldStartingPixel;
-	private Rectangle screenResolution, boardResolution, playfieldResolution, secondTetriminoResolution;
+	private Rectangle screenResolution, boardResolution, playfieldResolution, secondTetriminoResolution, thirdTetriminoResolution;
 
 	private int tileSize, tileGap;
 	private boolean foundGame, gameInView;
@@ -80,7 +80,8 @@ public class BoardDetector {
 
 				determineTetriminoListResolution();
 
-				tetriminoList = robot.createScreenCapture(secondTetriminoResolution);
+				secondTetrimino = robot.createScreenCapture(secondTetriminoResolution);
+				thirdTetrimino = robot.createScreenCapture(thirdTetriminoResolution);
 
 				//saveScreenshot();
 			}	
@@ -305,7 +306,7 @@ public class BoardDetector {
 	private void determineTetriminoListResolution() {
 
 		secondTetriminoResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
-
+		thirdTetriminoResolution = new Rectangle(startingPixel.x + 308, startingPixel.y + 210, 33, 45);
 
 	}
 
@@ -340,14 +341,14 @@ public class BoardDetector {
 	public Tetrimino getSecondTetrimino() {
 
 		// Iterate through tetriminoList image
-		for (int i = 0; i < tetriminoList.getHeight(); i++) {
-			for (int j = 0; j < tetriminoList.getWidth(); j++) {
-				
-				Color color = new Color(tetriminoList.getRGB(j, i));
+		for (int i = 0; i < secondTetrimino.getHeight(); i++) {
+			for (int j = 0; j < secondTetrimino.getWidth(); j++) {
+
+				Color color = new Color(secondTetrimino.getRGB(j, i));
 
 				// Only check if pixel color isn't black
 				if (!color.equals(Color.black)) {
-					
+
 					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
 					for (Tetrimino tetrimino : Tetrimino.values()) {
 						if (tetrimino.getColor().equals(color)) {
@@ -358,7 +359,32 @@ public class BoardDetector {
 			}
 		}
 
-		
+
+		return null;
+	}
+
+	public Tetrimino getThirdTetrimino() {
+
+		// Iterate through tetriminoList image
+		for (int i = 0; i < thirdTetrimino.getHeight(); i++) {
+			for (int j = 0; j < thirdTetrimino.getWidth(); j++) {
+
+				Color color = new Color(thirdTetrimino.getRGB(j, i));
+
+				// Only check if pixel color isn't black
+				if (!color.equals(Color.black)) {
+
+					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
+					for (Tetrimino tetrimino : Tetrimino.values()) {
+						if (tetrimino.getColor().equals(color)) {
+							return tetrimino;
+						}
+					}
+				}
+			}
+		}
+
+
 		return null;
 	}
 
@@ -391,11 +417,11 @@ public class BoardDetector {
 			if (tetrimino.getColor().equals(tetriminoColor)) {
 				return TileState.EMPTY; // Returns empty as we do not want the algorithm to consider it as a filled tile.
 			}
-			
+
 			else if (tetrimino.getFilledColor().equals(tetriminoColor)) {
 				return TileState.FILLED;
 			}
-			
+
 		}
 
 
@@ -415,18 +441,21 @@ public class BoardDetector {
 		BufferedImage screenshotBI = screenshot;
 		BufferedImage gameBoardBI = gameBoard;
 		BufferedImage playFieldBI = playField;
-		BufferedImage tetriminoListBI = tetriminoList;
+		BufferedImage secondTetriminoBI = secondTetrimino;
+		BufferedImage thirdTetriminoBI = thirdTetrimino;
 
 		File screenshotOut = new File("screenshot.png");
 		File gameBoardOut = new File("gameboard.png");
 		File playFieldOut = new File("playfield.png");
-		File tetriminoListOut = new File("tetriminolist.png");
+		File secondTetriminoOut = new File("secondtetrimino.png");
+		File thirdTetriminoOut = new File("thirdtetrimino.png");
 
 		try {
 			ImageIO.write(screenshotBI, "png", screenshotOut);
 			ImageIO.write(gameBoardBI, "png", gameBoardOut);
 			ImageIO.write(playFieldBI, "png", playFieldOut);
-			ImageIO.write(tetriminoListBI, "png", tetriminoListOut);
+			ImageIO.write(secondTetriminoBI, "png", secondTetriminoOut);
+			ImageIO.write(thirdTetriminoBI, "png", thirdTetriminoOut);
 		} catch (IOException e) {
 		}
 	}
