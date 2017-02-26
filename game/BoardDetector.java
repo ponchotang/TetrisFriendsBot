@@ -311,13 +311,56 @@ public class BoardDetector {
 	}
 
 
+	public Tetrimino getTetrimino(int position) {
+		BufferedImage tetriminoImage = null;
+
+		if (position == 0) {
+			return getCurrentTetrimino();
+		}
+
+		else if (position == 1) {
+			tetriminoImage = secondTetrimino;
+		}
+
+		else if (position == 2) {
+			tetriminoImage = thirdTetrimino;
+		}
+
+		else {
+			return null;
+		}
+
+		// Iterate through tetriminoList image
+		for (int i = 0; i < tetriminoImage.getHeight(); i++) {
+			for (int j = 0; j < tetriminoImage.getWidth(); j++) {
+
+				Color color = new Color(tetriminoImage.getRGB(j, i));
+
+				// Only check if pixel color isn't black
+				if (!color.equals(Color.black)) {
+
+					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
+					for (Tetrimino tetrimino : Tetrimino.values()) {
+						if (tetrimino.getColor().equals(color)) {
+							return tetrimino;
+						}
+					}
+				}
+			}
+		}
+
+
+		return null;
+
+
+	}
 
 	/**
 	 * Method used to determine what the current tetrimino is.
 	 * 
 	 * @return the current tetrimino 
 	 */
-	public Tetrimino getCurrentTetrimino() {
+	private Tetrimino getCurrentTetrimino() {
 
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -334,56 +377,6 @@ public class BoardDetector {
 				}		
 			}
 		}
-
-		return null;
-	}
-
-	public Tetrimino getSecondTetrimino() {
-
-		// Iterate through tetriminoList image
-		for (int i = 0; i < secondTetrimino.getHeight(); i++) {
-			for (int j = 0; j < secondTetrimino.getWidth(); j++) {
-
-				Color color = new Color(secondTetrimino.getRGB(j, i));
-
-				// Only check if pixel color isn't black
-				if (!color.equals(Color.black)) {
-
-					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
-					for (Tetrimino tetrimino : Tetrimino.values()) {
-						if (tetrimino.getColor().equals(color)) {
-							return tetrimino;
-						}
-					}
-				}
-			}
-		}
-
-
-		return null;
-	}
-
-	public Tetrimino getThirdTetrimino() {
-
-		// Iterate through tetriminoList image
-		for (int i = 0; i < thirdTetrimino.getHeight(); i++) {
-			for (int j = 0; j < thirdTetrimino.getWidth(); j++) {
-
-				Color color = new Color(thirdTetrimino.getRGB(j, i));
-
-				// Only check if pixel color isn't black
-				if (!color.equals(Color.black)) {
-
-					// Iterate through all Tetriminos and determine which one it is (if it is checking the right pixel)
-					for (Tetrimino tetrimino : Tetrimino.values()) {
-						if (tetrimino.getColor().equals(color)) {
-							return tetrimino;
-						}
-					}
-				}
-			}
-		}
-
 
 		return null;
 	}

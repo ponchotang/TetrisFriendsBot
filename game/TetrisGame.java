@@ -4,7 +4,7 @@ public class TetrisGame {
 	protected static int HEIGHT = 20;
 	protected static int WIDTH = 10;
 
-	protected Tetrimino currentTetrimino, secondTetrimino, thirdTetrimino;
+	protected Tetrimino[] tetriminos = new Tetrimino[3];
 	protected Tile tiles[][];
 
 	/**
@@ -72,17 +72,13 @@ public class TetrisGame {
 	public int width() {
 		return WIDTH;
 	}
-
-	public Tetrimino getCurrentTetrimino() {
-		return currentTetrimino;
-	}
 	
-	public Tetrimino getSecondTetrimino() {
-		return secondTetrimino;
-	}
-	
-	public Tetrimino getThirdTetrimino() {
-		return thirdTetrimino;
+	public Tetrimino getTetrimino(int position) {
+		if (position < 0 || position >= tetriminos.length) {
+			return null;
+		}
+		
+		return tetriminos[position];
 	}
 
 	/**

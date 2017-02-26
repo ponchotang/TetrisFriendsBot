@@ -18,9 +18,9 @@ public class Main {
 
 		while(true) {
 			if (game.gameDetected()) {
-				Tetrimino currentTetrimino = game.getCurrentTetrimino();
-				Tetrimino secondTetrimino = game.getSecondTetrimino();
-				Tetrimino thirdTetrimino = game.getThirdTetrimino();
+				Tetrimino currentTetrimino = game.getTetrimino(0);
+				Tetrimino secondTetrimino = game.getTetrimino(1);
+				Tetrimino thirdTetrimino = game.getTetrimino(2);
 
 				if (currentTetrimino != null && secondTetrimino != null && thirdTetrimino != null) {
 

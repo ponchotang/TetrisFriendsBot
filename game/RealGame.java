@@ -54,9 +54,9 @@ public class RealGame extends TetrisGame{
 				}
 			}
 			
-			currentTetrimino = bd.getCurrentTetrimino(); // BoardDetector to determine the current tetrimino
-			secondTetrimino = bd.getSecondTetrimino();
-			thirdTetrimino = bd.getThirdTetrimino();
+			tetriminos[0] = bd.getTetrimino(0);
+			tetriminos[1] = bd.getTetrimino(1);
+			tetriminos[2] = bd.getTetrimino(2);
 		}
 	}
 	
