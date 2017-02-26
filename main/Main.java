@@ -32,25 +32,6 @@ public class Main {
 					String bestMove = "";
 					boolean isFirstMove = true;
 					
-//					// Iterate through all possible moves for the tetrimino
-//					for (String move : new MoveGenerator().generateMoves(currentTetrimino)) {
-//						
-//						// Create a simulated game and execute that move
-//						SimulatedGame sg = new SimulatedGame();
-//						sg.add(currentTetrimino);
-//						sg.simulateMove(move);
-//						
-//						int score = sg.calculateScore(); // Calculate the board state after simulating that move
-//						
-//						// Set as best move if it beats the current high score
-//						if (isFirstMove || score > highestScore) {
-//							bestMove = move;
-//							highestScore = score;
-//							bestGame = sg;
-//							isFirstMove = false;
-//						}
-//					}
-					
 					for (String firstMove: new MoveGenerator().generateMoves(currentTetrimino)) {
 						for (String secondMove : new MoveGenerator().generateMoves(nextTetrimino)) {
 							
