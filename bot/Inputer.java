@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
  * Class containing a method used to parse and execute the inputs
  * as dictated by the inputed string.
  * 
- * @author Andy
+ * @author Andy Tang
  *
  */
 public class Inputer {
@@ -40,7 +40,6 @@ public class Inputer {
 	 */
 	public void executeMoves(String moves) {
 		
-		System.out.println(moves);
 		// Iterate through all characters in the string
 		for (char move : moves.toCharArray()) {
 			
