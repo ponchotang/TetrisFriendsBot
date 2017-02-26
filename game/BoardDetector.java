@@ -34,7 +34,7 @@ public class BoardDetector {
 	private Robot robot;
 	private BufferedImage screenshot, gameBoard, playField, tetriminoList;
 	private Point startingPixel, playfieldStartingPixel;
-	private Rectangle screenResolution, boardResolution, playfieldResolution, tetriminoListResolution;
+	private Rectangle screenResolution, boardResolution, playfieldResolution, secondTetriminoResolution;
 
 	private int tileSize, tileGap;
 	private boolean foundGame, gameInView;
@@ -80,7 +80,7 @@ public class BoardDetector {
 
 				determineTetriminoListResolution();
 
-				tetriminoList = robot.createScreenCapture(tetriminoListResolution);
+				tetriminoList = robot.createScreenCapture(secondTetriminoResolution);
 
 				//saveScreenshot();
 			}	
@@ -304,7 +304,7 @@ public class BoardDetector {
 
 	private void determineTetriminoListResolution() {
 
-		tetriminoListResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
+		secondTetriminoResolution = new Rectangle(startingPixel.x + 305, startingPixel.y + 140, 39, 51); // hard coded because lazy
 
 
 	}
@@ -337,7 +337,7 @@ public class BoardDetector {
 		return null;
 	}
 
-	public Tetrimino getNextTetrimino() {
+	public Tetrimino getSecondTetrimino() {
 
 		// Iterate through tetriminoList image
 		for (int i = 0; i < tetriminoList.getHeight(); i++) {

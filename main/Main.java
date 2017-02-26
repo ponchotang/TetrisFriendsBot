@@ -21,7 +21,7 @@ public class Main {
 		while(true) {
 			if (game.gameDetected()) {
 				Tetrimino currentTetrimino = game.getCurrentTetrimino();
-				Tetrimino nextTetrimino = game.getNextTetrimino();
+				Tetrimino nextTetrimino = game.getSecondTetrimino();
 							
 				if (currentTetrimino != null && nextTetrimino != null) {
 					
