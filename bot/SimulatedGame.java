@@ -301,6 +301,13 @@ public class SimulatedGame extends TetrisGame{
 			sentLines = 10 * clearedLines;
 		}
 		
+		/*
+		 * New scoring idea:
+		 * Make it so height variation does not consider the last column
+		 * Penalise very heavily if there is a tile in the last column
+		 * Remove sent lines factor
+		 */
+		
 		// Calculate and return the score
 		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines);
 	}
