@@ -240,7 +240,7 @@ public class SimulatedGame extends TetrisGame{
 		int varianceWeight= -20;
 		int gapWeight = -200;
 		int sentLinesWeight = 10;
-		int lastColumnPenaltyWeight = -100;
+		int lastColumnPenaltyWeight = -50;
 		
 		int maxHeight = columnHeight(0);
 		int previousHeight = columnHeight(0);
