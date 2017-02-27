@@ -43,6 +43,7 @@ public class RealGame extends TetrisGame{
 		
 		boolean validBoard = false;
 		
+		// Keep calibrating until all tiles are valid tiles (Empty or Filled)
 		while (!validBoard) {
 			
 			validBoard = true;
