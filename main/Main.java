@@ -17,6 +17,7 @@ public class Main {
 		Inputer inputer = new Inputer();
 
 		while(true) {
+			
 			if (game.gameDetected()) {
 				Tetrimino currentTetrimino = game.getTetrimino(0);
 				Tetrimino secondTetrimino = game.getTetrimino(1);
@@ -58,7 +59,7 @@ public class Main {
 
 				}							
 			}			
-			game.update();			
+			game.update();	
 		}			
 	}
 }
