@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * A class for the general representation of a Tetris game.
+ * 
+ * @author Andy Tang
+ *
+ */
 public class TetrisGame {
 	protected static int HEIGHT = 20;
 	protected static int WIDTH = 10;
@@ -16,34 +22,12 @@ public class TetrisGame {
 	public Tile get(int row, int column) {
 		return tiles[row][column];
 	}
-
-	// Calculates and returns the height of the tower (e.g. height of the highest filled tile)
-	public int currentHeight() {
-		int height = height();
-
-		for (int i = 0; i < height(); i++) {
-
-			boolean rowEmpty = true;
-
-			for (int j = 0; j < width(); j++) {
-				if (tiles[i][j].filled()) {
-					rowEmpty = false;
-					break;
-				}
-			}
-
-			if (rowEmpty) {
-				height--;
-			}
-
-			else {
-				break;
-			}
-		}
-		
-		return height;
-	}
 	
+	/**
+	 * Returns the height of the specified column.
+	 * To be more specific, the height is the highest position of
+	 * a filled tile in that column.
+	 */
 	public int columnHeight(int column) {
 		int height = height();
 		
@@ -73,7 +57,12 @@ public class TetrisGame {
 		return WIDTH;
 	}
 	
+	/**
+	 * Returns the tetrimino at the specified position
+	 */
 	public Tetrimino getTetrimino(int position) {
+		
+		// Prevents out of bounds exception
 		if (position < 0 || position >= tetriminos.length) {
 			return null;
 		}
