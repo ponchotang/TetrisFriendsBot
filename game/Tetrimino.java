@@ -2,6 +2,11 @@ package game;
 
 import java.awt.Color;
 
+/**
+ * An enum representing each of the seven Tetriminos in the game
+ * @author Andy Tang
+ *
+ */
 public enum Tetrimino {
 	I('I', new Color(50, 190, 250), new Color(15, 155, 215), 2, 3, 5, 3, 5, 4, 1), 
 	O('O', new Color(255, 194, 37), new Color(227, 159, 2), 1, 4, 4, 4, 4, 2, 2),
@@ -16,6 +21,18 @@ public enum Tetrimino {
 	private int[] startingPositions;
 	private Tile[][] tiles;
 
+	/**
+	 * @param type Letter representation of the tetrimino
+	 * @param color Color of the tetrimino as a piece
+	 * @param filledColor Color of the tetrimino as a filled tile
+	 * @param orientations The amount of possible orientations for the tetrimino
+	 * @param startPos0 Starting column of the first orientation
+	 * @param startPos1 Starting column of the second orientation
+	 * @param startPos2 Starting column of the third orientation
+	 * @param startPos3 Starting column of the fourth orientation
+	 * @param width Width of the tetrimino in its first orientation
+	 * @param height Height of the tetrimino in its first orientation
+	 */
 	private Tetrimino(char type, Color color, Color filledColor, int orientations, int startPos0, int startPos1, int startPos2, int startPos3, int width, int height) {
 		this.color = color;
 		this.filledColor = filledColor;
@@ -35,9 +52,13 @@ public enum Tetrimino {
 		constructTileRepresentation(type);
 	}
 
+	/**
+	 * Constructs a tile representation of the tetrimino
+	 */
 	private void constructTileRepresentation(char type) {
 		tiles = new Tile[height][width];
-
+		
+		// Creates an empty tiles array for the representation
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[0].length; j++) {
 				Tile tile = new Tile(i, j);
@@ -45,6 +66,7 @@ public enum Tetrimino {
 			}
 		}
 
+		// Manually input the filled tiles for the tetrimino
 		switch (type) {
 		case 'O':
 			tiles[0][0].setState(TileState.FILLED);
@@ -98,9 +120,13 @@ public enum Tetrimino {
 		}
 	}
 	
+	/**
+	 * Returns the tile representation in the specified orientation
+	 */
 	public Tile[][] tileRepresentation(int orientation) {
 		Tile[][] tileRep;
 		
+		// Creates a Tile array of the appropriate size
 		if (orientation == 0 || orientation == 2) {
 			tileRep = new Tile[height][width];
 		}
@@ -116,10 +142,15 @@ public enum Tetrimino {
 				int oldI = 0;
 				int oldJ = 0;
 				
+				// No changes needed
 				if (orientation == 0) {
 					oldI = i;
 					oldJ = j;
 				}
+				
+				// The approriate calculations for determining the new position were found
+				// by manually drawing the original tetrimino and its orientation on paper and figuring out
+				// the conversion pattern from that.
 				
 				else if (orientation == 1) {
 					
@@ -131,7 +162,7 @@ public enum Tetrimino {
 						oldI = j;
 					}
 					
-					oldJ = i;
+					oldJ = i; 
 				}
 				
 				else if (orientation == 2) {
@@ -169,9 +200,6 @@ public enum Tetrimino {
 		return startingPositions[orientation];
 	}
 
-	// Axis is an int referring to whether the tetrimino is horizontal or vertical
-	// 0 = Horizontal
-	// 1 = Vertical
 	public int width(int orientation) {
 		if (orientation == 0 || orientation == 2) {
 			return width;
