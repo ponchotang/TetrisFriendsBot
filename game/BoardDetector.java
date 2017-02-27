@@ -431,7 +431,7 @@ public class BoardDetector {
 		}
 
 
-		return TileState.EMPTY;
+		return TileState.INVALID;
 	}
 
 	/**
