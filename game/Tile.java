@@ -1,10 +1,9 @@
 package game;
 
 /**
- * This class represents the individual tiles of the Tetris game board.
- * For now, each Tile will have one of two states: empty, or filled.
+ * Class representing the individual tiles of the Tetris game board.
  * 
- * @author Andy
+ * @author Andy Tang
  *
  */
 public class Tile {
