@@ -32,28 +32,23 @@ public class Main {
 					// Triple nested for loop to simulate all possible moves for the next three tetrimino
 					for (String firstMove: new MoveGenerator().generateMoves(currentTetrimino)) {
 						for (String secondMove : new MoveGenerator().generateMoves(secondTetrimino)) {
-							for (String thirdMove : new MoveGenerator().generateMoves(thirdTetrimino)) {
-								
-								SimulatedGame sg = new SimulatedGame(); // create simulated game
-								
-								// Add the three tetriminos to the game
-								sg.add(currentTetrimino);
-								sg.add(secondTetrimino);
-								sg.add(thirdTetrimino);
-								
-								// Simulate the moves
-								sg.simulateMove(firstMove);						
-								sg.simulateMove(secondMove);
-								sg.simulateMove(thirdMove);
+							SimulatedGame sg = new SimulatedGame(); // create simulated game
+							
+							// Add the three tetriminos to the game
+							sg.add(currentTetrimino);
+							sg.add(secondTetrimino);
+							
+							// Simulate the moves
+							sg.simulateMove(firstMove);						
+							sg.simulateMove(secondMove);
 
-								int score = sg.calculateScore(); // calculate score
+							int score = sg.calculateScore(); // calculate score
 
-								// Set as best move if it beats the current high score
-								if (isFirstMove || score > highestScore) {
-									bestMove = firstMove;
-									highestScore = score;
-									isFirstMove = false;
-								}
+							// Set as best move if it beats the current high score
+							if (isFirstMove || score > highestScore) {
+								bestMove = firstMove;
+								highestScore = score;
+								isFirstMove = false;
 							}
 						}
 					}

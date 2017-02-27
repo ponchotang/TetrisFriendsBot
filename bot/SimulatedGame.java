@@ -224,7 +224,7 @@ public class SimulatedGame extends TetrisGame{
 		
 		// Score is 0 if the simulated move results in a loss
 		if (hasLost) {
-			return 0;
+			return -10000;
 		}
 				
 		// Weights for scoring
