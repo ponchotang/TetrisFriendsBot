@@ -409,6 +409,11 @@ public class BoardDetector {
 				|| tileColor.equals(Colors.TETRIMINO_HIGHLIGHT_1) || tileColor.equals(Colors.TETRIMINO_HIGHLIGHT_2)) {
 			return TileState.EMPTY;
 		}
+		
+		// Checks if it is a sent tile
+		if (tileColor.equals(Colors.SENT_TILE)) {
+			return TileState.FILLED;
+		}
 
 		// Get color of pixel used to determine the tetrimino type
 		Color tetriminoColor = new Color(playField.getRGB(x + TETRIMINO_OFFSET, y + TETRIMINO_OFFSET));
