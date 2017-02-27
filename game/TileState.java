@@ -6,5 +6,5 @@ package game;
  *
  */
 public enum TileState {
-	EMPTY, FILLED
+	EMPTY, FILLED, INVALID
 }
