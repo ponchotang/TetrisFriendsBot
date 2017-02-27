@@ -217,6 +217,7 @@ public class SimulatedGame extends TetrisGame{
 		}
 	}
 	
+	
 	/**
 	 * This method calculates a score based on the current board state.
 	 * 
@@ -239,8 +240,8 @@ public class SimulatedGame extends TetrisGame{
 		int heightWeight = -10;
 		int varianceWeight= -20;
 		int gapWeight = -200;
-		int sentLinesWeight = 10;
-		int lastColumnPenaltyWeight = -50;
+		int sentLinesWeight = 0;
+		int lastColumnPenaltyWeight = 0;
 		
 		int maxHeight = columnHeight(0);
 		int previousHeight = columnHeight(0);
@@ -301,15 +302,22 @@ public class SimulatedGame extends TetrisGame{
 		// Count the amount of filled tiles in the last column
 		// Our goal is to keep the last column empty for the huge clears
 		int lastColumnFilledCount = 0;	
+		boolean isFilled = false;
+		int notFilledBonus = 0;
 		
 		for (int i = 0; i < height(); i++) {
 			if (tiles[i][tiles[0].length - 1].filled()) {
 				lastColumnFilledCount++;
+				isFilled = true;
 			}
 		}
 		
+		if (!isFilled) {
+			notFilledBonus = 100;
+		}
+		
 		// Calculate and return the score
-		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines) + (lastColumnPenaltyWeight * lastColumnFilledCount);
+		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines) + (lastColumnPenaltyWeight * lastColumnFilledCount) + notFilledBonus;
 	}
 	
 }
