@@ -234,7 +234,7 @@ public class SimulatedGame extends TetrisGame{
 		}
 				
 		// Weights for scoring
-		int heightWeight = -10;
+		int heightWeight = 0;
 		int varianceWeight= -10;
 		int gapWeight = -50;
 		int sentLinesWeight = 10;
