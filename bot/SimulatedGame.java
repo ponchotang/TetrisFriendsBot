@@ -222,6 +222,7 @@ public class SimulatedGame extends TetrisGame{
 	 * 	1. Max Height: The number representing the highest column
 	 * 	2. Total Height Variance: The sum of the differences between adjacent columns
 	 * 	3. Gaps: The total number of gaps
+	 * 	4. Lines Sent: The amount of lines sent to the other player
 	 * 
 	 * The weights for each respective factor determines the importance of that factor in calculating the score
 	 */
