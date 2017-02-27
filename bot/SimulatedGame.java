@@ -20,6 +20,7 @@ public class SimulatedGame extends TetrisGame{
 	
 	private LinkedList<Tetrimino> tetriminoList;
 	private boolean hasLost;
+	private int clearedLines;
 	
 	public SimulatedGame() {
 		
@@ -41,6 +42,7 @@ public class SimulatedGame extends TetrisGame{
 				
 			}
 		}
+		
 		
 	}
 	
@@ -178,6 +180,8 @@ public class SimulatedGame extends TetrisGame{
 	 */
 	private void removeFilledLines() {
 		
+		clearedLines = 0;
+		
 		// Iterate through all rows of the game
 		for (int i = 0; i < height(); i++) {
 			boolean isFilled = true; // reset boolean
@@ -192,6 +196,7 @@ public class SimulatedGame extends TetrisGame{
 			
 			// If entire row is filled
 			if (isFilled) {
+				clearedLines++;
 				
 				// Iterate from that row and continue upwards
 				for (int m = i; m > 0; m--) {
@@ -231,6 +236,7 @@ public class SimulatedGame extends TetrisGame{
 		int heightWeight = -10;
 		int varianceWeight= -10;
 		int gapWeight = -50;
+		int sentLinesWeight = 10;
 		
 		int maxHeight = columnHeight(0);
 		int previousHeight = columnHeight(0);
@@ -272,8 +278,18 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
+		int sentLines = 0;
+		
+		if (clearedLines == 1) {
+			sentLines = 0;
+		}
+		
+		else {
+			sentLines = clearedLines * clearedLines;
+		}
+		
 		// Calculate and return the score
-		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps);
+		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines);
 	}
 	
 }
