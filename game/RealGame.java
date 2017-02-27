@@ -41,24 +41,35 @@ public class RealGame extends TetrisGame{
 	 */
 	public void update() {
 		
-		bd.calibrate();
+		boolean validBoard = false;
 		
-		gameDetected = bd.gameDetected();
-		
-		if (gameDetected) {		
+		while (!validBoard) {
 			
-			// Iterate through all tiles
-			for (int i = 0; i < tiles.length; i++) {
-				for (int j = 0; j < tiles[0].length; j++) {
-					tiles[i][j].setState(bd.getState(i, j)); // use BoardDetector to determine the state of the tile
+			validBoard = true;
+			bd.calibrate();
+			
+			gameDetected = bd.gameDetected();
+			
+			if (gameDetected) {		
+				
+				// Iterate through all tiles
+				for (int i = 0; i < tiles.length; i++) {
+					for (int j = 0; j < tiles[0].length; j++) {
+						tiles[i][j].setState(bd.getState(i, j)); // use BoardDetector to determine the state of the tile
+						
+						if (tiles[i][j].invalid()) {
+							validBoard = false;
+						}
+					}
 				}
+				
+				// Get the current and upcoming tetriminos
+				tetriminos[0] = bd.getTetrimino(0);
+				tetriminos[1] = bd.getTetrimino(1);
+				tetriminos[2] = bd.getTetrimino(2);
 			}
-			
-			// Get the current and upcoming tetriminos
-			tetriminos[0] = bd.getTetrimino(0);
-			tetriminos[1] = bd.getTetrimino(1);
-			tetriminos[2] = bd.getTetrimino(2);
 		}
+		
 	}
 	
 	public boolean gameDetected() {
