@@ -245,6 +245,9 @@ public class SimulatedGame extends TetrisGame{
 		int previousHeight = columnHeight(0);
 		int totalHeightVariance = 0;
 		
+		
+		// HEIGHT CALCULATION
+		
 		// Iterate through all columns
 		for (int j = 1; j < width() - 1; j++) {
 			int currentHeight = columnHeight(j); // Get height of column
@@ -259,6 +262,10 @@ public class SimulatedGame extends TetrisGame{
 			
 			previousHeight = currentHeight; // Set the previous height for the next iteration
 		}
+		
+		
+		
+		// GAP CALCULATION
 		
 		int gaps = 0;
 		
@@ -281,6 +288,10 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}		
 
+		
+		
+		// LAST COLUMN CALCULATION
+		
 		// Check if last column is filled
 		boolean isFilled = false;
 		int notFilledBonus = 0;
@@ -291,9 +302,22 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
+		// Give a bonus if it is filled
 		if (!isFilled) {
 			notFilledBonus = 100;
 		}
+		
+		else {
+			// Also give bonus if there is a gap. This is to prevent issues where the bot refuses to
+			// insert tetriminos in the last column if a clear results in a filled tile in that column (due to a gap)
+			if (gaps > 0) {
+				notFilledBonus = 100;  
+				
+			}
+		}
+		
+		
+		
 		
 		// Calculate and return the score
 		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + notFilledBonus;
