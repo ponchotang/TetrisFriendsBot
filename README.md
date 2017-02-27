@@ -19,9 +19,6 @@ NOTE: as of now, the bot is only considering two tetriminos in order to favour s
 
 #Improvements
 
-One possible improvement is to make it prioritise setting up a board state so that it can clear 3-4 lines at once.
-This will require changes to the score calculation in order to do this.
-For now, I have removed the height weight and introduced a sent lines factor as a temporary solution.
-An issue with this solution is that since it is only considering two tetriminos, it only prioritises clearing multiple lines rather than setting up for a huge clear. This results in more doubles but barely any triples or tetrises as the bot does not read that far ahead.
+One improvement is to improve the speed of the bot. The main issue with the bot is that inputting actions takes the bulk of the time. Unfortunately, this is a limitation with the Robot class as reducing the delay between actions causes it to not register the action.
 
 
