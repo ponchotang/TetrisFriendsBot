@@ -29,7 +29,7 @@ public class Main {
 					String bestMove = "";
 					boolean isFirstMove = true;
 
-					// Triple nested for loop to simulate all possible moves for the next three tetrimino
+					// Double nested for loop to simulate all possible moves for the next two tetrimino
 					for (String firstMove: new MoveGenerator().generateMoves(currentTetrimino)) {
 						for (String secondMove : new MoveGenerator().generateMoves(secondTetrimino)) {
 							SimulatedGame sg = new SimulatedGame(); // create simulated game
@@ -52,7 +52,7 @@ public class Main {
 							}
 						}
 					}
-
+					
 					// Execute best move
 					inputer.executeMoves(bestMove + "s");
 

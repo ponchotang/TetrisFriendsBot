@@ -43,6 +43,10 @@ public class SimulatedGame extends TetrisGame{
 			}
 		}
 		
+		clearedLines = 0;
+		removeFilledLines();
+		clearedLines = 0;
+		
 		
 	}
 	
@@ -180,8 +184,6 @@ public class SimulatedGame extends TetrisGame{
 	 */
 	private void removeFilledLines() {
 		
-		clearedLines = 0;
-		
 		// Iterate through all rows of the game
 		for (int i = 0; i < height(); i++) {
 			boolean isFilled = true; // reset boolean
@@ -237,7 +239,7 @@ public class SimulatedGame extends TetrisGame{
 		int heightWeight = 0;
 		int varianceWeight= -10;
 		int gapWeight = -50;
-		int sentLinesWeight = 10;
+		int sentLinesWeight = 0;
 		
 		int maxHeight = columnHeight(0);
 		int previousHeight = columnHeight(0);
@@ -281,12 +283,22 @@ public class SimulatedGame extends TetrisGame{
 		
 		int sentLines = 0;
 		
+		// Punishes clears that are less than 3 lines
+		// and rewards 4 lines clears
 		if (clearedLines == 1) {
-			sentLines = 0;
+			sentLines = -10;
+		}
+		
+		else if (clearedLines == 2) {
+			sentLines = -5;
+		}
+		
+		else if (clearedLines == 3) {
+			sentLines = 5;
 		}
 		
 		else {
-			sentLines = clearedLines * clearedLines;
+			sentLines = 10 * clearedLines;
 		}
 		
 		// Calculate and return the score
