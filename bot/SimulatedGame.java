@@ -317,10 +317,19 @@ public class SimulatedGame extends TetrisGame{
 		}
 		
 		
+		// TETRIS CLEAR BONUS
+		
+		int tetrisClearBonus = 0;
+		
+		if (clearedLines >= 4) {
+			tetrisClearBonus = 100;
+		}
+		
+		
 		
 		
 		// Calculate and return the score
-		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + notFilledBonus;
+		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + notFilledBonus + tetrisClearBonus;
 	}
 	
 }
