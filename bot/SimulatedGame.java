@@ -236,17 +236,18 @@ public class SimulatedGame extends TetrisGame{
 		}
 				
 		// Weights for scoring
-		int heightWeight = 0;
-		int varianceWeight= -10;
-		int gapWeight = -50;
-		int sentLinesWeight = 0;
+		int heightWeight = -10;
+		int varianceWeight= -20;
+		int gapWeight = -200;
+		int sentLinesWeight = 10;
+		int lastColumnPenaltyWeight = -100;
 		
 		int maxHeight = columnHeight(0);
 		int previousHeight = columnHeight(0);
 		int totalHeightVariance = 0;
 		
 		// Iterate through all columns
-		for (int j = 1; j < width(); j++) {
+		for (int j = 1; j < width() - 1; j++) {
 			int currentHeight = columnHeight(j); // Get height of column
 			
 			// Check if it is higher than the current max height
@@ -293,23 +294,22 @@ public class SimulatedGame extends TetrisGame{
 			sentLines = -5;
 		}
 		
-		else if (clearedLines == 3) {
-			sentLines = 5;
-		}
-		
 		else {
 			sentLines = 10 * clearedLines;
 		}
 		
-		/*
-		 * New scoring idea:
-		 * Make it so height variation does not consider the last column
-		 * Penalise very heavily if there is a tile in the last column
-		 * Remove sent lines factor
-		 */
+		// Count the amount of filled tiles in the last column
+		// Our goal is to keep the last column empty for the huge clears
+		int lastColumnFilledCount = 0;	
+		
+		for (int i = 0; i < height(); i++) {
+			if (tiles[i][tiles[0].length - 1].filled()) {
+				lastColumnFilledCount++;
+			}
+		}
 		
 		// Calculate and return the score
-		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines);
+		return 1000 + (heightWeight * maxHeight) + (varianceWeight * totalHeightVariance) + (gapWeight * gaps) + (sentLinesWeight * sentLines) + (lastColumnPenaltyWeight * lastColumnFilledCount);
 	}
 	
 }
