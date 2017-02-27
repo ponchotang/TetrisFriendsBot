@@ -33,6 +33,10 @@ public class Tile {
 		return state.equals(TileState.FILLED);
 	}
 	
+	public boolean invalid() {
+		return state.equals(TileState.INVALID);
+	}
+	
 	public TileState state() {
 		return state;
 	}
