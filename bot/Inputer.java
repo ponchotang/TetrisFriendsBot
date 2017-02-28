@@ -21,6 +21,7 @@ public class Inputer {
 	public Inputer() {
 		try {
 			robot = new Robot();
+			robot.setAutoDelay(50);
 		} catch (AWTException e) {
 
 		}
@@ -67,11 +68,8 @@ public class Inputer {
 	 * @param keycode keycode of the key to be pressed
 	 */
 	private void pressKey(int keycode) {
-		robot.keyPress(keycode);
-		robot.delay(50);
-		
+		robot.keyPress(keycode);	
 		robot.keyRelease(keycode);
-		robot.delay(50);
 	}
 	
 	/**
