@@ -1,6 +1,11 @@
 ﻿#TetrisFriendsBot
 
 This is a Bot developed in Java that plays either the 2P or 6P game mode on TetrisFriends at www.tetrisfriends.com
+A demonstration of this bot can be found here: https://www.youtube.com/watch?v=Gh3iFrAFOwU
+
+Note: at 1:05, the bot makes a bad move due to one of the actions not registering. This is an issue that occurs occasionally and I believe it is due to the delay for keypresses not being sufficient.
+
+However, this blunder also shows the bots ability to recover.
 
 #How it works
 
