@@ -25,6 +25,6 @@ NOTE: as of now, the bot is only considering two tetriminos in order to favour s
 
 #Improvements
 
-One improvement is to improve the speed of the bot. The main issue with the bot is that inputting actions takes the bulk of the time. Unfortunately, this is a limitation with the Robot class as reducing the delay between actions causes it to not register the action.
+One improvement is to improve the speed of the bot. The main issue with the bot is that inputting actions takes the bulk of the time. Unfortunately, this is a limitation with the Robot class as reducing the delay between actions causes it to not register the action. It may also be due to the game itself preventing quick succession of inputs
 
 
