@@ -1,6 +1,11 @@
 ﻿#TetrisFriendsBot
 
 This is a Bot developed in Java that plays either the 2P or 6P game mode on TetrisFriends at www.tetrisfriends.com
+A demonstration of this bot can be found here: https://www.youtube.com/watch?v=Gh3iFrAFOwU
+
+Note: at 1:05, the bot makes a bad move due to one of the actions not registering. This is an issue that occurs occasionally and I believe it is due to the delay for keypresses not being sufficient.
+
+However, this blunder also shows the bots ability to recover.
 
 #How it works
 
@@ -19,9 +24,6 @@ NOTE: as of now, the bot is only considering two tetriminos in order to favour s
 
 #Improvements
 
-One possible improvement is to make it prioritise setting up a board state so that it can clear 3-4 lines at once.
-This will require changes to the score calculation in order to do this.
-For now, I have removed the height weight and introduced a sent lines factor as a temporary solution.
-An issue with this solution is that since it is only considering two tetriminos, it only prioritises clearing multiple lines rather than setting up for a huge clear. This results in more doubles but barely any triples or tetrises as the bot does not read that far ahead.
+One improvement is to improve the speed of the bot. The main issue with the bot is that inputting actions takes the bulk of the time. Unfortunately, this is a limitation with the Robot class as reducing the delay between actions causes it to not register the action.
 
 
